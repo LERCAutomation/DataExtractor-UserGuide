@@ -45,7 +45,7 @@ The Data Extractor Tool is used within a GIS environment and requires all the re
 
 .. _figMapInfoUI:
 
-.. figure:: figures/InterfacMapInfoAnnotated.png
+.. figure:: figures/InterfaceMapInfoAnnotated.png
 	:align: center
 
 	The MapInfo user interface configured for using the Data Extractor Tool

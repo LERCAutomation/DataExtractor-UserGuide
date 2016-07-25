@@ -8,7 +8,7 @@ Introduction
 Background
 ==========
 
-Carrying out data extractions (i.e. extracting biological records for stakeholders) is a routine task for Local Environmental Record Centres (LERCs). The process is a repetitive one, with the same kind of extraction being carried out for what can be a large number of stakeholders. Mostly, the only difference between stakeholders is the geographical area they focus on, while the data they require can be represented by a few standard tables. Therefore, this is a process that is ideally suited to being automated.
+Carrying out data extractions (i.e. extracting records for stakeholders on, for example, species or local nature reserves) is a routine task for Local Environmental Record Centres (LERCs). The process is a repetitive one, with the same kind of extraction being carried out for what can be a considerable number of stakeholders. Mostly, the only difference between stakeholders is the geographical area they focus on, while the data they require can be represented by a few standard tables. Therefore this is a process that is ideally suited to being automated.
 
 The Data Extractor Tool was originally developed for Greenspace Information for Greater London (GiGL) and implemented in MapInfo. Currently the tool is used by a variety of LERCs and a version for ArcGIS is under consideration.
 
@@ -48,6 +48,6 @@ Benefits
 There are a number of clear benefits to using the Data Extractor Tool for carrying out routine data extractions for stakeholders. 
 
 1. The tool, by encapsulating and automating the process, saves considerable time over carrying out these extractions manually.
-2. Both the process and the outputs of the extraction are standardised, therefore minimising the risk of user error that is present in a manual extraction.
-3. By specifying the outputs of the tool centrally through the configuration file, the output for each extraction is consistent with all other extractions, regardless of the individual carrying out the extraction. This leads to comparability of results and a predictable experience for the users of a data extraction service.
-5. The extractions are repeatable and, through the inclusion of the log file, automatically documented.
+#. Both the process and the outputs of the extraction are standardised, therefore minimising the risk of user error that is present in a manual extraction.
+#. By specifying the outputs of the tool centrally through the configuration file, the output for each extraction is consistent with all other extractions, regardless of the individual carrying out the extraction. This leads to comparability of results and a predictable experience for the users of a data extraction service.
+#. The extractions are repeatable and, through the inclusion of the log file, automatically documented.
