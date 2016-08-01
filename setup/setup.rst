@@ -220,7 +220,7 @@ To install the tool, make sure that the configuration as described above is comp
 
 	The Tool Manager in MapInfo 11.5. 
 
-In Tool Manager, click on **Add Tool**, then locate the tool using the browse button on the Add Tool dialog (see :numref:`figAddTool`). Enter a name in the **Name** box and a description if so desired. Then click OK. The tool is now shown, and is loaded, in the Tool Manager menu (:numref:figToolAdded`)
+In Tool Manager, click on **Add Tool**, then locate the tool using the browse button on the Add Tool dialog (see :numref:`figAddTool`). Enter a name in the **Name** box and a description if so desired. Then click OK. The tool is now shown, and is loaded, in the Tool Manager menu (:numref:`figToolAdded`)
 
 .. _figAddTool:
 
