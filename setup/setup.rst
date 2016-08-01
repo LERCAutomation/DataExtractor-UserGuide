@@ -28,18 +28,13 @@ Once editing has been completed and the edits have been saved, it is recommended
 .. note::
 	It is recommended that the configuration file is kept in a central (network) location, so that all data searches use the same setup. Additionally, it is essential that the configuration file is kept in the same folder as the compiled version of the tool.
 
-.. index::
-	single: Setting up the XML file
-
-
-Setting up the XML file
------------------------
 
 .. index::
 	single: General attributes
 
 
-**General attributes**
+General attributes
+------------------
 
 The first section of the configuration file deals with a series of general attributes for the Data Extractor tool. These general nodes specify where files are kept, how output files should be named and other overall settings. Details on these attributes and their expected values are given below. The list follows the order within which the attributes are found in the configuration file. This version of the configuration details is valid for version 1.5.11 of the Data Extractor Tool.
 
@@ -122,7 +117,8 @@ _`CombinedSitesTableOptions`
 .. index::
 	single: SQL table attributes
 
-**SQL table attributes**
+SQL table attributes
+--------------------
 
 .. _SQLTables:
 While the spatial selection that the tool carries out is over the entirety of the SQL table selected by the user, subsets of this data can be written out using the SQL table attributes. The details of these tables are held in the ``<SQLTables>`` node.
@@ -163,7 +159,8 @@ _`Symbology`
 .. index::
 	single: Map layer attributes
 
-**Map layer attributes**
+Map layer attributes
+--------------------
 
 .. _MapTables:
 
