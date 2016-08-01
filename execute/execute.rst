@@ -29,7 +29,7 @@ To open the Data Searches tool, open the tool in the Tools menu (**Tools... -> D
 .. figure:: figures/RunExtractor.png
 	:align: center
 
-	Launching the Data Searches tool (ArcGIS).
+	Launching the Data Extractor tool (ArcGIS).
 
 
 If there are any structural issues with the XML document, the tool will display a message that it has encountered an error, and not load any further. If any of the map layers that are listed in the configuration document are not present, a warning will be shown (:numref:`figLaunchWarning`). The layers that are missing will not be loaded into the form and so cannot be included in the analysis. Provided that the XML document is otherwise correct, the form will display (:numref:`figDisplayForm`).
