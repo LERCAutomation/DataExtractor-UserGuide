@@ -93,6 +93,9 @@ Extraction Results
 
 All results are held in the `DefaultPath <../setup/setup.html#defaultpath>`__ folder as specified in the XML configuration document. As shown in :numref:`figResults` each partner has its own subfolder where the partner results are stored in the formats requested. A log file folder contains the process logs.
 
+
+.. _figResults:
+
 .. figure:: figures/OutputFolderAnnotated.png
 	:align: center
 
