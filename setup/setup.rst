@@ -187,7 +187,7 @@ A number of auxiliary tables and a stored procedure must be present in the SQL d
 
 1. The SURVEY table that is a standard Recorder6 table.
 #. A table called Spatial_Tables which gives information about any data tables that may be used by the process. The table has the following columns:
- 
+
 	TableName: The name of the data table
 	OwnerName: The database owner, usually ``dbo``.
 	XColumn: The name of the column holding the X coordinates of points
@@ -216,7 +216,7 @@ To install the tool, make sure that the configuration as described above is comp
 .. _figToolManager:
 
 .. figure:: figures/ToolManager.png
-	:align: center
+	:align:center
 
 	The Tool Manager in MapInfo 11.5. 
 
@@ -224,7 +224,7 @@ In Tool Manager, click on **Add Tool**, then locate the tool using the browse bu
 
 .. _figAddTool:
 
-.. figure:: figures/AddTool.png
+.. figure:: figures/AddToolDialog.png
 	:align:center
 
 	Adding a tool in Tool Manager
