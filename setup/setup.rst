@@ -207,7 +207,6 @@ A number of auxiliary tables and a stored procedure must be present in the SQL d
 .. index::
 	single: Installing the tool
 
-
 Installing the tool
 ===================
 
@@ -215,8 +214,10 @@ To install the tool, make sure that the configuration as described above is comp
 
 .. _figToolManager:
 
+.. _figXMLExample:
+
 .. figure:: figures/ToolManager.png
-	:align:center
+	:align: center
 
 	The Tool Manager in MapInfo 11.5. 
 
