@@ -203,7 +203,6 @@ A number of auxiliary tables and a stored procedure must be present in the SQL d
 #. A stored procedure that is used for extracting the required records. To obtain access to this procedure, please contact `Hester <mailto:Hester@HesterLyonsConsulting.co.uk>`_ or `Andy <mailto:Andy@AndyFoyConsulting.co.uk>`_.
 #. One or more flat tables with the species records used for the extractions.
 
-
 .. index::
 	single: Installing the tool
 
@@ -213,8 +212,6 @@ Installing the tool
 To install the tool, make sure that the configuration as described above is complete, all data layers are loaded in the map window and that the XML file is in the same directory as the tool MapBasic Application. Then, open Tool Manager in MapInfo using **Tools... --> Tool Manager** (:numref:`figToolManager`). 
 
 .. _figToolManager:
-
-.. _figXMLExample:
 
 .. figure:: figures/ToolManager.png
 	:align: center
@@ -226,14 +223,14 @@ In Tool Manager, click on **Add Tool**, then locate the tool using the browse bu
 .. _figAddTool:
 
 .. figure:: figures/AddToolDialog.png
-	:align:center
+	:align: center
 
 	Adding a tool in Tool Manager
 
 .. _figToolAdded:
 
 .. figure:: figures/DataExtractorLoaded.png
-	:align:center
+	:align: center
 
 	The data extractor tool is loaded.
 
