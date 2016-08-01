@@ -62,9 +62,11 @@ Select the partners for which you wish to run the extraction, and the tables tha
 .. _figProgress:
 
 .. figure:: figures/ExtractorProcessing.png
-	:align:center
+	:align: center
 
 	Progress is shown in the progress window.
+
+
 
 When the tool finishes, it asks the user whether to close the form or keep it open for subsequent use (:numref:`figFinished`). Once the user makes a choice the log file is sown (:numref:`figLogFile`)
 
