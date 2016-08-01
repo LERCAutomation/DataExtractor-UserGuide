@@ -27,7 +27,7 @@ The Data Extractor Tool is configurable in a flexible way according to the requi
 
 	the Data Extractor Tool menu
 
-Data layers for the tool can be contained in an SQL Express database or as GIS layers in the interface. When running an extraction, the tool uses a preloaded GIS layer in the interface, as well as in the associated SQL database, to find the boundary for each partner and extract the records which intersect with this boundary. The attributes for each partner in the GIS layer define which of the available data layers will be extracted. Extracts are saved in a predefined location, and a log file is kept that records the steps of each extraction. The process is discussed in this document in more detail in the section on :doc:`using the tool <../execute/execute>`.
+Data layers for the tool can be contained in an SQL Express database or as GIS layers in the interface. When running an extraction, the tool uses a preloaded GIS layer in the associated SQL database to find the boundary for each partner and extract the records which intersect with this boundary. The attributes for each partner in the GIS layer define which of the available data layers will be extracted. Extracts are saved in a predefined location, and a log file is kept that records the steps of each extraction. The process is discussed in this document in more detail in the section on :doc:`using the tool <../execute/execute>`.
 
 Defining the way that extractions should be carried out, the output that they generate and the layers that can potentially be included is done via a configuration document written in XML. Using this document the user can configure all the parts of the extraction, for example:
 

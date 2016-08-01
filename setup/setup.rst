@@ -4,6 +4,9 @@ Setting up the tool
 
 Before the Data Extractor Tool will function, it needs to be installed and configured. It is recommended that the configuration is carried out first.
 
+.. note::
+	It is recommended that a MapInfo Workspace is created that contains all the required data to run the tool, and that the tool is loaded into that. Once this workspace has been set up and the tool has been configured as described below, running the Data Extractor tool becomes a simple process.
+
 .. index::
 	single: Configuring the tool
 
@@ -56,7 +59,14 @@ _`TableListSQL`
 	The SQL statement that is used to return the list of SQL tables which should be included in the user interface for selection by the user.
 
 _`PartnerTable`
-	The name of the partner GIS layer in SQL Server used to select the records. The tool expects a MapInfo table of the same name to be present in the map view, which can be added manually by connecting to the the `FileDSN`_ and adding the boundary dataset to the workspace.
+	The name of the partner GIS layer in SQL Server used to select the records. The tool expects this layer to also be present in the map view of the workspace, and it can be added manually by connecting to the the `FileDSN`_ and adding the boundary dataset to the workspace from SQL Server. A snapshot of a partner table is shown in :numref:`FigPartnerTable`.
+
+.. _FigPartnerTable:
+
+.. figure:: figures/PartnerTable.png
+	:align: center
+
+	An example of a partner table loaded into MapInfo. 
  
 _`PartnerColumn`
 	The column in the `PartnerTable`_ containing the partner name, which is passed to SQL Server by the tool to use as the partner's boundary for selecting the records.
@@ -114,7 +124,9 @@ _`CombinedSitesTableOptions`
 
 **SQL table attributes**
 
-The attributes for any SQL tables to be included in the Data Extractor Tool menu is found within the ``<SQLTables>`` node. For each data layer that can be included in the searches, a new child node is created that has the name of the layer (e.g. ``<AllSpecies>``). This is the same name as should be used in the list of map layers in the `FilesColumn`_ in the partner boundary layer. The actual name of the layer as it is shown in the user interface may be different and is kept in a subsequent child node. A simple example of an SQL layer definition with limited attributes is shown in :numref:`figXMLExample`.
+While the spatial selection that the tool carries out is over the entirety of the SQL table selected by the user, subsets of this data can be written out using the SQL table attributes. 
+
+For each data layer that should be included in the extracts, a new child node is created that has the name of the layer (e.g. ``<AllSpecies>``). This is a user-defined name used to an identify individual subset, and the same name should be used in the 'Files' column in the partner layer. A simple example of an SQL layer definition with limited attributes is shown in :numref:`figXMLExample`.
 
 .. _figXMLExample:
 
@@ -126,16 +138,16 @@ The attributes for any SQL tables to be included in the Data Extractor Tool menu
 The attributes that are required for each SQL table are as follows:
 
 _`TableName`
-	The name of the layer as it is held in the SQL database. 
+	The name of the output file that will be created for this subset. 
 
 _`Columns`
-	A comma-separated list of columns that should be included in the data exported from this data layer during the extraction. The column names are case sensitive and should match the column names in the source table. 
+	A comma-separated list of columns that should be included in the data exported for this subset during the extraction. The column names are case sensitive and should match the column names in the source table. 
 
 _`Clauses`
-	Any SQL clause that should be used to select the data from this table for export. This clause could, for example, ensure records are only included that have been entered after a certain date, are verified or are presence (not absence) records.
+	Any SQL clause that should be used to select the data for this subset. This clause could, for example, ensure records are only included that have been entered after a certain date, are verified or are presence (not absence) records. Leave this entry blank to export the entire SQL table.
 
 _`Symbology`
-	The symbology definition for extracts from this table. Multiple symbols can be specified for use in the legend using clauses. Each symbol is specified between ``<Symbol>`` and ``</Symbol>`` tags and is defined by the following child nodes:
+	The symbology definition for this subset. Multiple symbols can be specified for use in the symbology using clauses. Each symbol is specified between ``<Symbol>`` and ``</Symbol>`` tags and is defined by the following child nodes:
 
 	Clause
 		The clause that defines the records which will be assigned this symbol.
@@ -152,7 +164,7 @@ _`Symbology`
 
 **Map layer attributes**
 
-All map layer attributes are found within the ``<MapTables>`` node. For each data layer that can be included in the searches, a new child node is created that has the name of the layer (e.g. ``<SSSIs>``), in the same way as this is done for the SQL tables. The attributes that are required for each map layer are as follows:
+All map layer attributes are found within the ``<MapTables>`` node. For each data layer that can be included in the extractions, a new child node is created that has the name of the layer (e.g. ``<SSSIs>``), which is the name it is referenced by in the 'Files' column of the partner boundaries layer. The attributes that are required for each map layer are as follows:
 
 _`TableName`
 	The name of the table as it is shown in the MapInfo user interface.
@@ -162,6 +174,31 @@ _`Columns`
 
 Any exports from map layers will use the same symbology as the source layer.
 
+.. index::
+	single: Setting up the SQL database
+
+Setting up the SQL Server database
+==================================
+
+A number of auxiliary tables and a stored procedure must be present in the SQL database in order for the tool to function with tables held in SQL Server. These are as follows:
+
+1. The SURVEY table that is a standard Recorder6 table.
+#. A table called Spatial_Tables which gives information about any data tables that may be used by the process. The table has the following columns: 
+	TableName: The name of the data table
+	OwnerName: The database owner, usually ``dbo``.
+	XColumn: The name of the column holding the X coordinates of points
+	YColumn: The name of the column holding the Y coordinates of points
+	SizeColumn: The name of the column holding the information size of the grid (in metres)
+	IsSpatial: Bitwise column (1 = Yes, 0 = No) defining whether the table is spatially enabled
+	SpatialColumn: If the table is spatially enabled, the name of the geometry column (normally ``SP_GEOMETRY``)
+	SRID:
+	CoordSystem: The coordinate system of the spatial data in the table. Example for British National Grid: Earth Projection 8, 79, "m", -2, 49, 0.9996012717, 400000, -100000 Bounds (-7845061.1011, -15524202.1641) (8645061.1011, 4470074.53373).
+	SurveyKeyColumn: The column containing the survey ID for each record in the table
+
+	Ensure that this table is filled out correctly for each table that is included in the Extractor tool.
+#. A stored procedure that is used for extracting the required records. To obtain access to this procedure, please contact `Hester <mailto:Hester@HesterLyonsConsulting.co.uk>`_ or `Andy <mailto:Andy@AndyFoyConsulting.co.uk>`_.
+#. One or more flat tables with the species records used for the extractions.
+
 
 .. index::
 	single: Installing the tool
@@ -170,143 +207,28 @@ Any exports from map layers will use the same symbology as the source layer.
 Installing the tool
 ===================
 
-.. index::
-	single: Installing the tool in ArcGIS
+To install the tool, make sure that the configuration as described above is complete, all data layers are loaded in the map window and that the XML file is in the same directory as the tool MapBasic Application. Then, open Tool Manager in MapInfo using **Tools... --> Tool Manager** (:numref:`figToolManager`). 
 
+.. _figToolManager:
 
-ArcGIS
-------
-
-Installing the tool in ArcGIS is straightforward. There are a few different ways it can be installed:
-
-1. Installation through Windows Explorer.
-	- Open Windows Explorer and double-click on the ESRI Add-in file for the data searches tool (:numref:`figInstallTool`). 
-	- Installation will begin after confirming you wish to install the tool on the dialog that appears (:numref:`figConfirmInstall`). 
-	- Once it is installed, it will become available to add to the ArcGIS interface as a button.
-
-.. note::
-	In order for this process to work all running ArcMap sessions must be closed. The tool will not install or install incorrectly if there are copies of ArcMap running.
-
-.. _figInstallTool:
-
-.. figure:: figures/AddInInstall.png
+.. figure:: figures/ToolManager.png
 	:align: center
 
-	Installing the Data Searches Tool from Windows Explorer. 
+	The Tool Manager in MapInfo 11.5. 
 
-.. _figConfirmInstall:
+In Tool Manager, click on **Add Tool**, then locate the tool using the browse button on the Add Tool dialog (see :numref:`figAddTool`). Enter a name in the **Name** box and a description if so desired. Then click OK. The tool is now shown, and is loaded, in the Tool Manager menu (:numref:figToolAdded`)
 
-.. figure:: figures/AddInConfirmInstall.png
-	:align: center
+.. _figAddTool:
 
-	Installation begins after clicking 'Install Add-in'. 
+.. figure:: figures/AddTool.png
+	:align:center
 
-2. Another way to install the tool is from within ArcMap: 
-	- Firstly, open the Add-In Manager through the Customize menu (:numref:`figOpenAddInManager`). 
-	- If the Data Searches Tool is not shown, use the Options tab to add the folder where the tool is kept (:numref:`figAddInOptions`). The security options should be set to the lowest setting as the tool is not digitally signed.
-	- Once the tool shows in the Add-In Manager (:numref:`figAddInManager`), it is available to add to the ArcGIS interface as a button.
+	Adding a tool in Tool Manager
 
-.. _figOpenAddInManager:
+.. _figToolAdded:
 
-.. figure:: figures/ArcGISStartAddInManager.png
-	:align: center
+.. figure:: figures/DataExtractorLoaded.png
+	:align:center
 
-	Starting the ArcGIS Add-In Manager.
+	The data extractor tool is loaded.
 
-
-.. _figAddInOptions:
-
-.. figure:: figures/ArcGISAddInOptions.png
-	:align: center
-
-	The options tab in the ArcGIS Add-In Manager.
-
-
-.. _figAddInManager:
-
-.. figure:: figures/AddInManager.png
-	:align: center
-
-	The ArcGIS Add-In Manager showing the Data Searches Tool.
-
-
-In order to add the Data Searches Tool to the user interface, it needs to be added to a toolbar. It is recommended that this is done inside a document that has already been loaded with all the data layers that are required for the tool to run. The tool should then be saved with this document (see `Fundamentals of Saving your Customizations <http://desktop.arcgis.com/en/arcmap/10.3/guide-books/customizing-the-ui/fundamentals-of-saving-your-customizations.htm>`_ for an explanation of how customisations are stored within ArcGIS).
-
-Customising toolbars is done through the Customize dialog, which can be started either through the Add-In Manager (by clicking 'Customize', see :numref:`figAddInManager`), or through choosing the 'Customize Mode...' option in the Customize Menu (:numref:`figCustomizeMode`). Once this dialog is open, ensure that the check box 'Create new toolbars and menus in the document' is checked in the Options tab (:numref:`figCustomizeOptions`).
-
-
-.. _figCustomizeMode:
-
-.. figure:: figures/ArcGISCustomizeMode.png
-	:align: center
-
-	Starting Customize Mode in ArcGIS.
-
-
-.. _figCustomizeOptions:
-
-.. figure:: figures/CustomizeAnnotated.png
-	:align: center
-
-	Customising the document in ArcGIS.
-
-
-It is recommended that the button for the Data Searches Tool is added to a new toolbar. Toolbars are created through the Toolbars tab in the Customize dialog, as shown in figures :numref:`figCustomizeToolbars` and :numref:`figNameToolbar`. Once a new toolbar is created and named, it is automatically added to the ArcMap interface as well as to the Customize dialog (:numref:`figNewToolbar`. In this case the toolbar was named 'TestToolbar'). 
-
-.. _figCustomizeToolbars:
-
-.. figure:: figures/CustomizeToolbarsAnnotated.png
-	:align: center
-
-	Adding a new toolbar in ArcGIS
-
-.. _figNameToolbar:
-
-.. figure:: figures/NameNewToolbar.png
-	:align: center
-
-	Naming the new toolbar in ArcGIS.
-
-
-.. _figNewToolbar:
-
-.. figure:: figures/NewToolbarAddedAnnotated.png
-	:align: center
-
-	New toolbar added to the ArcGIS Interface.
-
-
-As a final step the Data Searches tool is added to the toolbar. This is done from the Command tab in the Customize dialog (:numref:`figAddInCommands`). Click on Add-In Controls and the Data Searches tool will be shown in the right-hand panel. To add the tool to the toolbar, simply drag and drop it onto it (:numref:`figDragDropTool`). Close the Customize dialog and **save the document**. The Data Searches tool is now ready for its final configuration and first use.
-
-
-.. _figAddInCommands:
-
-.. figure:: figures/AddInCommandsAnnotated.png
-	:align: center
-
-	Finding the Data Searches tool in the add-in commands.
-
-
-.. _figDragDropTool:
-
-.. figure:: figures/DragAndDropTool.png
-	:align: center
-
-	Adding the Data Searches tool to the new toolbar.
-
-In order to function, the tool needs to know the location of the XML configuration file. The first time the tool is run, or whenever the configuration file is moved, a dialog will appear asking for the folder containing the XML file (:numref: `figFirstStart`). Navigate to the folder where the XML file is kept and click OK. If the XML file is present and its structure is correct, the Data Searches form will be shown. Even if the tool is not run at this time, the location of the configuration file will be stored for future use.
-
-.. _figFirstStart:
-
-.. figure:: figures/FirstStart.png
-	:align: center
-
-	Locating the configuration file folder.
-
-.. index::
-	single: Installing the tool in MapInfo
-
-MapInfo
--------
-- Adding the tool
-- Running the tool – different version
