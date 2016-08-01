@@ -53,7 +53,7 @@ _`DefaultPath`
 	The folder below which all partner folders will be created, and where extracts will be stored.
 
 _`DatabaseSchema`
-	The schema used in the SQL database (usually dbo).
+	The schema used in the SQL database (usually ``dbo``).
 
 _`TableListSQL`
 	The SQL statement that is used to return the list of SQL tables which should be included in the user interface for selection by the user.
@@ -78,7 +78,7 @@ _`NotesColumn`
 	The name of the column in the partner GIS layer containing any notes text relating to the partner.
 
 _`ActiveColumn`
-	The name of the column in the partner GIS layer containing the Y/N flag to indicate if the partner is currently active.  Only active partners will available for processing. The values in this column should be 'Y' or 'N'.
+	The name of the column in the partner GIS layer containing the Y/N flag to indicate if the partner is currently active.  Only active partners will available for processing. The values in this column should be ``Y`` or ``N``.
 
 _`FormatColumn`
 	The name of the column in the partner GIS layer containing the GIS format required for the output records. The values in the column should be ``Shp``, ``Tab`` or ``Both``.
@@ -87,7 +87,7 @@ _`ExportColumn`
 	The name of the column in the partner GIS layer indicating whether an export should also be created as a CSV file. The values in this column should be 'Y' or 'N'.
 
 _`FilesColumn`
-	The name of the column in the partner GIS layer indicating which map layers should be extracted for each partner. The entry in this column should be a comma-delimited list with no spaces, of the names of the layers (as given in the XML file [REF]) that should be included for each partner.
+	The name of the column in the partner GIS layer indicating which map layers should be extracted for each partner. The entry in this column should be a comma-delimited list with no spaces, of the names of the layers (as given in the XML file under SQLTables_ and MapTables_) that should be included for each partner.
 
 _`TagsColumn`
 	The name of the column in the partner GIS layer indicating which survey tags, if any, should be included in the export. The survey tags should be a comma-delimited list with no spaces.
@@ -96,10 +96,10 @@ _`SelectTypeOptions`
 	The option list for the selection types, to be included in the 'Selection Type' dropdown box on the interface. This attribute should not be changed. The options are ``Spatial Only`` (records are purely selected on whether they are inside or outside the partner boundary), ``Survey tags only`` (records are purely selected on the survey tags included in the `TagsColumn`_), and ``Spatial and Survey Tags``, where both a spatial intersection and any records with the relevant survey tags are included in the extraction.
 
 _`DefaultSelectType`
-	The buffer unit that should be shown by default in the 'Selection Type' dropdown list. This attribute is the index number of the selection type options in the dropdown list, with 1 being the first option.
+	The selection type that should be shown by default in the `Selection Type`_ dropdown list. This attribute is the index number of the selection type options in the dropdown list, with 1 being the first option.
 
 _`RecMax`
-	The maximum number of records what will be extracted in any one partner extract.
+	The maximum number of records that will be extracted in any one partner extract.
 
 _`DefaultZip`
 	The default value for zipping the extract files. This attribute should be set to ``Yes`` or ``No``.
@@ -124,9 +124,10 @@ _`CombinedSitesTableOptions`
 
 **SQL table attributes**
 
-While the spatial selection that the tool carries out is over the entirety of the SQL table selected by the user, subsets of this data can be written out using the SQL table attributes. 
+.. _SQLTables:
+While the spatial selection that the tool carries out is over the entirety of the SQL table selected by the user, subsets of this data can be written out using the SQL table attributes. The details of these tables are held in the ``<SQLTables>`` node.
 
-For each data layer that should be included in the extracts, a new child node is created that has the name of the layer (e.g. ``<AllSpecies>``). This is a user-defined name used to an identify individual subset, and the same name should be used in the 'Files' column in the partner layer. A simple example of an SQL layer definition with limited attributes is shown in :numref:`figXMLExample`.
+For each subset that may be included in the extracts, a new child node is created that has the name of the layer (e.g. ``<AllSpecies>``). This is a user-defined name used to an identify individual subset, and the same name should be used in the `Files`_ column in the partner layer. A simple example of an SQL layer definition with limited attributes is shown in :numref:`figXMLExample`.
 
 .. _figXMLExample:
 
@@ -144,7 +145,7 @@ _`Columns`
 	A comma-separated list of columns that should be included in the data exported for this subset during the extraction. The column names are case sensitive and should match the column names in the source table. 
 
 _`Clauses`
-	Any SQL clause that should be used to select the data for this subset. This clause could, for example, ensure records are only included that have been entered after a certain date, are verified or are presence (not absence) records. Leave this entry blank to export the entire SQL table.
+	Any SQL clause that should be used to select the data for this subset. This clause could, for example, ensure records are only included that have been entered after a certain date, are verified or are presence (not absence) recordsm, or are subset for particular taxon groups or threatened species. Leave this entry blank to export the entire SQL table.
 
 _`Symbology`
 	The symbology definition for this subset. Multiple symbols can be specified for use in the symbology using clauses. Each symbol is specified between ``<Symbol>`` and ``</Symbol>`` tags and is defined by the following child nodes:
@@ -163,6 +164,8 @@ _`Symbology`
 	single: Map layer attributes
 
 **Map layer attributes**
+
+.. _MapTables:
 
 All map layer attributes are found within the ``<MapTables>`` node. For each data layer that can be included in the extractions, a new child node is created that has the name of the layer (e.g. ``<SSSIs>``), which is the name it is referenced by in the 'Files' column of the partner boundaries layer. The attributes that are required for each map layer are as follows:
 
@@ -183,7 +186,8 @@ Setting up the SQL Server database
 A number of auxiliary tables and a stored procedure must be present in the SQL database in order for the tool to function with tables held in SQL Server. These are as follows:
 
 1. The SURVEY table that is a standard Recorder6 table.
-#. A table called Spatial_Tables which gives information about any data tables that may be used by the process. The table has the following columns: 
+#. A table called Spatial_Tables which gives information about any data tables that may be used by the process. The table has the following columns:
+ 
 	TableName: The name of the data table
 	OwnerName: The database owner, usually ``dbo``.
 	XColumn: The name of the column holding the X coordinates of points
