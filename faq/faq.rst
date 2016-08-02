@@ -6,7 +6,7 @@
 Frequently Asked Questions
 **************************
 
-This is a list of Frequently Asked Questions about the HLU Tool. Feel free to
+This is a list of Frequently Asked Questions about the Data Extractor Tool. Feel free to
 suggest new entries!
 
 General questions
@@ -32,10 +32,10 @@ Operating the tool
 	This issue can arise in several ways:
 
 	- The layer is a MapInfo table and isn't loaded in your GIS document. In this case, a `message will pop up <../execute/execute.html#figlaunchwarning>`__ before the form is shown telling you the layer isn't loaded. Add the layer to the GIS interface and the problem should be resolved.
-	- The layer is either an SQL table or MapInfo table and isn't listed in the XML configuration document (or it is not being obtained within the `TableListSQL node <../setup/setup.html#tablelistsql>`__. Please refer to the :doc:`setup <../setup/setup>` section and add it as a map layer or amend the SQL statement as appropriate.
-	- The layer is a MapInfo table, and it is listed in the configuration document, but the `TableName <../setup/setup.html#tablename>`_ is spelled incorrectly. Note that the name is case sensitive and must follow the exact format of the name of the layer in the GIS document.
+	- The layer is either an SQL table or MapInfo table and isn't listed in the XML configuration document (or its name is not being obtained within the `TableListSQL node <../setup/setup.html#tablelistsql>`__). Please refer to the :doc:`setup <../setup/setup>` section and add it as a map layer or amend the SQL statement as appropriate.
+	- The layer is a MapInfo table, and it is listed in the configuration document, but the `TableName <../setup/setup.html#maptables>`_ is spelled incorrectly. Note that the name is case sensitive and must follow the exact format of the name of the layer in the GIS document.
 
-**The partner I want to extract data for is not shown in the form. How do I get it to show up?**
+**The partner I want to extract data for is not shown in the form. How do I get the name to show up?**
 
 	This issue can arise in two ways:
 
