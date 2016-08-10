@@ -8,7 +8,7 @@ Introduction
 Background
 ==========
 
-Carrying out data extractions (i.e. extracting records for stakeholders on, for example, species or local nature reserves) is a routine task for Local Environmental Record Centres (LERCs). The process is a repetitive one, with the same kind of extraction being carried out for what can be a considerable number of stakeholders. Mostly, the only difference between stakeholders is the geographical area they focus on, while the data they require can be represented by a few standard tables. Therefore this is a process that is ideally suited to being automated.
+Carrying out data extractions (i.e. extracting records for partners on, for example, species or local nature reserves) is a routine task for many Local Environmental Record Centres (LERCs). The process is a repetitive one, with the same kind of extraction being carried out for what can be a considerable number of partners. Mostly, the only difference between partners is the geographical area they focus on, while the data they require can be represented by a few standard tables. Therefore this is a process that is ideally suited to being automated.
 
 The Data Extractor Tool was originally developed for Greenspace Information for Greater London (GiGL) and implemented in MapInfo. Currently the tool is used by a variety of LERCs and a version for ArcGIS is under consideration.
 
@@ -25,14 +25,14 @@ The Data Extractor Tool is configurable in a flexible way according to the requi
 .. figure:: figures/UserInterface.png
 	:align: center
 
-	the Data Extractor Tool menu
+	The Data Extractor tool interface
 
-Data layers for the tool can be contained in an SQL Express database or as GIS layers in the interface. When running an extraction, the tool uses a preloaded GIS layer in the associated SQL database to find the boundary for each partner and extract the records which intersect with this boundary. The attributes for each partner in the GIS layer define which of the available data layers will be extracted. Extracts are saved in a predefined location, and a log file is kept that records the steps of each extraction. The process is discussed in this document in more detail in the section on :doc:`using the tool <../execute/execute>`.
+Data layers for the tool can be contained in an SQL Server database or as GIS layers loaded in the GIS application. When running an extraction the tool uses a loaded GIS layer, also preloaded into the associated SQL database, to find the boundary for each partner and extract the records which fall within with this boundary. The attributes for each partner in the GIS layer define which of the available data layers will be extracted and in which format. Extracts are saved in a predefined location, and a log file is kept that records the steps of each extraction. The process is discussed in this document in more detail in the section on :doc:`using the tool <../execute/execute>`.
 
 Defining the way that extractions should be carried out, the output that they generate and the layers that can potentially be included is done via a configuration document written in XML. Using this document the user can configure all the parts of the extraction, for example:
 
 * The name of the geographic layer containing the partner boundaries, and its key columns.
-* The location of the SQL server file DNS.
+* The location of the SQL Server file DNS (defining the connection details for the database).
 * The location of the output folder.
 * For each data layer, a detailed definition of what information should be returned from it.
 * Details on the display and labelling of output from individual data layers where relevant.

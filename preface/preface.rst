@@ -5,7 +5,7 @@ Preface
 The most up to date version of this documentation can be found in **HTML** and **PDF** form on `ReadTheDocs <https://readthedocs.org/projects/dataextractor-userguide/>`_.
 
 .. index::
-	single: Recommended User Knowledge
+	single: Recommended user knowledge
 
 Recommended User Knowledge
 ==========================
@@ -32,7 +32,7 @@ It is recommended that a person within each organisation is designated as the to
 * Have a good understanding of XML.
 
 .. index::
-	single: Reading Guide
+	single: Reading guide
 
 Reading Guide
 =============
@@ -66,14 +66,14 @@ Please remember, however, that the tool cost a lot of money to develop and still
 
 
 .. index::
-	single: Useful Links
+	single: Useful links
 
 Useful links
 ============
 
 Related community links:
 
-* Administrators: (`Mapinfo Installation <https://github.com/LERCAutomation/DataExtractor-MapInfo/releases/>`_) - Release notes and installers for MapInfo.
+* Administrators: (`MapInfo Installation <https://github.com/LERCAutomation/DataExtractor-MapInfo/releases/>`_) - Release notes and installers for MapInfo.
 * Developers (`MapInfo Source Code <https://github.com/LERCAutomation/DataExtractor-MapInfo>`_) - Source code for the Data Extractor Tool.
 * Issues (`Known issues <https://github.com/LERCAutomation/DataExtractor-MapInfo/issues>`_) - Details of known issues and existing change requests.
 
@@ -84,7 +84,7 @@ Related community links:
 Acknowledgements
 ================
 
-Many thanks are due to all the LRCs in the south-east of England and their staff who have, and continue to, fund and contribute to the Data Searches tool.  It takes many developers, testers and users to build a truly useful tool (especially users who care enough to test new releases, report bugs and discuss feature requests).
+Many thanks are due to all the LERCs in the south-east of England and their staff who have, and continue to, fund and contribute to the Data Extractor tool.  It takes many developers, testers and users to build a truly useful tool (especially users who care enough to test new releases, report bugs and discuss feature requests).
 
 
 .. raw:: latex
