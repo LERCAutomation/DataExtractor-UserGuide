@@ -20,14 +20,14 @@ The configuration is stored in an XML file called 'DataExtractor.xml', an exampl
 
 The XML file can be edited in a text editor such as Notepad or Wordpad, or using a more feature rich XML editor such as as `Sublime Text <https://www.sublimetext.com/3>`_. The configuration file is split into three sections:
 
-**General attributes**
-General and default attributes for the tool.
+_`General attributes`
+	General and default attributes for the tool.
 
-**SQLTables**
-Deals with how extracts from each SQL Server table should be handled.
+_`SQLTables`
+	Deals with how extracts from each SQL Server table should be handled.
 
-**MapTables**
-Deals with how extracts from each GIS layer should be handled.
+_`MapTables`
+	Deals with how extracts from each GIS layer should be handled.
 
 .. caution::
 	It is important that the structure of the file is maintained as it is presented in the :doc:`appendix <../appendix/appendix>`. Any changes to the structure may result in the Data Extractor Tool not loading, or not working as expected.
@@ -45,7 +45,7 @@ Once editing has been completed and the edits have been saved, it is recommended
 General attributes
 ------------------
 
-The first section of the configuration file deals with a series of general attributes for the Data Extractor tool. Each node specifies where files are kept, how output files should be named, where the log file will be saved as well as other overall settings. Details on these attributes (and their typical values where known) are outlined below. The list follows the order within which the attributes are found in the configuration file. This version of the configuration file is valid for version 1.5.11 of the Data Extractor tool.
+The first section of the configuration file deals with a series of general attributes for the Data Extractor tool. Each node specifies where files are kept, how output files should be named, where the log file will be saved as well as other overall settings. Details on these attributes (and their typical values where known) are outlined below. The list follows the order within which the attributes are found in the configuration file.
 
 _`ToolTitle`
 	The title to use for the program in the MapInfo Tools menu.
@@ -73,7 +73,7 @@ _`PartnerTable`
 .. figure:: figures/PartnerTable.png
 	:align: center
 
-	An example of a partner table loaded into MapInfo. 
+	An example of a partner table loaded into MapInfo
 
 .. note::
 	The partner GIS layer can be uploaded to SQL Server from MapInfo using the 'EasyLoader' tool.
@@ -112,7 +112,7 @@ _`SelectTypeOptions`
 		The 'Selection Type' option in the tool interface **only** relates to extracts from SQL tables and **not** to extracts from GIS layers (which are always spatial).
 
 _`DefaultSelectType`
-	The selection type that should be shown by default in the `Selection Type`_ drop-down list. This attribute is the index number of the selection type options in the drop-down list, with 1 being the first option.
+	The selection type that should be shown by default in the `SelectionType`_ drop-down list. This attribute is the index number of the selection type options in the drop-down list, with 1 being the first option.
 
 _`RecMax`
 	The maximum number of records that will be extracted in any one partner extract.
@@ -145,14 +145,14 @@ SQL table attributes
 .. _SQLTables:
 While the spatial selection that the tool carries out is over the entirety of the SQL table selected by the user, subsets of this data can be written out using the SQL table attributes. The details of these subsets are defined in the ``<SQLTables>`` node.
 
-For each subset that may be included in the extracts a new child node must be created. The node name (e.g. ``<AllSpecies>``) is a user-defined name used to identify an individual subset - the same name should be used in the `Files`_ column in the partner layer to indicate that this subset should be extracted for a partner. A simple example of an SQL layer definition with limited attributes is shown in :numref:`figXMLExample`.
+For each subset that may be included in the extracts a new child node must be created. The node name (e.g. ``<AllSpecies>``) is a user-defined name used to identify an individual subset - the same name should be used in the `FilesColumn`_ in the partner layer to indicate that this subset should be extracted for a partner. A simple example of an SQL layer definition with limited attributes is shown in :numref:`figXMLExample`.
 
 .. _figXMLExample:
 
 .. figure:: figures/DataLayerXMLExample.png
 	:align: center
 
-	Simplified example of an SQL table subset configuration.
+	Simplified example of an SQL table subset configuration
 
 The attributes that are required for each SQL table are as follows:
 
@@ -174,7 +174,7 @@ _`Symbology`
 	Clause
 		The clause that defines the records which will be assigned this symbol.
 	Object
-		The object that is symbolised using this symbol (e.g. ``Point``)
+		The object type that is symbolised using this symbol (e.g. ``Point``)
 	Type
 		The type of symbol to be used, usually 'Symbol'
 	Style
@@ -189,7 +189,7 @@ Map layer attributes
 
 .. _MapTables:
 
-All map layer attributes are found within the ``<MapTables>`` node. For each data layer that can be included in the extractions a new child node must be created. The node name (e.g. ``<SSSIs>``) is a user-defined name used to identify the layer - the same name should be used in the `Files`_ column in the partner layer to indicate that this layer should be extracted for a partner. The attributes that are required for each map layer are as follows:
+All map layer attributes are found within the ``<MapTables>`` node. For each data layer that can be included in the extractions a new child node must be created. The node name (e.g. ``<SSSIs>``) is a user-defined name used to identify the layer - the same name should be used in the `FilesColumn`_ in the partner layer to indicate that this layer should be extracted for a partner. The attributes that are required for each map layer are as follows:
 
 _`TableName`
 	The name of the source GIS layer as it is known in the active MapInfo workspace.
@@ -220,20 +220,40 @@ _`Survey` table
 _`Spatial_Tables` table
 	This table contains information about any SQL data tables that may be used by the tool. The table has the following columns:
 
-	TableName: The name of the data table
-	OwnerName: The database owner, usually ``dbo``
-	XColumn: The name of the column holding the X coordinates of the spatial location of the record
-	YColumn: The name of the column holding the Y coordinates of the spatial location of the record
-	SizeColumn: The name of the column holding the information of the grid size of the record (in metres)
-	IsSpatial: Bitwise column (1 = Yes, 0 = No) defining whether the table is spatially enabled
-	SpatialColumn: If the table is spatially enabled, the name of the geometry column (normally ``SP_GEOMETRY``)
-	SRID: The name of the spatial reference system used to plot the records
-	CoordSystem: The coordinate system of the spatial data in the table. For example, for the British National Grid the value is ``Earth Projection 8, 79, "m", -2, 49, 0.9996012717, 400000, -100000 Bounds (-7845061.1011, -15524202.1641) (8645061.1011, 4470074.53373)``
-	SurveyKeyColumn: The column containing the survey key for each record
+	.. tabularcolumns:: |L|L|
+
+	.. table:: Valid date and time format specifiers
+
+		+-----------------+-----------------------------------------------------------------------------------------------+
+		|      Column     |                                          Description                                          |
+		+=================+===============================================================================================+
+		| "d"             | The day of the month, from 1 through 31.                                                      |
+		+-----------------+-----------------------------------------------------------------------------------------------+
+		| TableName       | The name of the data table                                                                    |
+		+-----------------+-----------------------------------------------------------------------------------------------+
+		| OwnerName       | The database owner, usually ``dbo``                                                           |
+		+-----------------+-----------------------------------------------------------------------------------------------+
+		| XColumn         | The name of the column holding the X coordinates of the spatial location of the record        |
+		+-----------------+-----------------------------------------------------------------------------------------------+
+		| YColumn         | The name of the column holding the Y coordinates of the spatial location of the record        |
+		+-----------------+-----------------------------------------------------------------------------------------------+
+		| SizeColumn      | The name of the column holding the information of the grid size of the record (in metres)     |
+		+-----------------+-----------------------------------------------------------------------------------------------+
+		| IsSpatial       | Bitwise column (1 = Yes, 0 = No) defining whether the table is spatially enabled              |
+		+-----------------+-----------------------------------------------------------------------------------------------+
+		| SpatialColumn   | If the table is spatially enabled, the name of the geometry column (e.g. ``SP_GEOMETRY``)     |
+		+-----------------+-----------------------------------------------------------------------------------------------+
+		| SRID            | The name of the spatial reference system used to plot the records                             |
+		+-----------------+-----------------------------------------------------------------------------------------------+
+		| CoordSystem     | The coordinate system of the spatial data in the table  [1]_                                   |
+		+-----------------+-----------------------------------------------------------------------------------------------+
+		| SurveyKeyColumn | The column containing the survey key for each record                                          |
+		+-----------------+-----------------------------------------------------------------------------------------------+
+
+.. [1] For example, for the British National Grid the value is ``Earth Projection 8, 79, "m", -2, 49, 0.9996012717, 400000, -100000 Bounds (-7845061.1011, -15524202.1641) (8645061.1011, 4470074.53373)``
 
 	.. caution::
 		This table must be filled out correctly for each table that is included in the Data Extractor tool.
-
 
 	.. note::
 		A number of stored procedures that are used by the tool for extracting the required records must also be present in the SQL Server database. To obtain copies of these procedures please contact `Hester <mailto:Hester@HesterLyonsConsulting.co.uk>`_ or `Andy <mailto:Andy@AndyFoyConsulting.co.uk>`_.
@@ -254,7 +274,7 @@ To install the tool, make sure that the configuration of the XML file as describ
 
 	The Tool Manager in MapInfo 12 or earlier
 
-In the Tool Manager dialog, click on :kbd:`Add Tool``, then locate the tool using the browse button **...** on the Add Tool dialog (:numref:`figAddTool`). Enter a name in the **Title** box (e.g. 'DataExtractor'), and a description if desired. Then click :kbd:`Ok` to close the Add Tool dialog.
+In the `Tool Manager` dialog, click :kbd:`Add Tool...`, then locate the tool using the browse button :kbd:`...` on the `Add Tool` dialog (:numref:`figAddTool`). Enter a name in the **Title** box (e.g. 'DataExtractor'), and a description if desired. Then click :kbd:`Ok` to close the `Add Tool` dialog.
 
 .. _figAddTool:
 
@@ -263,15 +283,22 @@ In the Tool Manager dialog, click on :kbd:`Add Tool``, then locate the tool usin
 
 	Adding a tool in Tool Manager
 
-The tool is now shown in the Tool Manager menu (:numref:`figToolAdded`) and the `Loaded` box will be checked. To load the tool automatically whenever MapInfo is started check the `AutoLoad` box.  Then click :kbd:`Ok` to close the Tool Manager dialog.
+The tool will now show in the `Tool Manager` dialog (:numref:`figToolAdded`) and the **Loaded** box will be checked. To load the tool automatically whenever MapInfo is started check the **AutoLoad** box.  Then click :kbd:`Ok` to close the `Tool Manager` dialog.
 
 .. _figToolAdded:
 
 .. figure:: figures/DataExtractorLoaded.png
 	:align: center
 
-	The data extractor tool is loaded.
+	The Data Extractor tool is loaded
 
-The tool will now appear as a new entry in the Tools menu.
+The tool will now appear as a new entry in the `Tools` menu (:numref:`figToolMenu`).
 
-	.. note:: The name that will appear in the Tools menu is dependent on the `ToolTitle`_ value in the configuration file, **not** the name given when adding the tool using the Tool Manager.
+.. _figToolMenu:
+
+.. figure:: figures/DataExtractorToolMenu.png
+	:align: center
+
+	The Data Extractor tool menu
+
+	.. note:: The name that will appear in the `Tools` menu is dependent on the `ToolTitle`_ value in the configuration file, **not** the name given when adding the tool using the Tool Manager.

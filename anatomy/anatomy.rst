@@ -12,17 +12,17 @@ Data extract process
 
 The process of a typical data extraction can be broken down into a number of distinct steps that are described here. In the next section the way that the Data Extraction Tool carries out these steps is explained.
 
-**Defining a partner boundary**
-Before any extraction can be carried out, a polygon describing the boundary area for which data will be extracted for a partner has to be entered into a GIS system. This would be held in a single GIS layer together with some associated attributes such as the name of the organisation represented by the boundary. Once this area has been entered into the data layer it can be used time and again.
+Defining a partner boundary
+	Before any extraction can be carried out, a polygon describing the boundary area for which data will be extracted for a partner has to be entered into a GIS system. This would be held in a single GIS layer together with some associated attributes such as the name of the organisation represented by the boundary. Once this area has been entered into the data layer it can be used time and again.
 
-**Selecting the relevant data layers**
-Using the boundary defined in the previous step, each of the data layers relating to the presence of protected sites, habitats, species, etc. is selected one by one. Where data is held within SQL Server this process is carried out within the SQL Server database.
+Selecting the relevant data layers
+	Using the boundary defined in the previous step, each of the data layers relating to the presence of protected sites, habitats, species, etc. is selected one by one. Where data is held within SQL Server this process is carried out within the SQL Server database.
 
-**Exporting the results**
-The selected features are extracted in the format required by the user, containing only the relevant columns required from each data layer. Symbology defined within the source data layers, or specified in the configuration document, will automatically be applied to the extracted data.
+Exporting the results
+	The selected features are extracted in the format required by the user, containing only the relevant columns required from each data layer. Symbology defined within the source data layers, or specified in the configuration document, will automatically be applied to the extracted data.
 
-**Repeating the process**
-Where there is more than one partner for which data needs to be extracted, the process will be repeated for each partner boundary.
+Repeating the process
+	Where there is more than one partner for which data needs to be extracted, the process will be repeated for each partner boundary.
 
 .. index::
 	single: Tool overview

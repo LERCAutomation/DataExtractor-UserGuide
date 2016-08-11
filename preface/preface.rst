@@ -108,7 +108,7 @@ The following typographical conventions are used in this manual:
 **Tools... --> About**
 	Indicates a menu choice, or a combination of menu choices, tab selections or GUI buttons.
 
-:file:`C:\\Program Files\\HLU Tool`
+:file:`C:\Program Files (x86)\MapInfo\Professional`
 	Indicates a filename or directory name.
 
 .. tip::
