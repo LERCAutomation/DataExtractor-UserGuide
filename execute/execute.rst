@@ -5,15 +5,16 @@
 Running the tool
 ****************
 
-As discussed in the :doc:`Setting up the tool <../setup/setup>` section, the Data Extractor tool is operated from a MapInfo Workspace file within which the data required to run the tool is already loaded. It also relies on an SQL database containing the boundaries of the relevant partners, and a configuration document for setting up the tool. Therefore, before running the tool, ensure the following conditions are met:
+As discussed in the :doc:`Setting up the tool <../setup/setup>` section, the Data Extractor tool is operated from a MapInfo workspace within which the GIS layers required to run the tool is already loaded. It also relies on an SQL database containing the boundaries of the relevant partners, the SQL tables containing any data that may be extracted, and a configuration document for setting up the tool. Therefore, before running the tool, ensure the following conditions are met:
 
-- A MapInfo document has been created which contains both the partner boundary layer and any MapInfo data layers that may be included in the extraction. 
-- An SQL database exists that contains the relevant partner boundaries, any data tables required, and auxiliary tables and stored procedures as set out in the setup section, in the correct tables and formats. 
+- A MapInfo document has been created which contains both the partner boundary GIS layer and any MapInfo GIS layers that may be included in the extraction. 
+- An SQL database exists that contains the relevant partner boundaries, any data tables required, and the auxiliary tables and stored procedures as set out in the setup section. 
 - The file dsn for the SQL database has been created.
-- The XML configuration document has been set up correctly, both for general settings and for each individual layer that will be queried. It is named correctly.
-- The Data Extractor tool has been installed and set up, and is loaded into the workspace using the MapInfo Tool Manager.
+- The XML configuration document has been set up correctly, both for general settings and for each individual layer that will be queried. It is also named correctly and in the same directory as the tool MapBasic application (.MBX).
+- The Data Extractor tool has been installed and is loaded in MapInfo using the MapInfo Tool Manager.
 
-Please refer to the :doc:`setup <../setup/setup>` section for further information about any of these requirements.
+.. seealso::
+	Please refer to the :doc:`setup <../setup/setup>` section for further information about any of these requirements.
 
 .. index::
 	single: Opening the form
@@ -21,7 +22,7 @@ Please refer to the :doc:`setup <../setup/setup>` section for further informatio
 Opening the form
 ----------------
 
-To open the Data Searches tool, open the tool in the Tools menu (**Tools... -> Data Extractor**), as shown in :numref:`figRunExtractor`. 
+To open the Data Searches tool, open the tool in the `Tools` menu (**Tools... -> Data Extractor**), as shown in :numref:`figRunExtractor`. 
 
 
 .. _figRunExtractor:
@@ -29,10 +30,10 @@ To open the Data Searches tool, open the tool in the Tools menu (**Tools... -> D
 .. figure:: figures/RunExtractor.png
 	:align: center
 
-	Launching the Data Extractor tool (ArcGIS).
+	Launching the Data Extractor tool (MapInfo)
 
 
-If there are any structural issues with the XML document, the tool will display a message that it has encountered an error, and not load any further. If any of the map layers that are listed in the configuration document are not present, a warning will be shown (:numref:`figLaunchWarning`). The layers that are missing will not be loaded into the form and so cannot be included in the analysis. Provided that the XML document is otherwise correct, the form will display (:numref:`figDisplayForm`).
+If there are any structural issues with the XML document, the tool will display a message that it has encountered an error, and not load any further. If any of the map layers that are listed in the configuration document are not present in the active workspace a warning will be shown (:numref:`figLaunchWarning`). The layers that are missing will not be loaded into the form and so cannot be included in the extracts.
 
 
 .. _figLaunchWarning:
@@ -40,59 +41,78 @@ If there are any structural issues with the XML document, the tool will display 
 .. figure:: figures/LaunchWarning.png
 	:align: center
 
-	A warning is displayed for any data layers not loaded in the GIS project.
+	Example warning message when any GIS layers are not found
+
+
+Provided that the XML document is otherwise correct, the form will display (:numref:`figDisplayForm`).
 
 .. _figDisplayform:
 
 .. figure:: figures/DisplayForm.png
 	:align: center
 
-	The form is displayed with the active partners and available data layers shown.
+	The form displaying the active partners and available data layers
 
-Select the partners for which you wish to run the extraction, and the tables that you would like to include, what type of extraction you would like to carry out (spatial, survey tags, or both), make sure all other options are correct then press **OK**. The tool can run for a considerable amount of time dependent on the number of records that are being selected. Progress is shown in a progress window (:numref:`figProgress`).
+
+.. index::
+	single: Using the form
+
+Using the form
+--------------
+
+The form can be used to process as many partners and tables as required during a single execution. Select the partners for which you wish to run the extraction, and the SQL and / or MapInfo tables that you would like to include, what type of SQL table extraction you would like to carry out (spatial, survey tags, or both), make sure all other options are correct then press **OK**.
 
 .. _figSelectOptions:
 
 .. figure:: figures/SelectOptions.png
 	:align: center
 
-	Select the required options on the form.
+	Select the required options on the form
 
+
+.. note::
+	The tool can run for a considerable amount of time dependent on the number of records that are being selected.
+
+Progress is shown in a progress window (:numref:`figProgress`).
 
 .. _figProgress:
 
 .. figure:: figures/ExtractorProcessing.png
 	:align: center
 
-	Progress is shown in the progress window.
+	Progress window during the extract process
 
 
-
-When the tool finishes, it asks the user whether to close the form or keep it open for subsequent use (:numref:`figFinished`). Once the user makes a choice the log file is sown (:numref:`figLogFile`)
+When the extract process finishes it asks the user whether to close the form or keep it open for subsequent use (:numref:`figFinished`).
 
 .. _figFinished:
 
 .. figure:: figures/ProcessComplete.png
 	:align: center
 
-	Once the process finishes a message box is shown.
+	Prompt to close form when extract process completes
+
+
+Once the user makes a choice the log file is shown (:numref:`figLogFile`). This should be checked thoroughly to ensure that all expected extracts have been generated, the format of the extract files is correct, and that the number of records included in each extract file is as expected.
 
 .. _figLogFile:
 
 .. figure:: figures/LogFile.png
 	:align: center
 
-	The log file is shown for review.
+	Example log file shown for review
+
+
+You can now repeat the extract process for different partners and /or files as required.
+
 
 .. index::
 	single: Extraction results
 
+Extract results
+---------------
 
-Extraction Results
-------------------
-
-All results are held in the `DefaultPath <../setup/setup.html#defaultpath>`__ folder as specified in the XML configuration document. As shown in :numref:`figResults` each partner has its own subfolder where the partner results are stored in the formats requested. A log file folder contains the process logs.
-
+All results are output to the `DefaultPath <../setup/setup.html#defaultpath>`_ folder as specified in the XML configuration document. As shown in :numref:`figResults` each partner has its own sub-folder where the extract files for that partner are stored in the formats specified in the partner GIS layer.
 
 .. _figResults:
 
@@ -101,6 +121,4 @@ All results are held in the `DefaultPath <../setup/setup.html#defaultpath>`__ fo
 
 	Output is organised in partner specific folders.
 
-Now you can repeat the analysis as required. 
-
-
+The log file results of the process is saved in the `LogFilePath <../setup/setup.html#logfilepath>`_ folder as specified in the XML configuration document.

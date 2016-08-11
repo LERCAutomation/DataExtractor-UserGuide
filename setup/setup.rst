@@ -41,7 +41,6 @@ Once editing has been completed and the edits have been saved, it is recommended
 .. index::
 	single: General attributes
 
-
 General attributes
 ------------------
 
@@ -227,8 +226,6 @@ _`Spatial_Tables` table
 		+-----------------+-----------------------------------------------------------------------------------------------+
 		|      Column     |                                          Description                                          |
 		+=================+===============================================================================================+
-		| "d"             | The day of the month, from 1 through 31.                                                      |
-		+-----------------+-----------------------------------------------------------------------------------------------+
 		| TableName       | The name of the data table                                                                    |
 		+-----------------+-----------------------------------------------------------------------------------------------+
 		| OwnerName       | The database owner, usually ``dbo``                                                           |
@@ -245,12 +242,12 @@ _`Spatial_Tables` table
 		+-----------------+-----------------------------------------------------------------------------------------------+
 		| SRID            | The name of the spatial reference system used to plot the records                             |
 		+-----------------+-----------------------------------------------------------------------------------------------+
-		| CoordSystem     | The coordinate system of the spatial data in the table  [1]_                                   |
+		| CoordSystem     | The coordinate system of the spatial data in the table                                        |
 		+-----------------+-----------------------------------------------------------------------------------------------+
 		| SurveyKeyColumn | The column containing the survey key for each record                                          |
 		+-----------------+-----------------------------------------------------------------------------------------------+
 
-.. [1] For example, for the British National Grid the value is ``Earth Projection 8, 79, "m", -2, 49, 0.9996012717, 400000, -100000 Bounds (-7845061.1011, -15524202.1641) (8645061.1011, 4470074.53373)``
+	.. note:: The British National Grid `SRID` value is ``Earth Projection 8, 79, "m", -2, 49, 0.9996012717, 400000, -100000 Bounds (-7845061.1011, -15524202.1641) (8645061.1011, 4470074.53373)``
 
 	.. caution::
 		This table must be filled out correctly for each table that is included in the Data Extractor tool.
@@ -301,4 +298,4 @@ The tool will now appear as a new entry in the `Tools` menu (:numref:`figToolMen
 
 	The Data Extractor tool menu
 
-	.. note:: The name that will appear in the `Tools` menu is dependent on the `ToolTitle`_ value in the configuration file, **not** the name given when adding the tool using the Tool Manager.
+.. note:: The name that will appear in the `Tools` menu is dependent on the `ToolTitle`_ value in the configuration file, **not** the name given when adding the tool using the Tool Manager.
