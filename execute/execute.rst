@@ -26,7 +26,7 @@ As discussed in the :doc:`Setting up the tool <../setup/setup>` section, the Dat
 Opening the form
 ----------------
 
-To open the Data Searches tool, open the tool in the `Tools` menu (**Tools... -> Data Extractor**), as shown in :numref:`figRunExtractor`. 
+To open the Data Extractor tool, open the tool in the `Tools` menu (**Tools... -> Data Extractor**), as shown in :numref:`figRunExtractor`. 
 
 
 .. _figRunExtractor:
@@ -147,6 +147,6 @@ All results are output to the `DefaultPath <../setup/setup.html#defaultpath>`_ f
 .. figure:: figures/OutputFolderAnnotated.png
 	:align: center
 
-	Output is organised in partner specific folders.
+	Outputs are organised in partner-specific folders
 
 The log file results of the process is saved in the `LogFilePath <../setup/setup.html#logfilepath>`_ folder as specified in the XML configuration document.

@@ -301,6 +301,10 @@ To install the tool, make sure that the configuration of the XML file as describ
 
 	The Tool Manager in MapInfo 12 or earlier
 
+.. raw:: latex
+
+   \newpage
+
 In the `Tool Manager` dialog, click :kbd:`Add Tool...`, then locate the tool using the browse button :kbd:`...` on the `Add Tool` dialog (:numref:`figAddTool`). Enter a name in the **Title** box (e.g. 'DataExtractor'), and a description if desired. Then click :kbd:`Ok` to close the `Add Tool` dialog.
 
 .. _figAddTool:

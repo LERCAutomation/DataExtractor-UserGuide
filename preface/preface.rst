@@ -13,10 +13,10 @@ Recommended User Knowledge
 Users
 -----
 
-This user guide assumes that users of the Data Searches Tool have:
+This user guide assumes that users of the Data Extractor Tool have:
 
 * General IT experience including use of Microsoft Windows.
-* Experience in the use of a relevant GIS software (currently MapInfo), including selecting and querying features and attributes.
+* Experience in the use of a relevant GIS application (currently MapInfo), including selecting and querying features and attributes.
 * An understanding of the datasets that are used by the data extractor tool.
 
 
@@ -27,8 +27,8 @@ It is recommended that a person within each organisation is designated as the to
 * Have an understanding and experience of IT systems management.
 * Understand relational database structures.
 * Be an expert user of SQL Server.
-* Have qualifications, certified training or equivalent experience in managing databases using that system.
 * Have certified training or equivalent experience in advanced features of the relevant GIS software.
+* Become familiar with how the Data Extractor tool has been configured within the organisation.
 * Have a good understanding of XML.
 
 .. raw:: latex
@@ -62,7 +62,7 @@ This Preface explains a little about the Data Extractor Tool, the community of p
 Licensing
 =========
 
-The code for the Data Searches Tool is 'open source' and is released under the `GNU General Public License (GPL) v3 <http://www.gnu.org/licenses/gpl.html>`_. Users are free to install it on as many computers as they like, and to redistribute it according to the GPLv3 license.
+The code for the Data Extractor Tool is 'open source' and is released under the `GNU General Public License (GPL) v3 <http://www.gnu.org/licenses/gpl.html>`_. Users are free to install it on as many computers as they like, and to redistribute it according to the GPLv3 license.
 
 This guide is released under the `GNU Free Documentation License (FDL) v1.3 <http://www.gnu.org/licenses/fdl.html>`_. Permission is granted to copy, distribute and/or modify this document under the terms of the license.
 

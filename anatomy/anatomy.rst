@@ -126,6 +126,10 @@ Text file outputs can be produced in CSV format (:numref:`figTabularOutput`). GI
 
 	Example of a text file output from the Data Extractor tool
 
+.. raw:: latex
+
+   \newpage
+
 Output options
 --------------
 
