@@ -24,6 +24,10 @@ Exporting the results
 Repeating the process
 	Where there is more than one partner for which data needs to be extracted, the process will be repeated for each partner boundary.
 
+.. raw:: latex
+
+   \newpage
+
 .. index::
 	single: Tool overview
 
@@ -48,6 +52,10 @@ The Data Extractor Tool is used within a GIS environment and requires all the re
 	:align: center
 
 	A MapInfo workspace configured for using the Data Extractor tool
+
+.. raw:: latex
+
+   \newpage
 
 Tool workflow
 -------------
@@ -77,6 +85,10 @@ In essence, the process that the tool follows is identical to the manual process
 #. During the process the tool reports its progress to a log file and, when the process finishes, this log file is displayed allowing the user to assess the success of the data extraction. The log file is kept until it is overwritten by a subsequent extract process.
 
 
+.. raw:: latex
+
+   \newpage
+
 .. index::
 	single: Tool outputs
 
@@ -96,6 +108,10 @@ The outputs are stored in a user defined folder (:numref:`figOutputFolder`). The
 	:align: center
 
 	Example of the Data Extractor tool output folder
+
+.. raw:: latex
+
+   \newpage
 
 Output files
 ------------
@@ -122,7 +138,11 @@ Options in the tool include compressing all outputs into a single zip file for e
 
 	Example of a compressed output file containing a single GIS layer
 
-Finally, the log file details each step that was taken during the process, and gives some feedback about the outcomes of the steps. This includes reporting on the input for the search, the number of features that were selected in each data layer, and which data layers did not return any features (see :numref:`figLogFileExample`).
+.. raw:: latex
+
+   \newpage
+
+Finally, the log file details each step that was taken during the process, and gives some feedback about the outcomes of the steps. This includes reporting on the input for the search, the number of features that were selected in each data layer, and which data layers did not return any features (:numref:`figLogFileExample`).
 
 .. _figLogFileExample:
 

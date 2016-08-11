@@ -16,6 +16,10 @@ As discussed in the :doc:`Setting up the tool <../setup/setup>` section, the Dat
 .. seealso::
 	Please refer to the :doc:`setup <../setup/setup>` section for further information about any of these requirements.
 
+.. raw:: latex
+
+   \newpage
+
 .. index::
 	single: Opening the form
 
@@ -44,6 +48,10 @@ If there are any structural issues with the XML document, the tool will display 
 	Example warning message when any GIS layers are not found
 
 
+.. raw:: latex
+
+   \newpage
+
 Provided that the XML document is otherwise correct, the form will display (:numref:`figDisplayForm`).
 
 .. _figDisplayform:
@@ -53,6 +61,10 @@ Provided that the XML document is otherwise correct, the form will display (:num
 
 	The form displaying the active partners and available data layers
 
+
+.. raw:: latex
+
+   \newpage
 
 .. index::
 	single: Using the form
@@ -70,8 +82,12 @@ The form can be used to process as many partners and tables as required during a
 	Select the required options on the form
 
 
-.. note::
+.. caution::
 	The tool can run for a considerable amount of time dependent on the number of records that are being selected.
+
+.. raw:: latex
+
+   \newpage
 
 Progress is shown in a progress window (:numref:`figProgress`).
 
@@ -83,6 +99,10 @@ Progress is shown in a progress window (:numref:`figProgress`).
 	Progress window during the extract process
 
 
+.. raw:: latex
+
+   \newpage
+
 When the extract process finishes it asks the user whether to close the form or keep it open for subsequent use (:numref:`figFinished`).
 
 .. _figFinished:
@@ -92,6 +112,10 @@ When the extract process finishes it asks the user whether to close the form or 
 
 	Prompt to close form when extract process completes
 
+
+.. raw:: latex
+
+   \newpage
 
 Once the user makes a choice the log file is shown (:numref:`figLogFile`). This should be checked thoroughly to ensure that all expected extracts have been generated, the format of the extract files is correct, and that the number of records included in each extract file is as expected.
 
@@ -105,6 +129,10 @@ Once the user makes a choice the log file is shown (:numref:`figLogFile`). This 
 
 You can now repeat the extract process for different partners and /or files as required.
 
+
+.. raw:: latex
+
+   \newpage
 
 .. index::
 	single: Extraction results

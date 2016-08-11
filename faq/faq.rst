@@ -40,7 +40,7 @@ Operating the tool
 	This issue can arise in two ways:
 
 	- The partner boundary polygon does not exist in the partner boundary SQL table. Add it to the table.
-	- The partner's status in not **Active**. Change the value of the partner's status in the `ActiveColumn <../setup/setup.html#activecolumn>`_ to `Y`.
+	- The partner's status in not **Active**. Change the value of the partner's status in the `ActiveColumn <../setup/setup.html#activecolumn>`_ to ``Y``.
 
 **The tool is not extracting the right data for the partner**
 	

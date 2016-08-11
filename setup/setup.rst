@@ -4,9 +4,6 @@ Setting up the tool
 
 Before the Data Extractor Tool will function, it needs to be installed and configured. It is recommended that the configuration is carried out first.
 
-.. tip::
-	It is recommended that a MapInfo Workspace is created that contains all the required GIS layers to run the tool. Once this workspace has been set up and the tool has been configured as described below, running the Data Extractor tool becomes a simple process.
-
 .. index::
 	single: Configuring the tool
 
@@ -30,12 +27,34 @@ _`MapTables`
 	Deals with how extracts from each GIS layer should be handled.
 
 .. caution::
-	It is important that the structure of the file is maintained as it is presented in the :doc:`appendix <../appendix/appendix>`. Any changes to the structure may result in the Data Extractor Tool not loading, or not working as expected.
+	It is important that the structure of the file is maintained as it is presented in the :doc:`Appendix <../appendix/appendix>`. Any changes to the structure may result in the Data Extractor Tool not loading, or not working as expected.
 
 Once editing has been completed and the edits have been saved, it is recommended that the configuration file is opened using an internet browser such as Internet Explorer which will help highlight any editing errors – only if the structure of the file is valid will the whole file be displayed in the internet browser.
 
 .. note::
 	It is recommended that the configuration file is kept in a central (network) location, so that all users use the same configuration. Additionally, it is essential that the configuration file is kept in the same folder as the compiled version of the tool.
+
+
+.. index::
+	single: Special characters in XML
+
+.. raw:: latex
+
+   \newpage
+
+Special characters in XML
+-------------------------
+
+The characters ``&``, ``<`` and ``>`` are not valid within values and, so in order to be used, must be **escaped** with XML entities as follows:
+
+<
+	The < must be escaped with ``&lt;`` entity, since it is assumed to be the beginning of a tag. For example, ``RecYear &lt; 2010``
+
+>
+	The > should be escaped with ``&gt;`` entity. It is not mandatory -- it depends on the context -- but it is strongly advised to escape it. For example, ``RecYear &gt; 1980``
+
+&
+	The & must be escaped with ``&amp;`` entity, since it is assumed to be the beginning of a entity reference. For example, ``TaxonGroup = 'Invertebrates - Dragonflies &amp; Damselflies'``
 
 
 .. index::
@@ -96,7 +115,7 @@ _`FormatColumn`
 	The name of the column in the partner GIS layer containing the GIS format required for the output records. The values in the column should be ``Shp``, ``Tab`` or ``Both``.
 
 _`ExportColumn`
-	The name of the column in the partner GIS layer indicating whether an export should also be created as a CSV file. The values in this column should be 'Y' or 'N'.
+	The name of the column in the partner GIS layer indicating whether an export should also be created as a CSV file. The values in this column should be ``Y`` or ``N``.
 
 _`FilesColumn`
 	The name of the column in the partner GIS layer indicating which SQL tables and map layers should be extracted for each partner. The entry in this column should be a comma-delimited list of the names of the layers (as defined in the XML file under SQLTables_ and MapTables_) that should be included for each partner.
@@ -205,6 +224,10 @@ _`Clause`
 Any exports from map layers will use the same symbology as the source layer.
 
 
+.. raw:: latex
+
+   \newpage
+
 .. index::
 	single: Setting up the SQL database
 
@@ -230,11 +253,11 @@ _`Spatial_Tables` table
 		+-----------------+-----------------------------------------------------------------------------------------------+
 		| OwnerName       | The database owner, usually ``dbo``                                                           |
 		+-----------------+-----------------------------------------------------------------------------------------------+
-		| XColumn         | The name of the column holding the X coordinates of the spatial location of the record        |
+		| XColumn         | The name of the column holding the X coordinates of the record                                |
 		+-----------------+-----------------------------------------------------------------------------------------------+
-		| YColumn         | The name of the column holding the Y coordinates of the spatial location of the record        |
+		| YColumn         | The name of the column holding the Y coordinates of the record                                |
 		+-----------------+-----------------------------------------------------------------------------------------------+
-		| SizeColumn      | The name of the column holding the information of the grid size of the record (in metres)     |
+		| SizeColumn      | The name of the column holding the grid size of the record (in metres)                        |
 		+-----------------+-----------------------------------------------------------------------------------------------+
 		| IsSpatial       | Bitwise column (1 = Yes, 0 = No) defining whether the table is spatially enabled              |
 		+-----------------+-----------------------------------------------------------------------------------------------+
@@ -247,7 +270,10 @@ _`Spatial_Tables` table
 		| SurveyKeyColumn | The column containing the survey key for each record                                          |
 		+-----------------+-----------------------------------------------------------------------------------------------+
 
-	.. note:: The British National Grid `SRID` value is ``Earth Projection 8, 79, "m", -2, 49, 0.9996012717, 400000, -100000 Bounds (-7845061.1011, -15524202.1641) (8645061.1011, 4470074.53373)``
+	.. note::
+		The British National Grid `SRID` value is
+		``Earth Projection 8, 79, "m", -2, 49, 0.9996012717, 400000, -100000 Bounds
+		(-7845061.1011, -15524202.1641) (8645061.1011, 4470074.53373)``
 
 	.. caution::
 		This table must be filled out correctly for each table that is included in the Data Extractor tool.
@@ -255,6 +281,10 @@ _`Spatial_Tables` table
 	.. note::
 		A number of stored procedures that are used by the tool for extracting the required records must also be present in the SQL Server database. To obtain copies of these procedures please contact `Hester <mailto:Hester@HesterLyonsConsulting.co.uk>`_ or `Andy <mailto:Andy@AndyFoyConsulting.co.uk>`_.
 
+
+.. raw:: latex
+
+   \newpage
 
 .. index::
 	single: Installing the tool
@@ -280,6 +310,10 @@ In the `Tool Manager` dialog, click :kbd:`Add Tool...`, then locate the tool usi
 
 	Adding a tool in Tool Manager
 
+.. raw:: latex
+
+   \newpage
+
 The tool will now show in the `Tool Manager` dialog (:numref:`figToolAdded`) and the **Loaded** box will be checked. To load the tool automatically whenever MapInfo is started check the **AutoLoad** box.  Then click :kbd:`Ok` to close the `Tool Manager` dialog.
 
 .. _figToolAdded:
@@ -298,4 +332,9 @@ The tool will now appear as a new entry in the `Tools` menu (:numref:`figToolMen
 
 	The Data Extractor tool menu
 
-.. note:: The name that will appear in the `Tools` menu is dependent on the `ToolTitle`_ value in the configuration file, **not** the name given when adding the tool using the Tool Manager.
+.. note::
+	The name that will appear in the `Tools` menu is dependent on the `ToolTitle`_ value in the configuration file, **not** the name given when adding the tool using the Tool Manager.
+
+.. tip::
+	It is recommended that a MapInfo Workspace is created that contains all the required GIS layers to run the tool. Once this workspace has been set up and the tool has been configured and installed, running the Data Extractor tool becomes a simple process.
+

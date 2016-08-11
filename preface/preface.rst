@@ -31,6 +31,10 @@ It is recommended that a person within each organisation is designated as the to
 * Have certified training or equivalent experience in advanced features of the relevant GIS software.
 * Have a good understanding of XML.
 
+.. raw:: latex
+
+   \newpage
+
 .. index::
 	single: Reading guide
 

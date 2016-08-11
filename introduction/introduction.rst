@@ -12,6 +12,10 @@ Carrying out data extractions (i.e. extracting records for partners on, for exam
 
 The Data Extractor Tool was originally developed for Greenspace Information for Greater London (GiGL) and implemented in MapInfo. Currently the tool is used by a variety of LERCs and a version for ArcGIS is under consideration.
 
+.. raw:: latex
+
+   \newpage
+
 .. index::
 	single: Tool overview
 
@@ -28,6 +32,10 @@ The Data Extractor Tool is configurable in a flexible way according to the requi
 	The Data Extractor tool interface
 
 Data layers for the tool can be contained in an SQL Server database or as GIS layers loaded in the GIS application. When running an extraction the tool uses a loaded GIS layer, also preloaded into the associated SQL database, to find the boundary for each partner and extract the records which fall within with this boundary. The attributes for each partner in the GIS layer define which of the available data layers will be extracted and in which format. Extracts are saved in a predefined location, and a log file is kept that records the steps of each extraction. The process is discussed in this document in more detail in the section on :doc:`using the tool <../execute/execute>`.
+
+.. raw:: latex
+
+   \newpage
 
 Defining the way that extractions should be carried out, the output that they generate and the layers that can potentially be included is done via a configuration document written in XML. Using this document the user can configure all the parts of the extraction, for example:
 
