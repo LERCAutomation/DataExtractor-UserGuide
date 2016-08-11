@@ -48,13 +48,13 @@ Special characters in XML
 The characters ``&``, ``<`` and ``>`` are not valid within values and, so in order to be used, must be **escaped** with XML entities as follows:
 
 <
-	The < must be escaped with ``&lt;`` entity, since it is assumed to be the beginning of a tag. For example, ``RecYear &lt; 2010``
+	This must be escaped with ``&lt;`` entity, since it is assumed to be the beginning of a tag. For example, ``RecYear &lt; 2010``
 
 >
-	The > should be escaped with ``&gt;`` entity. It is not mandatory -- it depends on the context -- but it is strongly advised to escape it. For example, ``RecYear &gt; 1980``
+	This should be escaped with ``&gt;`` entity. It is not mandatory -- it depends on the context -- but it is strongly advised to escape it. For example, ``RecYear &gt; 1980``
 
 &
-	The & must be escaped with ``&amp;`` entity, since it is assumed to be the beginning of a entity reference. For example, ``TaxonGroup = 'Invertebrates - Dragonflies &amp; Damselflies'``
+	This must be escaped with ``&amp;`` entity, since it is assumed to be the beginning of a entity reference. For example, ``TaxonGroup = 'Invertebrates - Dragonflies &amp; Damselflies'``
 
 
 .. index::
@@ -93,8 +93,8 @@ _`PartnerTable`
 
 	An example of a partner table loaded into MapInfo
 
-.. note::
-	The partner GIS layer can be uploaded to SQL Server from MapInfo using the 'EasyLoader' tool.
+	.. note::
+		The partner GIS layer can be uploaded to SQL Server from MapInfo using the 'EasyLoader' tool.
  
 _`PartnerColumn`
 	The column in the `PartnerTable`_ containing the partner name, which is passed to SQL Server by the tool to use the partner's boundary for selecting the records.

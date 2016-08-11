@@ -82,7 +82,7 @@ In essence, the process that the tool follows is identical to the manual process
 1. The boundary of each selected partner is processed in sequence. 
 #. The specified SQL and GIS data layers are selected using the boundary (and/or the survey tags) for this partner.
 #. The resulting selections are exported to the output folder as specified in the configuration file, using the columns and symbology specified in this configuration file (for SQL data) or defined within the GIS layer.
-#. During the process the tool reports its progress to a log file and, when the process finishes, this log file is displayed allowing the user to assess the success of the data extraction. The log file is kept until it is overwritten by a subsequent extract process.
+#. During the process the tool reports its progress to a log file and, when the process finishes, this log file is displayed allowing the user to assess the success of the data extraction.
 
 
 .. raw:: latex

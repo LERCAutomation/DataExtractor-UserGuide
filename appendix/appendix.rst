@@ -30,8 +30,9 @@ Below is an example of XML that might be used to set up the Data Extractor tool 
     The 'DataExtractor' node contains all of the entries relating to the
     MapBasic tool variables.
 
-    Each entry relates to a file, folder, table name, column name or SQL statement
-    used by the MapBasic tool to select and export data for the GiGL partners.
+    Each entry relates to a file, folder, table name, column name or SQL
+    statement used by the MapBasic tool to select and export data for the
+    GiGL partners.
     -->
 
     <configuration>
