@@ -60,7 +60,7 @@ The Data Extractor Tool is used within a GIS environment and requires all the re
 Tool workflow
 -------------
 
-The Data Extractor Tool requires minimum user input in order to carry out its processes once it is configured. The simple workflow is as follows (see :numref:`figUIAnn`):
+The Data Extractor tool requires minimum user input in order to carry out its processes once it is configured. The simple workflow is as follows (see :numref:`figUIAnn`):
 
 1. The user selects which partner(s) the extraction should be carried out.
 #. The user specifies which data layers to extract from. Only layers that are loaded in the GIS or tables found in the SQL Server database are made available at this point.

@@ -16,8 +16,8 @@ Users
 This user guide assumes that users of the Data Extractor Tool have:
 
 * General IT experience including use of Microsoft Windows.
-* Experience in the use of a relevant GIS application (currently MapInfo), including selecting and querying features and attributes.
-* An understanding of the datasets that are used by the data extractor tool.
+* Experience in the use of a relevant GIS application supported by the tool (currently MapInfo), including selecting and querying features and attributes.
+* An understanding of the datasets that are used by the Data Extractor tool.
 
 
 Administrators
@@ -112,7 +112,7 @@ The following typographical conventions are used in this manual:
 **Tools... --> About**
 	Indicates a menu choice, or a combination of menu choices, tab selections or GUI buttons.
 
-:file:`C:\Program Files (x86)\MapInfo\Professional`
+:file:`C:\\Program Files (x86)\\MapInfo\\Professional`
 	Indicates a filename or directory name.
 
 .. tip::

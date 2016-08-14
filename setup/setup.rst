@@ -10,7 +10,7 @@ Before the Data Extractor Tool will function, it needs to be installed and confi
 Configuring the tool
 ====================
 
-The configuration is stored in an XML file called 'DataExtractor.xml', an example of which can be found in the :doc:`appendix <../appendix/appendix>`. Attributes and settings are presented as nodes (beginning with a start node, e.g. ``<example>``, and finishing with an end note, e.g. ``<\example>``), with the value for the setting held between the ``<value>`` and ``<\value>`` tag. 
+The configuration is stored in an XML file called 'DataExtractor.xml', an example of which can be found in the :doc:`Appendix <../appendix/appendix>`. Attributes and settings are presented as nodes (beginning with a start node, e.g. ``<example>``, and finishing with an end note, e.g. ``<\example>``), with the value for the setting held between the ``<value>`` and ``<\value>`` tag. 
 
 .. caution:: 
 	The name of the configuration file must be 'DataExtractor.xml'. The tool will not load if a different name is used.
@@ -63,7 +63,7 @@ The characters ``&``, ``<`` and ``>`` are not valid within values and, so in ord
 General attributes
 ------------------
 
-The first section of the configuration file deals with a series of general attributes for the Data Extractor tool. Each node specifies where files are kept, how output files should be named, where the log file will be saved as well as other overall settings. Details on these attributes (and their typical values where known) are outlined below. The list follows the order within which the attributes are found in the configuration file.
+The first section of the configuration file deals with a series of general attributes for the Data Extractor tool. Each node specifies where files are kept, how output files should be named, where the log file will be saved as well as other overall settings. Details on these attributes (and their typical values where known) are outlined below. The list follows the order within which the attributes are found in the configuration file. This version of the configuration details is valid for the MapInfo version 1.5.11 of the Data Extractor Tool.
 
 _`ToolTitle`
 	The title to use for the program in the MapInfo Tools menu.

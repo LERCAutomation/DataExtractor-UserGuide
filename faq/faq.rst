@@ -18,7 +18,7 @@ General questions
 
 **Can several people use the tool at the same time?**
 
-	Any number of users can use the tool simultaneously if they have a copy of it loaded in their own copy of MapInfo. The tool uses the data layers in a read-only fashion, so there is no limit to the number of users of the tool. The stored procedures that are run store their temporary results in tables that carry the login name of the user, so as long as each user has a unique login ID no conflicts should arrive. However, where results are written to a central (network) location, and the extraction is run for the same partner, conflicts may occur.
+	Any number of users can use the tool simultaneously if they have a copy of it loaded in their own copy of MapInfo. The tool uses the data layers that are loaded in GIS in a read-only fashion, so there is no limit to the number of users of the tool. The stored procedures that are run store their temporary results in tables that carry the login name of the user, so as long as each user has a unique login ID no conflicts should arrive. However, where results are written to a central (network) location, and the extraction is run for the same partner, conflicts may occur.
 
 **Does the tool work with QGIS or ArcGIS?**
 
@@ -33,7 +33,7 @@ Operating the tool
 
 	- The table is a MapInfo GIS layer and isn't loaded in the active workspace. In this case, a `message will pop up <../execute/execute.html#figlaunchwarning>`_ before the form is shown telling you the layer isn't loaded. Add the layer to the workspace and the problem should be resolved.
 	- The table, either an SQL table or MapInfo GIS layer, isn't listed in the XML configuration document (or its name is not being obtained within the `TableListSQL node <../setup/setup.html#tablelistsql>`_). Please refer to the :doc:`setup <../setup/setup>` section and add it as a map layer or amend the SQL statement as appropriate.
-	- The table is a MapInfo GIS layer, and it is listed in the configuration document, but the `TableName <../setup/setup.html#maptables>`_ is spelled incorrectly. Note that the name must exactly match the name of the layer in the active workspace.
+	- The table is a MapInfo GIS layer, and it is listed in the configuration document, but the `TableName <../setup/setup.html#maptables>`_ is spelled incorrectly. Note that the name must follow the exact format of the name of the layer in the active workspace.
 
 **The partner I want to extract data for is not shown in the form. How do I get the name to show up?**
 

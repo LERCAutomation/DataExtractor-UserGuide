@@ -22,7 +22,7 @@ The Data Extractor Tool was originally developed for Greenspace Information for 
 Tool overview
 =============
 
-The Data Extractor Tool is configurable in a flexible way according to the requirements of the LERC or individual user through a configuration document. It is integrated into the user interface of the GIS system and presented there as menu item. The tool itself has a simple interface (:numref:`figUI`), requiring a minimum of input (the user is requested to select which partners an extract will be created for, and from which tables. There are some additional options to tailor the extracts to include confidential records, and some simple output options). Once set up, the tool communicates with both the GIS system and an associated SQL database to extract the required data.
+The Data Extractor Tool is configurable in a flexible way according to the requirements of the LERC or individual user through a configuration document. It is integrated into the user interface of the GIS system and presented there as menu item. The tool itself has a simple interface (:numref:`figUI`), requiring a minimum of input (the user is requested to select which partners an extract will be created for, and from which tables). There are some additional options to tailor the extracts to include confidential records, and some simple output options. Once set up, the tool communicates with both the GIS system and an associated SQL database to extract the required data.
 
 .. _figUI:
 
