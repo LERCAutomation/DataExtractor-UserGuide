@@ -6,7 +6,7 @@
 Frequently Asked Questions
 **************************
 
-This is a list of Frequently Asked Questions about the Data Extractor Tool. Feel free to
+This is a list of Frequently Asked Questions about the Data Extractor tool. Feel free to
 suggest new entries!
 
 General questions

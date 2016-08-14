@@ -10,7 +10,7 @@ Background
 
 Carrying out data extractions (i.e. extracting records for partners on, for example, species or local nature reserves) is a routine task for many Local Environmental Record Centres (LERCs). The process is a repetitive one, with the same kind of extraction being carried out for what can be a considerable number of partners. Mostly, the only difference between partners is the geographical area they focus on, while the data they require can be represented by a few standard tables. Therefore this is a process that is ideally suited to being automated.
 
-The Data Extractor Tool was originally developed for Greenspace Information for Greater London (GiGL) and implemented in MapInfo. Currently the tool is used by a variety of LERCs and a version for ArcGIS is under consideration.
+The Data Extractor tool was originally developed for Greenspace Information for Greater London (GiGL) and implemented in MapInfo. Currently the tool is used by a variety of LERCs and a version for ArcGIS is under consideration.
 
 .. raw:: latex
 
@@ -22,7 +22,7 @@ The Data Extractor Tool was originally developed for Greenspace Information for 
 Tool overview
 =============
 
-The Data Extractor Tool is configurable in a flexible way according to the requirements of the LERC or individual user through a configuration document. It is integrated into the user interface of the GIS system and presented there as menu item. The tool itself has a simple interface (:numref:`figUI`), requiring a minimum of input (the user is requested to select which partners an extract will be created for, and from which tables). There are some additional options to tailor the extracts to include confidential records, and some simple output options. Once set up, the tool communicates with both the GIS system and an associated SQL database to extract the required data.
+The Data Extractor tool is configurable in a flexible way according to the requirements of the LERC or individual user through a configuration document. It is integrated into the user interface of the GIS system and presented there as menu item. The tool itself has a simple interface (:numref:`figUI`), requiring a minimum of input (the user is requested to select which partners an extract will be created for, and from which tables). There are some additional options to tailor the extracts to include confidential records, and some simple output options. Once set up, the tool communicates with both the GIS system and an associated SQL database to extract the required data.
 
 .. _figUI:
 
@@ -45,7 +45,7 @@ Defining the way that extractions should be carried out, the output that they ge
 * For each data layer, a detailed definition of what information should be returned from it.
 * Details on the display and labelling of output from individual data layers where relevant.
 
-Using this configuration file, each individual LERC can tailor the Data Extractor Tool to its individual requirements. Examples of the XML file are included in the :doc:`../appendix/appendix`, and the process of setting up this file is discussed in the section on :doc:`setting up the tool <../setup/setup>`. 
+Using this configuration file, each individual LERC can tailor the Data Extractor tool to its individual requirements. Examples of the XML file are included in the :doc:`../appendix/appendix`, and the process of setting up this file is discussed in the section on :doc:`setting up the tool <../setup/setup>`. 
 
 Additionally to the XML file the SQL server database is set up via a number of auxiliary tables and stored procedures. Again, the process of configuring this is discussed in the section on :doc:`setting up the tool <../setup/setup>`. 
 
@@ -55,7 +55,7 @@ Additionally to the XML file the SQL server database is set up via a number of a
 Benefits
 ========
 
-There are a number of clear benefits to using the Data Extractor Tool for carrying out routine data extractions for stakeholders. 
+There are a number of clear benefits to using the Data Extractor tool for carrying out routine data extractions for stakeholders. 
 
 1. The tool, by encapsulating and automating the process, saves considerable time over carrying out these extractions manually.
 #. Both the process and the outputs of the extraction are standardised, therefore minimising the risk of user error that is present in a manual extraction.

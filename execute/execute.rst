@@ -24,7 +24,7 @@ As discussed in the :doc:`Setting up the tool <../setup/setup>` section, the Dat
 	single: Opening the form
 
 Opening the form
-----------------
+================
 
 To open the Data Extractor tool, open the tool in the `Tools` menu (**Tools... -> Data Extractor**), as shown in :numref:`figRunExtractor`. 
 
@@ -70,7 +70,7 @@ Provided that the XML document is otherwise correct, the form will display (:num
 	single: Using the form
 
 Using the form
---------------
+==============
 
 The form can be used to process as many partners and tables as required during a single execution. Select the partners for which you wish to run the extraction, and the SQL and / or MapInfo tables that you would like to include, what type of SQL table extraction you would like to carry out (spatial, survey tags, or both), make sure all other options are correct then press **OK**.
 
@@ -138,7 +138,7 @@ You can now repeat the extract process for different partners and /or files as r
 	single: Extraction results
 
 Extract results
----------------
+===============
 
 All results are output to the `DefaultPath <../setup/setup.html#defaultpath>`_ folder as specified in the XML configuration document. As shown in :numref:`figResults` each partner has its own sub-folder where the extract files for that partner are stored in the formats specified in the partner GIS layer.
 

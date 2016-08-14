@@ -13,7 +13,7 @@ Recommended User Knowledge
 Users
 -----
 
-This user guide assumes that users of the Data Extractor Tool have:
+This user guide assumes that users of the Data Extractor tool have:
 
 * General IT experience including use of Microsoft Windows.
 * Experience in the use of a relevant GIS application supported by the tool (currently MapInfo), including selecting and querying features and attributes.
@@ -41,15 +41,15 @@ It is recommended that a person within each organisation is designated as the to
 Reading Guide
 =============
 
-This Preface explains a little about the Data Extractor Tool, the community of people who develop and use it, and the licensing conditions for using and distributing it. It also explains how to read this user guide.
+This Preface explains a little about the Data Extractor tool, the community of people who develop and use it, and the licensing conditions for using and distributing it. It also explains how to read this user guide.
 
-:doc:`../introduction/introduction` \ explains why the Data Extractor Tool is needed, what it does and where it comes from.
+:doc:`../introduction/introduction` \ explains why the Data Extractor tool is needed, what it does and where it comes from.
 
-:doc:`Anatomy of data extraction <../anatomy/anatomy>` \ is a brief outline of the key stages of data extraction, and how the Data Extractor Tool addresses these.
+:doc:`Anatomy of data extraction <../anatomy/anatomy>` \ is a brief outline of the key stages of data extraction, and how the Data Extractor tool addresses these.
 
-:doc:`Setting up the tool <../setup/setup>` \ describes how to install and set up the Data Extractor Tool.
+:doc:`Setting up the tool <../setup/setup>` \ describes how to install and set up the Data Extractor tool.
 
-:doc:`Running the tool <../execute/execute>` \ describes how to run the Data Extractor Tool.
+:doc:`Running the tool <../execute/execute>` \ describes how to run the Data Extractor tool.
 
 :doc:`FAQs <../faq/faq>` \ has a list of commonly asked questions and their answers.
 
@@ -62,7 +62,7 @@ This Preface explains a little about the Data Extractor Tool, the community of p
 Licensing
 =========
 
-The code for the Data Extractor Tool is 'open source' and is released under the `GNU General Public License (GPL) v3 <http://www.gnu.org/licenses/gpl.html>`_. Users are free to install it on as many computers as they like, and to redistribute it according to the GPLv3 license.
+The code for the Data Extractor tool is 'open source' and is released under the `GNU General Public License (GPL) v3 <http://www.gnu.org/licenses/gpl.html>`_. Users are free to install it on as many computers as they like, and to redistribute it according to the GPLv3 license.
 
 This guide is released under the `GNU Free Documentation License (FDL) v1.3 <http://www.gnu.org/licenses/fdl.html>`_. Permission is granted to copy, distribute and/or modify this document under the terms of the license.
 
@@ -78,7 +78,7 @@ Useful links
 Related community links:
 
 * Administrators: (`MapInfo Installation <https://github.com/LERCAutomation/DataExtractor-MapInfo/releases/>`_) - Release notes and installers for MapInfo.
-* Developers (`MapInfo Source Code <https://github.com/LERCAutomation/DataExtractor-MapInfo>`_) - Source code for the Data Extractor Tool.
+* Developers (`MapInfo Source Code <https://github.com/LERCAutomation/DataExtractor-MapInfo>`_) - Source code for the Data Extractor tool.
 * Issues (`Known issues <https://github.com/LERCAutomation/DataExtractor-MapInfo/issues>`_) - Details of known issues and existing change requests.
 
 

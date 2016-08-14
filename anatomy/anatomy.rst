@@ -31,20 +31,20 @@ Repeating the process
 .. index::
 	single: Tool overview
 
-The Data Extractor Tool
-======================
+The Data Extractor tool
+=======================
 
 Tool components
 ---------------
 
-There are four component parts to the Data Extractor Tool that work together to automate the process described above:
+There are four component parts to the Data Extractor tool that work together to automate the process described above:
 
 1. A GIS layer that describes the boundaries of all relevant partners and stakeholders. This is held both within the GIS system and within SQL Server.
 #. Spatial data held in an SQL database and / or in spatial data layers within the GIS system. Where data is held within SQL Server a stored procedure for its extraction is also required.
 #. An XML configuration file that specifies how the extractions are set up and what data should be exported for each data layer.
-#. The Data Extractor Tool itself.
+#. The Data Extractor tool itself.
 
-The Data Extractor Tool is used within a GIS environment and requires all the required data layers to be preloaded in the GIS (see :numref:`figMapInfoUI`). Where data is to be extracted from SQL Server the partner boundary layer must also be pre-loaded into the SQL Server database.
+The Data Extractor tool is used within a GIS environment and requires all the required data layers to be preloaded in the GIS (see :numref:`figMapInfoUI`). Where data is to be extracted from SQL Server the partner boundary layer must also be pre-loaded into the SQL Server database.
 
 .. _figMapInfoUI:
 
@@ -66,7 +66,7 @@ The Data Extractor tool requires minimum user input in order to carry out its pr
 #. The user specifies which data layers to extract from. Only layers that are loaded in the GIS or tables found in the SQL Server database are made available at this point.
 #. The users selects whether the extracted files should be added to a zip file, whether confidential data from any SQL Server tables should be included, and whether the log file should be cleared before the process starts.
 #. Finally, the user selects whether the selection of SQL Server data should be based on spatial location only, survey tags (names) only, or both. This allows for the inclusion of data relevant to a partner that is outside of that partner's boundary.
-#. Once the user clicks :kbd:`OK` the process starts.
+#. Once the user clicks **OK** the process starts.
 
 
 .. _figUIAnn:
@@ -92,7 +92,7 @@ In essence, the process that the tool follows is identical to the manual process
 .. index::
 	single: Tool outputs
 
-Tool Outputs
+Tool outputs
 ============
 
 Below is a selection of outputs generated from an example data extraction using the data selections shown in figure :numref:`figMapInfoUI`. The extraction was carried out for all partners shown in the menu. 

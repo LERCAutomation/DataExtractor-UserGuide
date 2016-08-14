@@ -2,7 +2,7 @@
 Setting up the tool
 *******************
 
-Before the Data Extractor Tool will function, it needs to be installed and configured. It is recommended that the configuration is carried out first.
+Before the Data Extractor tool will function, it needs to be installed and configured. It is recommended that the configuration is carried out first.
 
 .. index::
 	single: Configuring the tool
@@ -27,7 +27,7 @@ _`MapTables`
 	Deals with how extracts from each GIS layer should be handled.
 
 .. caution::
-	It is important that the structure of the file is maintained as it is presented in the :doc:`Appendix <../appendix/appendix>`. Any changes to the structure may result in the Data Extractor Tool not loading, or not working as expected.
+	It is important that the structure of the file is maintained as it is presented in the :doc:`Appendix <../appendix/appendix>`. Any changes to the structure may result in the Data Extractor tool not loading, or not working as expected.
 
 Once editing has been completed and the edits have been saved, it is recommended that the configuration file is opened using an internet browser such as Internet Explorer which will help highlight any editing errors – only if the structure of the file is valid will the whole file be displayed in the internet browser.
 
@@ -63,7 +63,7 @@ The characters ``&``, ``<`` and ``>`` are not valid within values and, so in ord
 General attributes
 ------------------
 
-The first section of the configuration file deals with a series of general attributes for the Data Extractor tool. Each node specifies where files are kept, how output files should be named, where the log file will be saved as well as other overall settings. Details on these attributes (and their typical values where known) are outlined below. The list follows the order within which the attributes are found in the configuration file. This version of the configuration details is valid for the MapInfo version 1.5.11 of the Data Extractor Tool.
+The first section of the configuration file deals with a series of general attributes for the Data Extractor tool. Each node specifies where files are kept, how output files should be named, where the log file will be saved as well as other overall settings. Details on these attributes (and their typical values where known) are outlined below. The list follows the order within which the attributes are found in the configuration file. This version of the configuration details is valid for the MapInfo version 1.5.11 of the Data Extractor tool.
 
 _`ToolTitle`
 	The title to use for the program in the MapInfo Tools menu.
@@ -305,7 +305,7 @@ To install the tool, make sure that the configuration of the XML file as describ
 
    \newpage
 
-In the `Tool Manager` dialog, click :kbd:`Add Tool...`, then locate the tool using the browse button :kbd:`...` on the `Add Tool` dialog (:numref:`figAddTool`). Enter a name in the **Title** box (e.g. 'DataExtractor'), and a description if desired. Then click :kbd:`Ok` to close the `Add Tool` dialog.
+In the `Tool Manager` dialog, click **Add Tool...**, then locate the tool using the browse button **...** on the `Add Tool` dialog (:numref:`figAddTool`). Enter a name in the **Title** box (e.g. 'DataExtractor'), and a description if desired. Then click **Ok** to close the `Add Tool` dialog.
 
 .. _figAddTool:
 
@@ -318,7 +318,7 @@ In the `Tool Manager` dialog, click :kbd:`Add Tool...`, then locate the tool usi
 
    \newpage
 
-The tool will now show in the `Tool Manager` dialog (:numref:`figToolAdded`) and the **Loaded** box will be checked. To load the tool automatically whenever MapInfo is started check the **AutoLoad** box.  Then click :kbd:`Ok` to close the `Tool Manager` dialog.
+The tool will now show in the `Tool Manager` dialog (:numref:`figToolAdded`) and the **Loaded** box will be checked. To load the tool automatically whenever MapInfo is started check the **AutoLoad** box.  Then click **Ok** to close the `Tool Manager` dialog.
 
 .. _figToolAdded:
 
