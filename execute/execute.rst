@@ -140,7 +140,7 @@ You can now repeat the extract process for different partners and /or files as r
 Extract results
 ===============
 
-All results are output to the `DefaultPath <../setup/setup.html#defaultpath>`_ folder as specified in the XML configuration document. As shown in :numref:`figResults` each partner has its own sub-folder where the extract files for that partner are stored in the formats specified in the partner GIS layer.
+All results are output to the :ref:`DefaultPath <defaultpath>` folder as specified in the XML configuration document. As shown in :numref:`figResults` each partner has its own sub-folder where the extract files for that partner are stored in the formats specified in the partner GIS layer.
 
 .. _figResults:
 
@@ -149,4 +149,4 @@ All results are output to the `DefaultPath <../setup/setup.html#defaultpath>`_ f
 
 	Outputs are organised in partner-specific folders
 
-The log file results of the process is saved in the `LogFilePath <../setup/setup.html#logfilepath>`_ folder as specified in the XML configuration document.
+The log file results of the process is saved in the :ref:`LogFilePath <logfilepath>` folder as specified in the XML configuration document.
