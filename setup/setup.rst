@@ -20,10 +20,10 @@ The XML file can be edited in a text editor such as Notepad or Wordpad, or using
 _`General attributes`
 	General and default attributes for the tool.
 
-_`SQLTables`
+_`SQL Tables`
 	Deals with how extracts from each SQL Server table should be handled.
 
-_`MapTables`
+_`Map Tables`
 	Deals with how extracts from each GIS layer should be handled.
 
 .. caution::
@@ -91,7 +91,7 @@ _`PartnerTable`
 .. figure:: figures/PartnerTable.png
 	:align: center
 
-	An example of a partner table loaded into MapInfo
+	Example of a partner table loaded into MapInfo
 
 	.. note::
 		The partner GIS layer can be uploaded to SQL Server from MapInfo using the 'EasyLoader' tool.
@@ -118,7 +118,7 @@ _`ExportColumn`
 	The name of the column in the partner GIS layer indicating whether an export should also be created as a CSV file. The values in this column should be ``Y`` or ``N``.
 
 _`FilesColumn`
-	The name of the column in the partner GIS layer indicating which SQL tables and map layers should be extracted for each partner. The entry in this column should be a comma-delimited list of the names of the layers (as defined in the XML file under SQLTables_ and MapTables_) that should be included for each partner.
+	The name of the column in the partner GIS layer indicating which SQL tables and map layers should be extracted for each partner. The entry in this column should be a comma-delimited list of the names of the layers (as defined in the XML file under :ref:`SQLTables <SQLTables>` and :ref:`MapTables <MapTables>`) that should be included for each partner.
 
 _`TagsColumn`
 	The name of the column in the partner GIS layer indicating which survey tags, if any, should be included in the export. The survey tags should be a comma-delimited list.
@@ -130,7 +130,7 @@ _`SelectTypeOptions`
 		The 'Selection Type' option in the tool interface **only** relates to extracts from SQL tables and **not** to extracts from GIS layers (which are always spatial).
 
 _`DefaultSelectType`
-	The selection type that should be shown by default in the `SelectionType`_ drop-down list. This attribute is the index number of the selection type options in the drop-down list, with 1 being the first option.
+	The selection type that should be shown by default in the 'Selection Type' drop-down list. This attribute is the index number of the selection type options in the drop-down list, with 1 being the first option.
 
 _`RecMax`
 	The maximum number of records that will be extracted in any one partner extract.
@@ -139,7 +139,7 @@ _`DefaultZip`
 	The default value for zipping the extract files. This attribute should be set to ``Yes`` or ``No``.
 
 _`ConfidentialClause`
-	The SQL criteria for excluding any confidential surveys. The criteria is appended to any SQL criteria already defined against each file under SQLTables_.
+	The SQL criteria for excluding any confidential surveys. The criteria is appended to any SQL criteria already defined against each file under :ref:`SQLTables <SQLTables>`.
 
 _`DefaultConfidential`
 	Yes/No attribute, defining whether the check box for 'Extract confidential surveys?' will be set to checked (``Yes``) or unchecked (``No``) when the form is opened. 
@@ -161,6 +161,7 @@ SQL table attributes
 --------------------
 
 .. _SQLTables:
+
 While the spatial selection that the tool carries out is over the entirety of the SQL table selected by the user, subsets of this data can be written out using the SQL table attributes. The details of these subsets are defined in the ``<SQLTables>`` node.
 
 For each subset that may be included in the extracts a new child node must be created. The node name (e.g. ``<AllSpecies>``) is a user-defined name used to identify an individual subset - the same name should be used in the `FilesColumn`_ in the partner layer to indicate that this subset should be extracted for a partner. A simple example of an SQL layer definition with limited attributes is shown in :numref:`figXMLExample`.
@@ -174,13 +175,13 @@ For each subset that may be included in the extracts a new child node must be cr
 
 The attributes that are required for each SQL table are as follows:
 
-_`TableName`
+TableName
 	The name of the output GIS layer or text file that will be created for this subset.
 
-_`Columns`
+Columns
 	A comma-separated list of columns that should be included in the data exported for this subset during the extraction. The column names (not case sensitive) should match the column names in the source table.
 
-_`Clauses`
+Clauses
 	The SQL clause that should be used to select the data for this subset from the SQL table. This clause could, for example, ensure records are only included that have been entered after a certain date, are verified, are presence (not absence) records, or are a subset for particular taxon groups or protected species. Leave this entry blank to export the entire SQL table.
 
 	.. note::
@@ -202,20 +203,20 @@ _`Symbology`
 .. index::
 	single: Map layer attributes
 
-Map layer attributes
+Map table attributes
 --------------------
 
 .. _MapTables:
 
 All map layer attributes are found within the ``<MapTables>`` node. For each data layer that can be included in the extractions a new child node must be created. The node name (e.g. ``<SSSIs>``) is a user-defined name used to identify the layer - the same name should be used in the `FilesColumn`_ in the partner layer to indicate that this layer should be extracted for a partner. The attributes that are required for each map layer are as follows:
 
-_`TableName`
+TableName
 	The name of the source GIS layer as it is known in the active MapInfo workspace.
 
-_`Columns`
+Columns
 	A comma-separated list of columns that should be included in the data exported from this GIS layer during the extraction. The column names (not case sensitive) should match the column names in the source GIS layer.
 
-_`Clause`
+Clause
 	The SQL clause that should be used to select the data for this layer from the source GIS layer. Leave this entry blank to export the entire source GIS layer.
 
 	.. note::
