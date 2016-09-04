@@ -5,7 +5,7 @@
 Running the tool
 ****************
 
-As discussed in the :doc:`Setting up the tool <../setup/setup>` section, the Data Extractor tool is operated from a MapInfo workspace within which the GIS layers required to run the tool is already loaded. It also relies on an SQL database containing the boundaries of the relevant partners, the SQL tables containing any data that may be extracted, and a configuration document for setting up the tool. Therefore, before running the tool, ensure the following conditions are met:
+As discussed in the :doc:`Setting up the tool <../setup/setup>` section, the Data Extractor tool is operated from a MapInfo workspace within which the GIS layers required to run the tool are already loaded. It also relies on an SQL database containing the boundaries of the relevant partners, the SQL tables containing any data that may be extracted, and a configuration document for setting up the tool. Therefore, before running the tool, ensure the following conditions are met:
 
 - A MapInfo document has been created which contains both the partner boundary GIS layer and any MapInfo GIS layers that may be included in the extraction. 
 - An SQL database exists that contains the relevant partner boundaries, any data tables required, and the auxiliary tables and stored procedures as set out in the setup section. 
