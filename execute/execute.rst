@@ -9,7 +9,7 @@ As discussed in the :doc:`Setting up the tool <../setup/setup>` section, the Dat
 
 - A MapInfo document has been created which contains both the partner boundary GIS layer and any MapInfo GIS layers that may be included in the extraction. 
 - An SQL database exists that contains the relevant partner boundaries, any data tables required, and the auxiliary tables and stored procedures as set out in the setup section. 
-- The file dsn for the SQL database has been created.
+- The file DSN for the SQL database has been created.
 - The XML configuration document has been set up correctly, both for general settings and for each individual layer that will be queried. It is also named correctly and in the same directory as the tool MapBasic application (.MBX).
 - The Data Extractor tool has been installed and is loaded in MapInfo using the MapInfo Tool Manager.
 
@@ -34,7 +34,7 @@ To open the Data Extractor tool, open the tool in the `Tools` menu (**Tools... -
 .. figure:: figures/RunExtractor.png
 	:align: center
 
-	Launching the Data Extractor tool (MapInfo)
+	Launching the Data Extractor tool
 
 
 If there are any structural issues with the XML document, the tool will display a message that it has encountered an error, and not load any further. If any of the map layers that are listed in the configuration document are not present in the active workspace a warning will be shown (:numref:`figLaunchWarning`). The layers that are missing will not be loaded into the form and so cannot be included in the extracts.
@@ -127,7 +127,7 @@ Once the user makes a choice the log file is shown (:numref:`figLogFile`). This 
 	Example log file shown for review
 
 
-You can now repeat the extract process for different partners and /or files as required.
+You can now repeat the extract process for different partners and/or files as required.
 
 
 .. raw:: latex
@@ -140,7 +140,7 @@ You can now repeat the extract process for different partners and /or files as r
 Extract results
 ===============
 
-All results are output to the :ref:`DefaultPath <defaultpath>` folder as specified in the XML configuration document. As shown in :numref:`figResults` each partner has its own sub-folder where the extract files for that partner are stored in the formats specified in the partner GIS layer.
+All results are written to the :ref:`DefaultPath <defaultpath>` folder as specified in the XML configuration document. As shown in :numref:`figResults` each partner has its own sub-folder where the extract files for that partner are stored in the formats specified in the partner GIS layer.
 
 .. _figResults:
 
