@@ -7,19 +7,19 @@ Anatomy of data extraction
 
 This section describes how a typical data extraction might be carried out manually, and how the Data Extraction Tool automates this process. Please note that the examples used in this illustration are purely fictional and do not represent a real-world scenario. 
 
-Data extract process
-====================
+Data extraction process
+=======================
 
 The process of a typical data extraction can be broken down into a number of distinct steps that are described here. In the next section the way that the Data Extraction Tool carries out these steps is explained.
 
 Defining a partner boundary
-	Before any extraction can be carried out, a polygon describing the boundary area for which data will be extracted for a partner has to be entered into a GIS system. This would be held in a single GIS layer together with some associated attributes such as the name of the organisation represented by the boundary. Once this area has been entered into the data layer it can be used time and again.
+	Before any extraction can be carried out, a polygon describing the area for which data will be extracted for a partner has to be entered into a GIS system. This would be held in a single GIS layer together with some associated attributes such as the name of the organisation represented by the boundary. Once this area has been entered into the data layer it can be used time and again.
 
 Selecting the relevant data layers
 	Using the boundary defined in the previous step, each of the data layers relating to the presence of protected sites, habitats, species, etc. is selected one by one. Where data is held within SQL Server this process is carried out within the SQL Server database.
 
 Exporting the results
-	The selected features are extracted in the format required by the user, containing only the relevant columns required from each data layer. Symbology defined within the source data layers, or specified in the configuration document, will automatically be applied to the extracted data.
+	The selected features are extracted in the format required by the user, containing only the relevant columns required from each data layer. Symbology may need to be defined at this step.
 
 Repeating the process
 	Where there is more than one partner for which data needs to be extracted, the process will be repeated for each partner boundary.
@@ -44,7 +44,7 @@ There are four component parts to the Data Extractor tool that work together to 
 #. An XML configuration file that specifies how the extractions are set up and what data should be exported for each data layer.
 #. The Data Extractor tool itself.
 
-The Data Extractor tool is used within a GIS environment and requires all the required data layers to be preloaded in the GIS (see :numref:`figMapInfoUI`). Where data is to be extracted from SQL Server the partner boundary layer must also be pre-loaded into the SQL Server database.
+The Data Extractor tool is used within a GIS environment and requires all the required data layers to be preloaded in the GIS (see :numref:`figMapInfoUI`). Where data is to be extracted from SQL Server the partner boundary layer must also be preloaded into the SQL Server database.
 
 .. _figMapInfoUI:
 
@@ -64,7 +64,7 @@ The Data Extractor tool requires minimum user input in order to carry out its pr
 
 1. The user selects which partner(s) the extraction should be carried out.
 #. The user specifies which data layers to extract from. Only layers that are loaded in the GIS or tables found in the SQL Server database are made available at this point.
-#. The users selects whether the extracted files should be added to a zip file, whether confidential data from any SQL Server tables should be included, and whether the log file should be cleared before the process starts.
+#. The user selects whether the extracted files should be added to a zip file, whether confidential data from any SQL Server tables should be included, and whether the log file should be cleared before the process starts.
 #. Finally, the user selects whether the selection of SQL Server data should be based on spatial location only, survey tags (names) only, or both. This allows for the inclusion of data relevant to a partner that is outside of that partner's boundary.
 #. Once the user clicks **OK** the process starts.
 
@@ -100,7 +100,7 @@ Below is a selection of outputs generated from an example data extraction using 
 Output folder
 -------------
 
-The outputs are stored in a user defined folder (:numref:`figOutputFolder`). These outputs may include a combination of GIS layers and text files in different formats and the log file.
+The outputs are stored in a user defined folder (:numref:`figOutputFolder`). These outputs may include a combination of GIS layers and text files in different formats, and the log file.
 
 .. _figOutputFolder:
 
@@ -116,7 +116,7 @@ The outputs are stored in a user defined folder (:numref:`figOutputFolder`). The
 Output files
 ------------
 
-Text file outputs can be produced in CSV format (:numref:`figTabularOutput`). GIS layers can output in MapInfo (.tab) format and / or converted into ArcGIS (.shp) format.
+Text file outputs can be produced in CSV format (:numref:`figTabularOutput`). GIS layers can be output in MapInfo (.tab) format and / or converted into ArcGIS (.shp) format.
 
 
 .. _figTabularOutput:
