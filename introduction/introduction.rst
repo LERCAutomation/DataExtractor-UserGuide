@@ -31,7 +31,7 @@ The Data Extractor tool is configurable in a flexible way according to the requi
 
 	The Data Extractor tool interface
 
-Data layers for the tool can be contained in an SQL Server database or as GIS layers loaded in the GIS application. When running an extraction the tool uses a loaded GIS layer, also preloaded into the associated SQL database, to find the boundary for each partner and extract the records which fall within with this boundary. The attributes for each partner in the GIS layer define which of the available data layers will be extracted and in which format. Extracts are saved in a predefined location, and a log file is kept that records the steps of each extraction. The process is discussed in this document in more detail in the section on :doc:`using the tool <../execute/execute>`.
+Data layers for the tool can be contained in an SQL Server database or as GIS layers loaded in the GIS application. When running an extraction the tool uses a GIS layer, which is also present in the associated SQL database, to find the boundary for each partner and extract the records which fall within this boundary. The attributes for each partner in this GIS layer define which of the available data layers will be extracted and in which format. Extracts are saved in a predefined location, and a log file is kept that records the steps of each extraction. The process is discussed in this document in more detail in the section on :doc:`running the tool <../execute/execute>`.
 
 .. raw:: latex
 
@@ -55,7 +55,7 @@ Additionally to the XML file the SQL server database is set up via a number of a
 Benefits
 ========
 
-There are a number of clear benefits to using the Data Extractor tool for carrying out routine data extractions for stakeholders. 
+There are a number of clear benefits to using the Data Extractor tool for carrying out routine data extractions for partners. 
 
 1. The tool, by encapsulating and automating the process, saves considerable time over carrying out these extractions manually.
 #. Both the process and the outputs of the extraction are standardised, therefore minimising the risk of user error that is present in a manual extraction.
