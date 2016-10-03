@@ -2,7 +2,7 @@
 Setting up the tool
 *******************
 
-Before the Data Extractor tool will function, it needs to be installed and configured. It is recommended that the configuration is carried out first.
+Before the Data Extractor tool will function, it needs to be installed and configured. It is essential that the configuration is carried out first.
 
 .. index::
 	single: Configuring the tool
@@ -29,7 +29,7 @@ _`Map Tables`
 .. caution::
 	It is important that the structure of the file is maintained as it is presented in the :doc:`Appendix <../appendix/appendix>`. Any changes to the structure may result in the Data Extractor tool not loading, or not working as expected.
 
-Once editing has been completed and the edits have been saved, it is recommended that the configuration file is opened using an internet browser such as Internet Explorer which will help highlight any editing errors – only if the structure of the file is valid will the whole file be displayed in the internet browser.
+Once editing has been completed and the edits have been saved, it is recommended that the configuration file is opened using an internet browser such as Internet Explorer which will help highlight any editing errors – only if the structure of the file is valid will the whole file be displayed in the Internet browser.
 
 .. note::
 	It is recommended that the configuration file is kept in a central (network) location, so that all users use the same configuration. Additionally, it is essential that the configuration file is kept in the same folder as the compiled version of the tool.
@@ -139,7 +139,7 @@ _`DefaultZip`
 	The default value for zipping the extract files. This attribute should be set to ``Yes`` or ``No``.
 
 _`ConfidentialClause`
-	The SQL criteria for excluding any confidential surveys. The criteria is appended to any SQL criteria already defined against each file under :ref:`SQLTables <SQLTables>`.
+	The SQL criteria for excluding any confidential surveys. The clause is appended to any SQL criteria already defined against each file under :ref:`SQLTables <SQLTables>`.
 
 _`DefaultConfidential`
 	Yes/No attribute, defining whether the check box for 'Extract confidential surveys?' will be set to checked (``Yes``) or unchecked (``No``) when the form is opened. 
@@ -248,7 +248,7 @@ _`Spatial_Tables` table
 
 	.. tabularcolumns:: |L|L|
 
-	.. table:: Valid date and time format specifiers
+	.. table:: Format of the Spatial_Tables table
 
 		+-----------------+-----------------------------------------------------------------------------------------------+
 		|      Column     |                                          Description                                          |
