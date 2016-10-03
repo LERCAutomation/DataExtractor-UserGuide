@@ -8,7 +8,7 @@ Appendix
 Example XML file
 ================
 
-Below is an example of XML that might be used to set up the Data Extractor tool for MapInfo. Note many of the settings have been put in for illustration only and it is up to the user to ensure the system is configured to their requirements.
+Below is an example of XML that might be used to set up the Data Extractor tool for MapInfo. Note, many of the settings have been included for illustration only and it is up to each user or LERC to ensure the system is configured to their requirements.
 
 ::
 
@@ -30,89 +30,99 @@ Below is an example of XML that might be used to set up the Data Extractor tool 
     The 'DataExtractor' node contains all of the entries relating to the
     MapBasic tool variables.
 
-    Each entry relates to a file, folder, table name, column name or SQL statement
-    used by the MapBasic tool to select and export data for the GiGL partners.
+    Each entry relates to a file, folder, table name, column name or SQL
+    statement used by the MapBasic tool to select and export data for the
+    GiGL partners.
     -->
 
     <configuration>
     <DataExtractor>
 
-      <!-- The existing file location where log files will be saved with output messages -->
+      <!-- The existing file location where log files will be saved with output
+           messages -->
       <LogFilePath>
-        <value>H:\ExtractorSetup\Extracts\logs</value>
+          <value>H:\ExtractorSetup\Extracts\logs</value>
       </LogFilePath>
 
-      <!-- The location of the File DSN that specifies which SQL Server database to connect to -->
+      <!-- The location of the File DSN that specifies which SQL Server database
+           to connect to -->
       <FileDSN>
-        <value>H:\Data\Thames\ThamesNBNData.dsn</value>
+          <value>H:\Data\Thames\ThamesNBNData.dsn</value>
       </FileDSN>
 
-      <!-- The existing file location under which all partner sub-folders will be created -->
+      <!-- The existing file location under which all partner sub-folders will
+           be created -->
       <DefaultPath>
-        <value>H:\ExtractorSetup\Extracts</value>
+          <value>H:\ExtractorSetup\Extracts</value>
       </DefaultPath>
 
       <!-- The schema used in the SQL Server database -->
       <DatabaseSchema>
-        <value>dbo</value>
+          <value>dbo</value>
       </DatabaseSchema>
 
-      <!-- The SQL statement used to list all the tables in SQL Server that can be selected
+      <!-- The SQL statement used to list all the tables in SQL Server that can
+           be selected
            by the user to extract for each partner -->
       <TableListSQL>
-        <value>Select table_name From information_schema.tables Where table_name Like 'AllData%' And table_name Not Like 'TVERC[_]Spp[_]%[_]%' And table_name Not Like '%Non%' Order By table_name</value>
+          <value>Select table_name From information_schema.tables Where table_name
+                 Like 'AllData%' And table_name Not Like 'TVERC[_]Spp[_]%[_]%'
+                 And table_name Not Like '%Non%' Order By table_name</value>
       </TableListSQL>
 
-      <!-- The name of the partner GIS layer in SQL Server used to select the records -->
+      <!-- The name of the partner GIS layer in SQL Server used to select the
+           records -->
       <PartnerTable>
         <value>Partner_Extract_Boundaries</value>
       </PartnerTable>
 
-      <!-- The name of the column in the partner GIS layer containing the partner name passed to SQL
-           Server by the tool to use as the partner's boundary for selecting the records -->
+      <!-- The name of the column in the partner GIS layer containing the
+           partner name passed to SQL Server by the tool to use as the
+           partner's boundary for selecting the records -->
       <PartnerColumn>
         <value>PartnerName</value>
       </PartnerColumn>
 
-      <!-- The name of the column in the partner GIS layer containing the abbreviated name passed to
-           SQL Server by the tool to use as the sub-folder name for the destination of extracted
-           records -->
+      <!-- The name of the column in the partner GIS layer containing the
+           abbreviated name passed to SQL Server by the tool to use as the
+           sub-folder name for the destination of extracted records -->
       <ShortColumn>
         <value>ShortName</value>
       </ShortColumn>
 
-      <!-- The name of the column in the partner GIS layer containing any notes text relating
-           to the partner. -->
+      <!-- The name of the column in the partner GIS layer containing any note
+           text relating to the partner. -->
       <NotesColumn>
         <value>Notes</value>
       </NotesColumn>
 
-      <!-- The name of the column in the partner GIS layer containing the Y/N flag to indicate
-           if the partner is currently active.  Only active partners will available for processing. -->
+      <!-- The name of the column in the partner GIS layer containing the Y/N
+           flag to indicate if the partner is currently active.  Only active
+           partners will available for processing. -->
       <ActiveColumn>
         <value>Active</value>
       </ActiveColumn>
 
-      <!-- The name of the column in the partner GIS layer containing the GIS format required for
-           the output records -->
+      <!-- The name of the column in the partner GIS layer containing the GIS
+           format required for the output records -->
       <FormatColumn>
         <value>GISformat</value>
       </FormatColumn>
 
-      <!-- The name of the column in the partner GIS layer indicating whether an export should also
-           be created as a CSV file -->
+      <!-- The name of the column in the partner GIS layer indicating whether
+           an export should also be created as a CSV file -->
       <ExportColumn>
         <value>CSVfile</value>
       </ExportColumn>
 
-      <!-- The name of the column in the partner GIS layer indicating which files should be
-           created for each partner -->
+      <!-- The name of the column in the partner GIS layer indicating which
+           files should be created for each partner -->
       <FilesColumn>
         <value>Files</value>
       </FilesColumn>
 
-      <!-- The name of the column in the partner GIS layer indicating which survey tags, if any
-           should be included in the export -->
+      <!-- The name of the column in the partner GIS layer indicating which
+           survey tags, if any should be included in the export -->
       <TagsColumn>
         <value>PartnerTags</value>
       </TagsColumn>
@@ -127,7 +137,8 @@ Below is an example of XML that might be used to set up the Data Extractor tool 
         <value>1</value>
       </DefaultSelectType>
 
-      <!-- The maximum number of records what will be extracted in any one partner extract -->
+      <!-- The maximum number of records what will be extracted in any one
+           partner extract -->
       <RecMax>
         <value>10000000</value>
       </RecMax>
@@ -157,22 +168,37 @@ Below is an example of XML that might be used to set up the Data Extractor tool 
         <value>IMUT.exe</value>
       </UTCommand>
 
-      <!-- The table columns and SQL where clauses used to select all the required columns for
-        the extract table subsets -->
+      <!-- The table columns and SQL where clauses used to select all the
+           required columns for the extract table subsets -->
       <SQLTables> 
-        <Data_AllSpecies> <!-- The name of this subset as it is listed in the partner table -->
+        <Data_AllSpecies> <!-- The name of this subset as it is listed in the
+                               partner table -->
             <TableName> <!-- The name of this subset as it will be exported -->
                 <Value>Data_Spp_Full</Value>
             </TableName>
             <Columns> <!-- The columns that will be included in this subset -->
-                <Value>TaxonName, CommonName, TaxonClass, TaxonGroup, Abundance, AbundanceCount, RecDate, RecYear, VagueDateStart, VagueDateEnd, Recorder, Determiner, Gridref, RefSystem, Grid10K, GRPrecision, GRQualifier, Easting, Northing, Location, MoreInfo, RecType, StatusEuro, StatusUK, StatusNerc, StatusOther, StatusINNS, SurveyName, SurveyOrigin, SurveyRunBy, SurveyTags, Comments, Confidential, Sensitive, NegativeRec, HistoricRec, Verification, LastUpdated, SP_GEOMETRY</Value>
+                <Value>TaxonName, CommonName, TaxonClass, TaxonGroup, Abundance,
+                       AbundanceCount, RecDate, RecYear, VagueDateStart,
+                       VagueDateEnd, Recorder, Determiner, Gridref, RefSystem,
+                       Grid10K, GRPrecision, GRQualifier, Easting, Northing,
+                       Location, MoreInfo, RecType, StatusEuro, StatusUK,
+                       StatusNerc, StatusOther, StatusINNS, SurveyName,
+                       SurveyOrigin, SurveyRunBy, SurveyTags, Comments,
+                       Confidential, Sensitive, NegativeRec, HistoricRec,
+                       Verification, LastUpdated, SP_GEOMETRY</Value>
             </Columns>
-            <Clauses> <!-- The SQL clause that should be used to extract this subset from the SQL table -->
-                <Value>RecYear &gt;= 1985 AND (NegativeRec &lt;&gt; 'Y' OR NegativeRec IS NULL) AND GRPrecision &lt;= 100 AND Gridref IS NOT NULL AND VagueDateStart IS NOT NULL AND Recorder IS NOT NULL AND TaxonName &lt;&gt; 'Homo sapiens' AND Verification &lt;&gt; 'Considered incorrect'</Value>
+            <Clauses> <!-- The SQL clause that should be used to extract this
+                           subset from the SQL table -->
+                <Value>RecYear &gt;= 1985 AND (NegativeRec &lt;&gt; 'Y' OR
+                       NegativeRec IS NULL) AND GRPrecision &lt;= 100 AND
+                       Gridref IS NOT NULL AND VagueDateStart IS NOT NULL AND
+                       Recorder IS NOT NULL AND TaxonName &lt;&gt; 'Homo sapiens'
+                       AND Verification &lt;&gt; 'Considered incorrect'</Value>
             </Clauses>
             <Symbology> <!-- The symbology definition for this subset -->
                 <Symbol> <!-- First symbol definition -->
-                    <Clause> <!-- The SQL clause that defines the records for which this symbol will be used -->
+                    <Clause> <!-- The SQL clause that defines the records for
+                                  which this symbol will be used -->
                         <Value>GRPrecision = 100</Value>
                     </Clause>
                     <Object>    <!-- The type of object the symbol applies to -->
@@ -206,10 +232,23 @@ Below is an example of XML that might be used to set up the Data Extractor tool 
                 <Value>Data_Spp_Birds</Value>
             </TableName>
             <Columns>
-                <Value>TaxonName, CommonName, TaxonClass, TaxonGroup, Abundance, AbundanceCount, RecDate, RecYear, VagueDateStart, VagueDateEnd, Recorder, Determiner, Gridref, RefSystem, Grid10K, GRPrecision, GRQualifier, Easting, Northing, Location, MoreInfo, RecType, StatusEuro, StatusUK, StatusNerc, StatusOther, StatusINNS, SurveyName, SurveyOrigin, SurveyRunBy, SurveyTags, Comments, Confidential, Sensitive, NegativeRec, HistoricRec, Verification, LastUpdated, SP_GEOMETRY</Value>
+                <Value>TaxonName, CommonName, TaxonClass, TaxonGroup, Abundance,
+                       AbundanceCount, RecDate, RecYear, VagueDateStart,
+                       VagueDateEnd, Recorder, Determiner, Gridref, RefSystem,
+                       Grid10K, GRPrecision, GRQualifier, Easting, Northing,
+                       Location, MoreInfo, RecType, StatusEuro, StatusUK,
+                       StatusNerc, StatusOther, StatusINNS, SurveyName,
+                       SurveyOrigin, SurveyRunBy, SurveyTags, Comments,
+                       Confidential, Sensitive, NegativeRec, HistoricRec,
+                       Verification, LastUpdated, SP_GEOMETRY</Value>
             </Columns>
             <Clauses>
-                <Value>RecYear &gt;= 1985 AND (NegativeRec &lt;&gt; 'Y' OR NegativeRec IS NULL) AND GRPrecision &lt;= 100 AND Gridref IS NOT NULL AND VagueDateStart IS NOT NULL AND Recorder IS NOT NULL AND TaxonName &lt;&gt; 'Homo sapiens' AND Verification &lt;&gt; 'Considered incorrect' AND TaxonGroup = 'Birds'</Value>
+                <Value>RecYear &gt;= 1985 AND (NegativeRec &lt;&gt; 'Y' OR
+                       NegativeRec IS NULL) AND GRPrecision &lt;= 100 AND
+                       Gridref IS NOT NULL AND VagueDateStart IS NOT NULL AND
+                       Recorder IS NOT NULL AND TaxonName &lt;&gt; 'Homo sapiens'
+                       AND Verification &lt;&gt; 'Considered incorrect' AND
+                       TaxonGroup = 'Birds'</Value>
             </Clauses>
             <Symbology>
                 <Symbol>
@@ -244,14 +283,18 @@ Below is an example of XML that might be used to set up the Data Extractor tool 
         </Data_Birds>
       </SQLTables>
 
-      <!-- The names and local names of the MapInfo tables and the required columns for the MapInfo tables -->
+      <!-- The names and local names of the MapInfo tables and the required
+           columns for the MapInfo tables -->
       <MapTables>
-        <AncientWoodland> <!-- The name of this MapInfo table as it is listed in the partner table -->
-            <TableName> <!-- The name of this MapInfo table as it is shown in the MapInfo interface and on the form -->
+        <AncientWoodland> <!-- The name of this MapInfo table as it is listed
+                               in the partner table -->
+            <TableName> <!-- The name of this MapInfo table as it is shown in
+                             the MapInfo interface and on the form -->
                 <Value>AncientWoodland</Value>
             </TableName>
             <Columns> <!-- Columns that will be included in the extract -->
-                <Value>NAME, THEMNAME,STATUS, x_COORD, y_COORD, AREA, PERIMETER</Value>
+                <Value>NAME, THEMNAME,STATUS, x_COORD, y_COORD, AREA,
+                       PERIMETER</Value>
             </Columns>
         </AncientWoodland>
       </MapTables>
