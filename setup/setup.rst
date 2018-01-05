@@ -277,9 +277,9 @@ ExcludeWildcard
 	The wildcard for table names that will be excluded from the list of species tables. Intended to exclude temporary tables, this might take the form ``LERC_Spp_*_*``.
 
 PartnerTable
-	The name of the partner GIS layer (and SQL Server table) used to select records. The tool expects this layer to be present in the ArcMap Table of Contents and also present in the SQL Server database. A snapshot of a partner table is shown in :numref:`FigPartnerTable`.
+	The name of the partner GIS layer (and SQL Server table) used to select records. The tool expects this layer to be present in the ArcMap Table of Contents and also present in the SQL Server database. A snapshot of a partner table is shown in :numref:`FigPartnerTableArc`.
 
-.. _FigPartnerTable:
+.. _FigPartnerTableArc:
 
 .. figure:: figures/PartnerTable.png
 	:align: center
