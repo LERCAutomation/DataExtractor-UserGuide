@@ -133,14 +133,14 @@ Text file outputs can be produced in CSV format (:numref:`figTabularOutput`). GI
 Output options
 --------------
 
-Options in the tool include compressing all outputs into a single zip file for each partner (:numref:`figOutputOptions`), including confidential records (defined in the configuration document) in any SQL table extracts, and clearing the log file before use.
+Options in the tool include compressing all outputs into a single zip file for each partner (:numref:`figOutputOptions`; MapInfo only), including confidential records (defined in the configuration document) in any SQL table extracts, and clearing the log file before use.
 
 .. _figOutputOptions:
 
 .. figure:: figures/OutputOptionsAnnotated.png
 	:align: center
 
-	Example of a compressed output file containing a single GIS layer
+	Example of a compressed output file containing a single GIS layer (MapInfo)
 
 .. raw:: latex
 
