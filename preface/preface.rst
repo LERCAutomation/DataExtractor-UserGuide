@@ -16,7 +16,7 @@ Users
 This user guide assumes that users of the Data Extractor tool have:
 
 * General IT experience including the use of Microsoft Windows.
-* Experience in the use of a relevant GIS application supported by the tool (currently MapInfo), including selecting and querying features and attributes.
+* Experience in the use of a relevant GIS application supported by the tool (currently MapInfo and ArcGIS), including selecting and querying features and attributes.
 * An understanding of the datasets that are used by the Data Extractor tool.
 
 
@@ -77,9 +77,9 @@ Useful links
 
 Related community links:
 
-* Administrators: (`MapInfo Installation <https://github.com/LERCAutomation/DataExtractor-MapInfo/releases/>`_) - Release notes and installers for MapInfo.
-* Developers (`MapInfo Source Code <https://github.com/LERCAutomation/DataExtractor-MapInfo>`_) - Source code for the Data Extractor tool.
-* Issues (`Known issues <https://github.com/LERCAutomation/DataExtractor-MapInfo/issues>`_) - Details of known issues and existing change requests.
+* Administrators: (`MapInfo Installation <https://github.com/LERCAutomation/DataExtractor-MapInfo/releases/>`_) and (`ArcGIS Installation <https://github.com/LERCAutomation/Data-Extractor---ArcObjects/releases>`_) - Release notes and installers.
+* Developers (`MapInfo Source Code <https://github.com/LERCAutomation/DataExtractor-MapInfo>`_) and (`ArcGIS Source Code <https://github.com/LERCAutomation/Data-Extractor---ArcObjects>`_)- Source code for the Data Extractor tool.
+* Issues (`Known issues for MapInfo version <https://github.com/LERCAutomation/DataExtractor-MapInfo/issues>`_) and (`Known issues for ArcGIS version <https://github.com/LERCAutomation/Data-Extractor---ArcObjects/issues>`_) - Details of known issues and existing change requests.
 
 
 .. index::
