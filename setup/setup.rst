@@ -17,13 +17,13 @@ The configuration is stored in an XML file called 'DataExtractor.xml', an exampl
 
 The XML file can be edited in a text editor such as Notepad or Wordpad, or using a more feature rich XML editor such as as `Sublime Text <https://www.sublimetext.com/3>`_. The configuration file is split into three sections:
 
-_`General attributes`
+General attributes
 	General and default attributes for the tool.
 
-_`SQL Tables`
+SQL Tables`
 	Deals with how extracts from each SQL Server table should be handled.
 
-_`Map Tables` (MapInfo) or `Map Layers` (ArcGIS)
+Map Tables (MapInfo) or Map Layers (ArcGIS)
 	Deals with how extracts from each GIS layer should be handled.
 
 .. caution::
@@ -67,7 +67,7 @@ Setup for MapInfo
 	single: General attributes; MapInfo
 
 General attributes
-==================
+******************
 
 The first section of the configuration file deals with a series of general attributes for the Data Extractor tool. Each node specifies where files are kept, how output files should be named, where the log file will be saved as well as other overall settings. Details on these attributes (and their typical values where known) are outlined below. The list follows the order within which the attributes are found in the configuration file. This version of the configuration details is valid for the MapInfo version 1.5.11 of the Data Extractor tool.
 
@@ -247,36 +247,36 @@ Setting up the tool for ArcGIS
 	single: General attributes; ArcGIS
 
 General attributes
-==================
+******************
 
 The first section of the configuration file deals with a series of general attributes for the Data Extractor tool. Each node specifies where files are kept, how output files should be named, where the log file will be saved as well as other overall settings. Details on these attributes (and their typical values where known) are outlined below. The list follows the order within which the attributes are found in the configuration file. This version of the configuration details is valid for the ArcGIS version 1.0 of the Data Extractor tool.
 
 
-_`LogFilePath` 	
+LogFilePath 	
 	The folder to be used for storing log files. This folder must already exist.
 
-_`FileDSN`
+FileDSN
 	The location of the file DSN which specifies the details of the connection to the SQL database.
 
-_`ConnectionString`
+ConnectionString
 	In addition to a file DSN, the ArcGIS tool requires a connection string for the SQL database. 
 
-_`TimeoutSeconds`
+TimeoutSeconds
 	The number of seconds before the connection to the database times out. If left blank this will default to 4,000 seconds.
 
-_`DefaultPath`
+DefaultPath
 	The folder below which all partner folders will be created, and where extracts will be stored.
 
-_`DatabaseSchema`
+DatabaseSchema
 	The schema used in the SQL database (typically ``dbo``).
 
-_`IncludeWildcard`
+IncludeWildcard
 	The wildcard for table names to list all the species tables in SQL Server that can be selected by the user to extract from. This might look like ``*LERC_Spp_*``
 
-_`ExcludeWildcard`
+ExcludeWildcard
 	The wildcard for table names that will be excluded from the list of species tables. Intended to exclude temporary tables, this might take the form ``LERC_Spp_*_*``.
 
-_`PartnerTable`
+PartnerTable
 	The name of the partner GIS layer (and SQL Server table) used to select records. The tool expects this layer to be present in the ArcMap Table of Contents and also present in the SQL Server database. A snapshot of a partner table is shown in :numref:`FigPartnerTable`.
 
 .. _FigPartnerTable:
@@ -287,55 +287,55 @@ _`PartnerTable`
 	Example of a partner table
 
 	.. note::
-		The partner GIS layer can be uploaded to SQL Server by right-clicking on the layer, then selecting ``Data => Export Data``. In the resulting menu choose ``Database Feature Classes`` as the file type, and use the `FileDSN`_ as the location to save the data to.
+		The partner GIS layer can be uploaded to SQL Server by right-clicking on the layer, then selecting :kbd:`Data => Export Data`. In the resulting menu choose :kbd:`Database Feature Classes` as the file type, and use the FileDSN as the location to save the data to.
  
-_`PartnerColumn`
-	The column in the `PartnerTable`_ containing the partner name, which is passed to SQL Server by the tool to use the partner's boundary for selecting the records.
+PartnerColumn
+	The column in the PartnerTable containing the partner name, which is passed to SQL Server by the tool to use the partner's boundary for selecting the records.
 
-_`ShortColumn`
-	The name of the column in the partner GIS layer containing the abbreviated name to use as the sub-folder name for the destination of extracted records. The sub-folder is created in the `DefaultPath`_ during extraction if it does not already exist.
+ShortColumn
+	The name of the column in the partner GIS layer containing the abbreviated name to use as the sub-folder name for the destination of extracted records. The sub-folder is created in the DefaultPath during extraction if it does not already exist.
 
-_`NotesColumn`
+NotesColumn
 	The name of the column in the partner GIS layer containing any notes text relating to the partner.
 
 	.. tip::
 		Any notes for a partner can be displayed by 'double-clicking' the partner name in the list of partners in the tool interface.
 
-_`ActiveColumn`
+ActiveColumn
 	The name of the column in the partner GIS layer containing the Y/N flag to indicate if the partner is currently active.  Only active partners will appear in the tool interface and be available for processing. The values in this column should be ``Y`` or ``N``.
 
-_`FormatColumn`
+FormatColumn
 	The name of the column in the partner GIS layer containing the GIS format required for the output records. The values in the column should be ``SHP`` or ``GDB``.
 
-_`ExportColumn`
+ExportColumn
 	The name of the column in the partner GIS layer indicating whether an export should also be created as a CSV file. The values in this column should be ``CSV`` or ``TXT``. If it is left blank no text export will be generated.
 
-_`SQLFilesColumn`
+SQLFilesColumn
 	The name of the column in the partner GIS layer indicating which SQL tables should be extracted for each partner. The entry in this column should be a comma-delimited list of the names of the layers (as defined in the XML file under :ref:`SQLTables <SQLTablesArc>`) that should be included for each partner.
 
-_`MapFilesColumn`
+MapFilesColumn
 	The name of the column in the partner GIS layer indicating which ArcGIS layers should be extracted for each partner. The entry in this column should be a comma-delimited list of the names of the layers (as defined in the XML file under :ref:`MapLayers <MapLayers>`) that should be included for each partner.
 
-_`TagsColumn`
+TagsColumn
 	The name of the column in the partner GIS layer indicating which survey tags, if any, should be included in the export. The survey tags should be a comma-delimited list.
 
-_`SelectTypeOptions`
-	The option list for the selection types to be included in the 'Selection Type' drop-down box on the tool interface. This attribute should not be changed. The options are ``Spatial Only`` (records are purely selected on whether they are inside or outside the partner boundary), ``Survey tags only`` (records are purely selected on the survey tags included in the `TagsColumn`_), and ``Spatial and Survey Tags``, where both a spatial intersection and any records with the relevant survey tags are included in the extraction.
+SelectTypeOptions
+	The option list for the selection types to be included in the 'Selection Type' drop-down box on the tool interface. This attribute should not be changed. The options are ``Spatial Only`` (records are purely selected on whether they are inside or outside the partner boundary), ``Survey tags only`` (records are purely selected on the survey tags included in the TagsColumn), and ``Spatial and Survey Tags``, where both a spatial intersection and any records with the relevant survey tags are included in the extraction.
 
 	.. note::
 		The 'Selection Type' option in the tool interface **only** relates to extracts from SQL tables and **not** to extracts from GIS layers (which are always spatial).
 
-_`DefaultSelectType`
+DefaultSelectType
 	The selection type that should be shown by default in the 'Selection Type' drop-down list. This attribute is the index number of the selection type options in the drop-down list, with 1 being the first option.
 
 
-_`DefaultZip`
+DefaultZip
 	The default value for zipping the extract files. This attribute is not currently used in ArcGIS.
 
-_`ConfidentialClause`
+ConfidentialClause
 	The SQL criteria for excluding any confidential surveys. The clause is appended to any SQL criteria already defined against each file under :ref:`SQLTables <SQLTablesArc>`.
 
-_`DefaultConfidential`
+DefaultConfidential
 	Yes/No attribute, defining whether the check box for 'Extract confidential surveys?' will be set to checked (``Yes``) or unchecked (``No``) when the form is opened. 
 
 	.. note::
