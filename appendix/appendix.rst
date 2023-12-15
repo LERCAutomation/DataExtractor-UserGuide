@@ -8,7 +8,7 @@ Appendix
 Example XML file
 ================
 
-Below is an example of XML that might be used to set up the Data Extractor tool for MapInfo. Note, many of the settings have been included for illustration only and it is up to each user or LERC to ensure the system is configured to their requirements.
+Below is an example of XML that might be used to set up the DataExtractor tool for MapInfo. Note, many of the settings have been included for illustration only and it is up to each user or LERC to ensure the system is configured to their requirements.
 
 ::
 

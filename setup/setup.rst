@@ -2,7 +2,7 @@
 Setting up the tool
 *******************
 
-Before the Data Extractor tool will function, it needs to be installed and configured. It is essential that the configuration is carried out first. there are some differences between the setup for MapInfo and ArcGIS, which are made clear below.
+Before the DataExtractor tool will function, it needs to be installed and configured. It is essential that the configuration is carried out first. There are some differences between the setup for MapInfo and ArcGIS, which are made clear below.
 
 .. index::
 	single: Configuring the tool
@@ -10,10 +10,25 @@ Before the Data Extractor tool will function, it needs to be installed and confi
 Configuring the tool
 ====================
 
-The configuration is stored in an XML file called 'DataExtractor.xml', an example of which can be found in the :doc:`Appendix <../appendix/appendix>`. Attributes and settings are presented as nodes (beginning with a start node, e.g. ``<example>``, and finishing with an end note, e.g. ``<\example>``), with the value for the setting held between the ``<value>`` and ``<\value>`` tag. 
+The DataExtractor tool requires a minimum of two XML configuration files:
 
-.. caution:: 
-	The name of the configuration file must be 'DataExtractor.xml'. The tool will not load if a different name is used.
+1. An XML file called 'DataExtractor.xml'. This simply defines:
+
+	* The title of the tool as it appears in the tool menu (MapInfo only)
+	* Whether users are able to choose their own configuration file (ArcMap only)
+	* The default XML profile to be pre-selected (where more than one XML profile is present)
+
+	.. caution::
+		The name of this configuration file must be 'DataExtractor.xml'. The tool will not load if this file is not found.
+
+
+2. One or more user-maintained XML profiles (with the suffix '.xml') containing a detailed configuration for the tool.
+
+	.. tip::
+		An example of an XML profile can be found in the :doc:`Appendix <../appendix/appendix>`.
+
+
+Attributes and settings in the XML profiles are presented as nodes (beginning with a start node, e.g. ``<example>``, and finishing with an end note, e.g. ``<\example>``), with the value for that node held between the ``<value>`` and ``<\value>`` tag. 
 
 The XML file can be edited in a text editor such as Notepad or Wordpad, or using a more feature rich XML editor such as as `Sublime Text <https://www.sublimetext.com/3>`_. The configuration file is split into three sections:
 
@@ -27,7 +42,7 @@ Map Tables (MapInfo) or Map Layers (ArcGIS)
 	Deals with how extracts from each GIS layer should be handled.
 
 .. caution::
-	It is important that the structure of the file is maintained as it is presented in the :doc:`Appendix <../appendix/appendix>`. Any changes to the structure may result in the Data Extractor tool not loading, or not working as expected.
+	It is important that the structure of the file is maintained as it is presented in the :doc:`Appendix <../appendix/appendix>`. Any changes to the structure may result in the DataExtractor tool not loading, or not working as expected.
 
 Once editing has been completed and the edits have been saved, it is recommended that the configuration file is opened using an internet browser such as Internet Explorer which will help highlight any editing errors – only if the structure of the file is valid will the whole file be displayed in the Internet browser.
 
@@ -69,7 +84,7 @@ Setup for MapInfo
 General attributes
 ******************
 
-The first section of the configuration file deals with a series of general attributes for the Data Extractor tool. Each node specifies where files are kept, how output files should be named, where the log file will be saved as well as other overall settings. Details on these attributes (and their typical values where known) are outlined below. The list follows the order within which the attributes are found in the configuration file. This version of the configuration details is valid for the MapInfo version 1.5.11 of the Data Extractor tool.
+The first section of the configuration file deals with a series of general attributes for the DataExtractor tool. Each node specifies where files are kept, how output files should be named, where the log file will be saved as well as other overall settings. Details on these attributes (and their typical values where known) are outlined below. The list follows the order within which the attributes are found in the configuration file. This version of the configuration details is valid for the MapInfo version 1.5.11 of the DataExtractor tool.
 
 _`ToolTitle`
 	The title to use for the program in the MapInfo Tools menu.
@@ -249,7 +264,7 @@ Setting up the tool for ArcGIS
 General attributes
 ******************
 
-The first section of the configuration file deals with a series of general attributes for the Data Extractor tool. Each node specifies where files are kept, how output files should be named, where the log file will be saved as well as other overall settings. Details on these attributes (and their typical values where known) are outlined below. The list follows the order within which the attributes are found in the configuration file. This version of the configuration details is valid for the ArcGIS version 1.0 of the Data Extractor tool.
+The first section of the configuration file deals with a series of general attributes for the DataExtractor tool. Each node specifies where files are kept, how output files should be named, where the log file will be saved as well as other overall settings. Details on these attributes (and their typical values where known) are outlined below. The list follows the order within which the attributes are found in the configuration file. This version of the configuration details is valid for the ArcGIS version 1.0 of the DataExtractor tool.
 
 
 LogFilePath 	
@@ -410,7 +425,7 @@ Clause
 Setting up the SQL Server database
 ==================================
 
-In addition to any SQL tables containing records to be extracted using the Data Extractor tool, two auxiliary tables must also be present in the SQL Server database in order for the tool to be able to extract data from tables held in SQL Server. These are as follows:
+In addition to any SQL tables containing records to be extracted using the DataExtractor tool, two auxiliary tables must also be present in the SQL Server database in order for the tool to be able to extract data from tables held in SQL Server. These are as follows:
 
 _`Survey` table
 	The Survey table is a standard table in the Recorder6 database. It is used to identify any records tagged with any survey tags listed in the `TagsColumn`_ column in the partner GIS layer.
@@ -452,7 +467,7 @@ _`Spatial_Tables` table
 		(-7845061.1011, -15524202.1641) (8645061.1011, 4470074.53373)``
 
 	.. caution::
-		This table must be filled out correctly for each table that is included in the Data Extractor tool.
+		This table must be filled out correctly for each table that is included in the DataExtractor tool.
 
 	.. note::
 		A number of stored procedures that are used by the tool for extracting the required records must also be present in the SQL Server database. To obtain copies of these procedures please contact `Hester <mailto:Hester@HesterLyonsConsulting.co.uk>`_ or `Andy <mailto:Andy@AndyFoyConsulting.co.uk>`_.
@@ -509,7 +524,7 @@ The tool will now show in the `Tool Manager` dialog (:numref:`figToolAdded`) and
 .. figure:: figures/DataExtractorLoaded.png
 	:align: center
 
-	The Data Extractor tool is loaded
+	The DataExtractor tool is loaded
 
 The tool will now appear as a new entry in the `Tools` menu (:numref:`figToolMenu`).
 
@@ -518,13 +533,13 @@ The tool will now appear as a new entry in the `Tools` menu (:numref:`figToolMen
 .. figure:: figures/DataExtractorToolMenu.png
 	:align: center
 
-	The Data Extractor tool menu
+	The DataExtractor tool menu
 
 .. note::
 	The name that will appear in the `Tools` menu is dependent on the `ToolTitle`_ value in the configuration file, **not** the name given when adding the tool using the Tool Manager.
 
 .. tip::
-	It is recommended that a MapInfo Workspace is created that contains all the required GIS layers to run the tool. Once this workspace has been set up and the tool has been configured and installed, running the Data Extractor tool becomes a simple process.
+	It is recommended that a MapInfo Workspace is created that contains all the required GIS layers to run the tool. Once this workspace has been set up and the tool has been configured and installed, running the DataExtractor tool becomes a simple process.
 
 
 .. raw:: latex
@@ -543,14 +558,14 @@ Installing the tool in ArcGIS is straightforward. There are a few different ways
 Installation through Windows Explorer
 *************************************
 
-Open Windows Explorer and double-click on the ESRI Add-in file for the Data Extractor tool (:numref:`figInstallTool`).
+Open Windows Explorer and double-click on the ESRI Add-in file for the DataExtractor tool (:numref:`figInstallTool`).
 
 .. _figInstallTool:
 
 .. figure:: figures/AddInInstall.png
 	:align: center
 
-	Installing the Data Extractor tool from Windows Explorer
+	Installing the DataExtractor tool from Windows Explorer
 
 .. raw:: latex
 
@@ -607,7 +622,7 @@ Once the tool shows in the Add-In Manager (:numref:`figAddInManager`), it is ava
 .. figure:: figures/AddInManager.png
 	:align: center
 
-	The ArcGIS Add-In Manager showing the Data Extractor tool
+	The ArcGIS Add-In Manager showing the DataExtractor tool
 
 
 .. raw:: latex
@@ -649,7 +664,7 @@ Once this dialog is open, ensure that the check box 'Create new toolbars and men
 
    \newpage
 
-It is recommended that the button for the Data Extractor tool is added to a new toolbar. Toolbars are created through the **Toolbars** tab in the Customize dialog, as shown in figures :numref:`figCustomizeToolbars` and :numref:`figNameToolbar`.
+It is recommended that the button for the DataExtractor tool is added to a new toolbar. Toolbars are created through the **Toolbars** tab in the Customize dialog, as shown in figures :numref:`figCustomizeToolbars` and :numref:`figNameToolbar`.
 
 .. _figCustomizeToolbars:
 
@@ -684,28 +699,28 @@ Once a new toolbar is created and named, it is automatically added to the ArcMap
 
    \newpage
 
-As a final step the Data Extractor tool is added to the toolbar. This is done from the **Command** tab in the Customize dialog (:numref:`figAddInCommands`). Click on **Add-In Controls** and the Data Extractor tool will be shown in the right-hand panel.
+As a final step the DataExtractor tool is added to the toolbar. This is done from the **Command** tab in the Customize dialog (:numref:`figAddInCommands`). Click on **Add-In Controls** and the DataExtractor tool will be shown in the right-hand panel.
 
 .. _figAddInCommands:
 
 .. figure:: figures/AddInCommandsAnnotated.png
 	:align: center
 
-	Finding the Data Extractor tool in the add-in commands
+	Finding the DataExtractor tool in the add-in commands
 
 
 .. raw:: latex
 
    \newpage
 
-To add the tool to the toolbar, simply drag and drop it onto it (:numref:`figDragDropTool`). Close the Customize dialog and **save the document**. The Data Extractor tool is now ready for its final configuration and first use.
+To add the tool to the toolbar, simply drag and drop it onto it (:numref:`figDragDropTool`). Close the Customize dialog and **save the document**. The DataExtractor tool is now ready for its final configuration and first use.
 
 .. _figDragDropTool:
 
 .. figure:: figures/DragAndDropTool.png
 	:align: center
 
-	Adding the Data Extractor tool to the new toolbar
+	Adding the DataExtractor tool to the new toolbar
 
 .. raw:: latex
 

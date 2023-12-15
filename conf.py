@@ -49,7 +49,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Data Extractor User Guide'
+project = u'DataExtractor User Guide'
 copyright = u'2016 GiGL, TVERC, SxBRC, DERC'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -119,7 +119,7 @@ html_theme = 'default'
 #html_title = None
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
-html_short_title = 'Data Extractor User Guide'
+html_short_title = 'DataExtractor User Guide'
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
@@ -133,7 +133,7 @@ html_favicon = 'icons/favicon.ico'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+html_static_path = []
 
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied
@@ -202,7 +202,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'DataExtractor-UserGuide.tex', u'Data Extractor - User Guide',
+  ('index', 'DataExtractor-UserGuide.tex', u'DataExtractor - User Guide',
    u'Hester Lyons & Andy Foy', 'manual'),
 ]
 
@@ -232,7 +232,7 @@ latex_show_urls = 'footnote'
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'DataExtractor-UserGuide', u'Data Extractor - User Guide',
+    ('index', 'DataExtractor-UserGuide', u'DataExtractor - User Guide',
      [u'Hester Lyons & Andy Foy'], 1)
 ]
 
@@ -246,8 +246,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'DataExtractor-UserGuide', u'Data Extractor - User Guide',
-   u'Hester Lyons & Andy Foy', 'DataExtractor-UserGuide', 'Data Extractor - User Guide.',
+  ('index', 'DataExtractor-UserGuide', u'DataExtractor - User Guide',
+   u'Hester Lyons & Andy Foy', 'DataExtractor-UserGuide', 'DataExtractor - User Guide.',
    'Miscellaneous'),
 ]
 
