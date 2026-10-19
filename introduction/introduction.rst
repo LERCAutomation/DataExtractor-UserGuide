@@ -4,6 +4,7 @@ Introduction
 
 .. index::
 	single: Background
+    single: DataExtractor; background
 
 Background
 ==========
@@ -18,6 +19,7 @@ The DataExtractor tool was originally developed for Greenspace Information for G
 
 .. index::
 	single: Tool overview
+    single: DataExtractor; overview
 
 Tool overview
 =============
@@ -55,5 +57,5 @@ There are a number of clear benefits to using the DataExtractor tool for carryin
 #. By specifying the outputs of the tool centrally through the configuration file, the output for each extraction is consistent with all other extractions, regardless of the individual carrying out the extraction. This leads to comparability of results and a predictable experience for the users of a data extraction service.
 #. The extractions are repeatable and, through the inclusion of the log file, automatically documented.
 
-This guide describes MapInfo v1.7.05, released on 19 October 2026.
-See the :ref:`change_log` for the MapInfo history.
+This guide describes DataExtractor for MapInfo version |release|.
+See the :ref:`change_log` for release dates and the MapInfo history.

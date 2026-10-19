@@ -5,16 +5,18 @@ Appendix
 .. index::
     single: Appendix; Change Log
     single: Change Log
+    single: Version history
+    single: Release history
 
 .. _change_log:
 
 Change Log
 ==========
 
-This change log covers the MapInfo tool. Dates and version numbers follow the
-comments in ``DataExtractor.mb`` where available; commit dates are used for
-changes without dated version comments. The v1.7.05 release date is
-19 October 2026. The early version numbering is retained as recorded.
+This change log covers the MapInfo tool through version |release|. Dates
+and version numbers follow the comments in ``DataExtractor.mb`` where available;
+commit dates are used for changes without dated version comments. The early
+version numbering is retained as recorded.
 
 The history was reconstructed from the `source comments
 <https://github.com/LERCAutomation/DataExtractor-MapInfo/blob/master/MapBasic/DataExtractor.mb>`_,
@@ -32,6 +34,8 @@ history was checked was ``v1.5.1``, dated 26 January 2015.
     * :guilabel:`Changed` - Consolidate output folder creation and retain unfinished outputs for recovery after cancellation or transfer failure
     * :guilabel:`Fixed` - Package the correct partner folder, including the final partner and skipped final outputs
     * :guilabel:`Fixed` - Close output tables, including non-spatial SQL TAB outputs, before packaging and transfer
+    * :guilabel:`Fixed` - Check MapInfo geometry only for the selected partner, using its spatial boundary rows where available
+    * :guilabel:`Fixed` - Detect conflicting output destinations, including truncated names, before extraction or partner upload
 
 **1.7.04 - subsequent source update**
 (31Jul2025; commit date)
@@ -368,347 +372,59 @@ history was checked was ``v1.5.1``, dated 26 January 2015.
 
 .. index::
     single: Example XML files
+    pair: XML files; examples
+    single: Downloads; XML examples
+    single: Profiles; downloadable examples
 
 .. _example_xml:
 
 Example XML files
 =================
 
-These MapInfo v1.7.05 examples illustrate the current node names. Adapt paths,
+These examples for DataExtractor for MapInfo version |release| illustrate
+the current node names. Adapt paths,
 table and column names, filters, styles and EasyLoader options to your own
 installation and data. The example source tables and columns must exist;
 the examples are not a ready-to-run database configuration.
 
+.. index::
+    single: DataExtractor.xml; example
+
 Main configuration file
 -----------------------
 
-Save this as ``DataExtractor.xml`` beside the MBX. ToolTitle and DefaultProfile
-belong here, rather than in the profile. A blank DefaultProfile selects
+Save :download:`DataExtractor.xml <examples/DataExtractor.xml>` beside the MBX.
+ToolTitle and DefaultProfile belong here, rather than in the profile.
+A blank DefaultProfile selects
 ``DefaultProfile`` when there is a choice of profiles.
 
-.. code-block:: xml
+.. literalinclude:: examples/DataExtractor.xml
+   :language: xml
 
-    <?xml version="1.0" encoding="utf-8"?>
-
-    <!--
-    WARNING: This file should be changed carefully and a backup should be
-    taken before any changes so that they can be backed out.  Changed lines
-    can also be commented out as below.
-    -->
-
-    <!--
-    This config file contains all the variables used by the DataExtractor
-    MapBasic tool.
-
-    The 'configuration' node is the 'root' node and signifies the start of the
-    contents of the configuration file.
-
-    The 'DataExtractor' node contains all of the entries relating to the
-    MapBasic tool variables.
-
-    Each entry relates to a file, folder, table name, column name or SQL statement
-    used by the MapBasic tool to select and export data for partners.
-    -->
-
-    <configuration>
-    <DataExtractor>
-
-        <!-- The title to use for the program in the Tool menu -->
-        <ToolTitle>
-            <value>Data Extractor - Partners</value>
-        </ToolTitle>
-
-        <!-- The default XML file. If blank, the system looks for DefaultProfile.xml -->
-        <DefaultProfile>
-            <value></value>
-        </DefaultProfile>
-
-    </DataExtractor>
-    </configuration>
+.. index::
+    single: DefaultProfile.xml
+    single: Profiles; XML example
 
 Profile configuration file
 --------------------------
 
-Save the following as ``DefaultProfile.xml`` beside the MBX. WorkingDir is
-blank for direct output; enter a local path such as ``C:\DataExtractor\Working``
+Save :download:`DefaultProfile.xml <examples/DefaultProfile.xml>` beside the MBX.
+WorkingDir is blank for direct output; enter a local path such as
+``C:\DataExtractor\Working``
 to stage outputs. Partner rows should name ``AllSpecies`` in SQLFiles and
 ``AncientWoodland`` in MapFiles, or use ``ALL``. Set each partner's SQLTable
 to a source table returned by TableListSQL, GISformat to ``Tab``, ``Shp`` or
 ``Both``, and Exportformat to ``CSV``, ``TXT`` or blank.
 
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="utf-8"?>
-
-    <!--
-    WARNING: This file should be changed carefully and a backup should be
-    taken before any changes so that they can be backed out.  Changed lines
-    can also be commented out as below.
-    -->
-
-    <!--
-    This config file contains all the variables used by the DataExtractor
-    MapBasic tool.
-
-    The 'configuration' node is the 'root' node and signifies the start of the
-    contents of the configuration file.
-
-    The 'DataExtractor' node contains all of the entries relating to the
-    MapBasic tool variables.
-
-    Each entry relates to a file, folder, table name, column name or SQL statement
-    used by the MapBasic tool to select and export data for partners.
-    -->
-
-    <configuration>
-    <DataExtractor>
-
-      <!-- Whether to include debug messages in the logfile -->
-      <Debug>
-        <value>No</value>
-      </Debug>
-
-      <!-- Final log folder; created if permissions allow -->
-      <LogFilePath>
-        <value>C:\DataExtractor\Logs</value>
-      </LogFilePath>
-
-      <!-- The location of the File DSN that specifies which SQL Server database to connect to -->
-      <FileDSN>
-        <value>C:\DataExtractor\Database.dsn</value>
-      </FileDSN>
-
-      <!-- Final output folder below which partner folders are created -->
-      <DefaultPath>
-        <value>C:\DataExtractor\Extracts</value>
-      </DefaultPath>
-
-      <!-- Optional local staging folder, for example C:\DataExtractor\Working.
-           Missing or blank preserves direct output to DefaultPath.
-           Each run uses a fresh sub-folder; each partner is moved after processing. -->
-      <WorkingDir>
-        <value></value>
-      </WorkingDir>
-
-      <!-- The output sub-folder in which each partner's file will be created -->
-      <PartnerFolder>
-        <value>%partner%_DataExchange_%qq%_%ffff%</value>
-      </PartnerFolder>
-
-      <!-- The output sub-folder into which MapInfo files will be saved -->
-      <MapInfoFolder>
-        <value>MapInfo</value>
-      </MapInfoFolder>
-
-      <!-- The output sub-folder for shapefiles created by MapInfo -->
-      <ArcGISFolder>
-        <value>Shapefiles</value>
-      </ArcGISFolder>
-
-      <!-- The output sub-folder into which CSV files will be saved -->
-      <CSVFolder>
-        <value>CSV</value>
-      </CSVFolder>
-
-      <!-- The output sub-folder into which TXT files will be saved -->
-      <TXTFolder>
-        <value></value>
-      </TXTFolder>
-
-      <!-- The schema used in the SQL Server database -->
-      <DatabaseSchema>
-        <value>dbo</value>
-      </DatabaseSchema>
-
-      <!-- The SQL statement used to list all the tables in SQL Server that can be selected
-           by the user to extract for each partner -->
-      <TableListSQL>
-        <value>Select table_name From information_schema.tables Where table_name Like 'LERC[_]Spp[_]%' And table_name Not Like 'LERC[_]Spp[_]%[_]%' Order By table_name</value>
-      </TableListSQL>
-
-      <!-- The name of the partner GIS layer in SQL Server used to select the records -->
-      <PartnerTable>
-        <value>ExtractPolygons</value>
-      </PartnerTable>
-
-      <!-- The name of the column in the partner GIS layer containing the partner name passed to SQL
-           Server by the tool to use as the partner's boundary for selecting the records -->
-      <PartnerColumn>
-        <value>PartnerName</value>
-      </PartnerColumn>
-
-      <!-- The name of the column in the partner GIS layer containing the abbreviated name passed to
-           SQL Server by the tool to use as the sub-folder name for the destination of extracted
-           records -->
-      <ShortColumn>
-        <value>ShortName</value>
-      </ShortColumn>
-
-      <!-- The name of the column in the partner GIS layer containing any notes text relating
-           to the partner. -->
-      <NotesColumn>
-        <value>Notes</value>
-      </NotesColumn>
-
-      <!-- The name of the column in the partner GIS layer containing the Y/N flag to indicate
-           if the partner is currently active.  Only active partners will available for proccessing. -->
-      <ActiveColumn>
-        <value>Active</value>
-      </ActiveColumn>
-
-      <!-- The name of the column in the partner GIS layer containing the GIS format required for
-           the output records -->
-      <FormatColumn>
-        <value>GISformat</value>
-      </FormatColumn>
-
-      <!-- The name of the column in the partner GIS layer indicating whether an export should also
-           be created as a CSV or TXT file -->
-      <ExportColumn>
-        <value>Exportformat</value>
-      </ExportColumn>
-
-      <!-- The name of the column in the partner GIS layer indicating which SQL table should be
-           used for that partner -->
-      <SQLTableColumn>
-        <value>SQLTable</value>
-      </SQLTableColumn>
-
-      <!-- The name of the column in the partner GIS layer indicating which SQL files should be
-           created for each partner -->
-      <SQLFilesColumn>
-        <value>SQLFiles</value>
-      </SQLFilesColumn>
-
-      <!-- The name of the column in the partner GIS layer indicating which Map files should be
-           created for each partner -->
-      <MapFilesColumn>
-        <value>MapFiles</value>
-      </MapFilesColumn>
-
-      <!-- The name of the column in the partner GIS layer indicating which survey tags, if any
-           should be included in the export -->
-      <TagsColumn>
-        <value>PartnerTags</value>
-      </TagsColumn>
-
-      <!-- The name of the column in the partner GIS layer containing the spatial geometry -->
-      <SpatialColumn>
-        <value>SP_GEOMETRY</value>
-      </SpatialColumn>
-
-      <!-- The where clause to determine which partners to display -->
-      <PartnerClause>
-        <value>Active = "Y"</value>
-      </PartnerClause>
-
-      <!-- The options for the selection types -->
-      <SelectTypeOptions>
-        <value>Spatial Only;Survey Tags Only;Spatial and Survey Tags</value>
-      </SelectTypeOptions>
-
-      <!-- The default selection type (1 = spatial, 2 = tags, 3 = both) -->
-      <DefaultSelectType>
-        <value>3</value>
-      </DefaultSelectType>
-
-      <!-- Maximum records in each output; larger outputs are skipped, not truncated -->
-      <RecMax>
-        <value>10000000</value>
-      </RecMax>
-
-      <!-- The default value for zipping the extract files. Leave blank to hide option in dialog. -->
-      <DefaultZip>
-        <value>No</value>
-      </DefaultZip>
-
-      <!-- The SQL criteria for excluding any records (so that these don't appear in the outputs)-->
-      <ExclusionClause>
-        <value>(CONFIDENTIAL &lt;&gt; 'Y' OR CONFIDENTIAL IS NULL)</value>
-      </ExclusionClause>
-
-      <!-- The default value for excluding any records. Leave blank to hide option in dialog. -->
-      <DefaultExclusion>
-        <value></value>
-      </DefaultExclusion>
-
-      <!-- Archive the existing main log before starting a new one? -->
-      <DefaultClearLogFile>
-            <value>Yes</value>
-      </DefaultClearLogFile>
-
-      <!-- By default, should centroids be used for selecting records? Leave blank to hide option in dialog. -->
-      <DefaultUseCentroids>
-        <value>No</value>
-      </DefaultUseCentroids>
-
-      <!-- The path to the Universal Translator program -->
-      <UTPath>
-        <value>C:\Program Files (x86)\MapInfo\Professional\UT</value>
-      </UTPath>
-
-      <!-- The command to run the Universal Translator program -->
-      <UTCommand>
-        <value>Fme.exe</value>
-      </UTCommand>
-
-      <!-- The command to run the EasyLoader program -->
-      <EasyLoaderCommand>
-        <value>C:\Program Files (x86)\MapInfo\Professional\Tools\EasyLoader.exe</value>
-      </EasyLoaderCommand>
-
-      <EasyLoaderQuotes>
-        <value>Y</value>
-      </EasyLoaderQuotes>
-
-      <!-- The switches to run the EasyLoader program -->
-      <EasyLoaderSwitches>
-        <value>/E /F /K /P R /Q /Y /NoUI</value>
-      </EasyLoaderSwitches>
-
-      <!-- By default, should the EasyLoader program be run? -->
-      <DefaultEasyLoader>
-            <value>Yes</value>
-      </DefaultEasyLoader>
-
-      <SQLTables>
-        <AllSpecies>
-          <OutputName><value>Species_%partner%_%yyyy%</value></OutputName>
-          <OutputType><value></value></OutputType>
-          <Columns><value>*</value></Columns>
-          <WhereClause><value>RECORDYEAR &gt;= 1985</value></WhereClause>
-          <OrderClause><value>ORDER BY SPP_NAME</value></OrderClause>
-          <Macro><value></value></Macro>
-          <MacroParm><value></value></MacroParm>
-          <Symbology>
-            <Symbol>
-              <Clause><value></value></Clause>
-              <Object><value>Point</value></Object>
-              <Symbol><value>2,65,16711680,12,"MapInfo Dispersed Groups",0,0</value></Symbol>
-            </Symbol>
-          </Symbology>
-        </AllSpecies>
-      </SQLTables>
-
-      <MapTables>
-        <AncientWoodland>
-          <TableName><value>Ancient_Woodland</value></TableName>
-          <OutputName><value>AncientWoodland_%partner%</value></OutputName>
-          <OutputType><value></value></OutputType>
-          <Columns><value>*</value></Columns>
-          <WhereClause><value></value></WhereClause>
-          <OrderClause><value></value></OrderClause>
-          <Macro><value></value></Macro>
-          <MacroParm><value></value></MacroParm>
-        </AncientWoodland>
-      </MapTables>
-
-    </DataExtractor>
-    </configuration>
+.. literalinclude:: examples/DefaultProfile.xml
+   :language: xml
 
 .. raw:: latex
 
    \newpage
+
+.. index::
+    single: GNU Free Documentation License; full text
 
 GNU Free Documentation License
 ==============================
@@ -1165,4 +881,3 @@ GNU Free Documentation License
     recommend releasing these examples in parallel under your choice of
     free software license, such as the GNU General Public License,
     to permit their use in free software.
-

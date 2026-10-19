@@ -4,6 +4,7 @@ Anatomy of data extraction
 
 .. index::
 	single: Data extract process
+    single: Extraction; workflow
 
 This section describes how a typical data extraction might be carried out manually, and how the DataExtract Tool automates this process. Please note that the examples used in this illustration are purely fictional and do not represent a real-world scenario. 
 
@@ -34,6 +35,10 @@ Repeating the process
 The DataExtractor tool
 =======================
 
+.. index::
+    single: Workspace; required layers
+    single: Partner boundaries; preparation
+
 Tool components
 ---------------
 
@@ -49,6 +54,9 @@ The DataExtractor tool is used within a GIS application and requires all the req
 .. raw:: latex
 
    \newpage
+
+.. index::
+    single: Extraction; automated workflow
 
 Tool workflow
 -------------
@@ -87,10 +95,23 @@ Output folder
 
 The outputs are stored in a user-defined folder. These outputs may include a combination of GIS layers and text files in different formats, with logs stored separately in LogFilePath. With WorkingDir configured, outputs are created locally and transferred after each partner.
 
+.. index::
+    single: CSV
+    single: TXT
+    single: TAB files
+    single: Shapefiles
+    single: Output formats
+
 Output files
 ------------
 
-Text file outputs can be produced in CSV or TXT format. GIS layers can be output in MapInfo TAB (.tab) format and/or shapefile (.shp) format.
+Text file outputs can be produced in CSV or TXT format. GIS layers can be output in MapInfo TAB (.tab) format and/or shapefile (.shp) format. See the :ref:`output_formats` for headings, blank values and per-output overrides.
+
+Ordinary spatial MapInfo selection retains whole source features when geometry
+is included in the output; it does not clip them to the partner boundary.
+Partners with no geometry use attribute-only selection; see
+:ref:`mapinfo_selection`. SQL geometry behaviour depends on the installed
+stored procedures.
 
 
 Output options

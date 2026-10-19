@@ -2,11 +2,6 @@
 Preface
 *******
 
-.. Editorial: Before publication, replace setup/figures/AddToolDialog.png,
-   setup/figures/DataExtractorToolMenu.png and execute/figures/DisplayForm.png
-   with the v1.7.05 images described in FIGURE_CHECKLIST.md. Existing files
-   remain as placeholders and may still show the old interface.
-
 The most up to date version of this documentation can be found in **HTML** and **PDF** form on `ReadTheDocs <https://readthedocs.org/projects/dataextractor-userguide/>`_.
 
 .. index::
@@ -14,6 +9,9 @@ The most up to date version of this documentation can be found in **HTML** and *
 
 Recommended User Knowledge
 ==========================
+
+.. index::
+    single: Users; required knowledge
 
 Users
 -----
@@ -24,6 +22,9 @@ This user guide assumes that users of the DataExtractor tool have:
 * Experience in the use of MapInfo, including selecting and querying features and attributes.
 * An understanding of the datasets that are used by the DataExtractor tool.
 
+
+.. index::
+    single: Administrators; responsibilities
 
 Administrators
 --------------
@@ -52,9 +53,11 @@ This Preface explains a little about the DataExtractor tool, the community of pe
 
 :doc:`Anatomy of data extraction <../anatomy/anatomy>` \ is a brief outline of the key stages of data extraction, and how the DataExtractor tool addresses these.
 
+:doc:`../quickstart/quickstart` \ gives the routine workflow and a worked extraction using the example profile and partner.
+
 :doc:`Setting up the tool <../setup/setup>` \ describes how to install and set up the DataExtractor tool.
 
-:doc:`Running the tool <../execute/execute>` \ describes how to run the DataExtractor tool.
+:doc:`Running the tool <../execute/execute>` \ explains the requirements, form options, output formats, log review and recovery procedures in detail.
 
 :doc:`FAQs <../faq/faq>` \ has a list of commonly asked questions and their answers.
 
@@ -63,6 +66,8 @@ This Preface explains a little about the DataExtractor tool, the community of pe
 
 .. index::
 	single: Licensing
+    single: GNU General Public License
+    single: GNU Free Documentation License; guide licence
 
 Licensing
 =========
@@ -71,11 +76,12 @@ The code for the DataExtractor tool is 'open source' and is released under the `
 
 This guide is released under the `GNU Free Documentation License (FDL) v1.3 <http://www.gnu.org/licenses/fdl.html>`_. Permission is granted to copy, distribute and/or modify this document under the terms of the license.
 
-The tool took a lot of time and money to develop and still requires further development and ongoing support to maintain and enhance it. As a contribution towards this cost there is now a voluntary support fee of £30 for the DataExtractor per organisation per year. Any additional contributions towards costs would also be gratefully received. Enquiries can be made via email to `Andy <mailto:andy@andyfoyconsulting.co.uk>`_.
 
 
 .. index::
 	single: Useful links
+    single: Source code
+    single: GitHub
 
 Useful links
 ============
@@ -89,6 +95,7 @@ Related community links:
 
 .. index::
 	single: Acknowledgements
+    single: Funding
 
 Acknowledgements
 ================

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+WARNING: This file should be changed carefully and a backup should be
+taken before any changes so that they can be backed out.  Changed lines
+can also be commented out as below.
+-->
+
+<!--
+This config file contains all the variables used by the DataExtractor
+MapBasic tool.
+
+The 'configuration' node is the 'root' node and signifies the start of the
+contents of the configuration file.
+
+The 'DataExtractor' node contains all of the entries relating to the
+MapBasic tool variables.
+
+Each entry relates to a file, folder, table name, column name or SQL statement
+used by the MapBasic tool to select and export data for partners.
+-->
+
+<configuration>
+<DataExtractor>
+
+    <!-- The title to use for the program in the Tool menu -->
+    <ToolTitle>
+        <value>Data Extractor - Partners</value>
+    </ToolTitle>
+
+    <!-- The default XML file. If blank, the system looks for DefaultProfile.xml -->
+    <DefaultProfile>
+        <value></value>
+    </DefaultProfile>
+
+</DataExtractor>
+</configuration>
