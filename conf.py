@@ -49,8 +49,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'DataExtractor User Guide'
-copyright = u'2016 GiGL, TVERC, SxBRC, DERC'
+project = u'DataExtractor for MapInfo User Guide'
+copyright = u'2016 GiGL, TVERC, SxBRC, DERC; 2026 Andy Foy Consulting'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -232,7 +232,7 @@ latex_show_urls = 'footnote'
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'DataExtractor-UserGuide', u'DataExtractor - User Guide',
+    ('index', 'DataExtractor-UserGuide', u'DataExtractor for MapInfo - User Guide',
      [u'Hester Lyons & Andy Foy'], 1)
 ]
 
@@ -246,7 +246,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'DataExtractor-UserGuide', u'DataExtractor - User Guide',
+  ('index', 'DataExtractor-UserGuide', u'DataExtractor for MapInfo - User Guide',
    u'Hester Lyons & Andy Foy', 'DataExtractor-UserGuide', 'DataExtractor - User Guide.',
    'Miscellaneous'),
 ]
