@@ -2,6 +2,11 @@
 Preface
 *******
 
+.. Editorial: Before publication, replace setup/figures/AddToolDialog.png,
+   setup/figures/DataExtractorToolMenu.png and execute/figures/DisplayForm.png
+   with the v1.7.05 images described in FIGURE_CHECKLIST.md. Existing files
+   remain as placeholders and may still show the old interface.
+
 The most up to date version of this documentation can be found in **HTML** and **PDF** form on `ReadTheDocs <https://readthedocs.org/projects/dataextractor-userguide/>`_.
 
 .. index::
@@ -16,7 +21,7 @@ Users
 This user guide assumes that users of the DataExtractor tool have:
 
 * General IT experience including the use of Microsoft Windows.
-* Experience in the use of a relevant GIS application supported by the tool (currently MapInfo and ArcGIS), including selecting and querying features and attributes.
+* Experience in the use of MapInfo, including selecting and querying features and attributes.
 * An understanding of the datasets that are used by the DataExtractor tool.
 
 
@@ -27,7 +32,7 @@ It is recommended that a person within each organisation is designated as the to
 * Have an understanding and experience of IT systems management.
 * Understand relational database structures.
 * Be an expert user of SQL Server.
-* Have certified training or equivalent experience in advanced features of the relevant GIS software.
+* Have certified training or equivalent experience in advanced features of MapInfo.
 * Become familiar with how the DataExtractor tool has been configured within the organisation.
 * Have a good understanding of XML.
 
@@ -53,7 +58,7 @@ This Preface explains a little about the DataExtractor tool, the community of pe
 
 :doc:`FAQs <../faq/faq>` \ has a list of commonly asked questions and their answers.
 
-:doc:`../appendix/appendix` \ contains examples of the XML configuration files for MapInfo and ArcGIS, lists known issues with the tool and contains a copy of the GNU Free Documentation License v1.3 covering this guide.
+:doc:`../appendix/appendix` \ contains the MapInfo change log, current MapInfo XML configuration examples and a copy of the GNU Free Documentation License v1.3 covering this guide.
 
 
 .. index::
@@ -77,9 +82,9 @@ Useful links
 
 Related community links:
 
-* Administrators: (`MapInfo Installation <https://github.com/LERCAutomation/DataExtractor-MapInfo/releases/>`_) and (`ArcGIS Installation <https://github.com/LERCAutomation/Data-Extractor-ArcObjects/releases>`_) - Release notes and installers.
-* Developers (`MapInfo Source Code <https://github.com/LERCAutomation/DataExtractor-MapInfo>`_) and (`ArcGIS Source Code <https://github.com/LERCAutomation/Data-Extractor-ArcObjects>`_)- Source code for the DataExtractor tool.
-* Issues (`Known issues for MapInfo and ArcGIS versions <https://trello.com/b/qYhAX0wX/gis-tools-development>`_) - Details of known issues and planned maintenance/enhancements.
+* Administrators: `MapInfo files <https://github.com/LERCAutomation/DataExtractor-MapInfo>`_ - Tool files and available installers. Obtain a compiled MapInfo version and matching profiles from your administrator.
+* Developers `MapInfo Source Code <https://github.com/LERCAutomation/DataExtractor-MapInfo>`_ - Source code for the DataExtractor tool.
+* Issues (`MapInfo issues <https://github.com/LERCAutomation/DataExtractor-MapInfo/issues>`_) - Details of known issues and planned maintenance/enhancements.
 
 
 .. index::

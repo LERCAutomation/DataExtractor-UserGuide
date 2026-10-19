@@ -3,14 +3,390 @@ Appendix
 ********
 
 .. index::
-	single: Example XML file 
+    single: Appendix; Change Log
+    single: Change Log
 
-Example XML file
-================
+.. _change_log:
 
-Below is an example of XML that might be used to set up the DataExtractor tool for MapInfo. Note, many of the settings have been included for illustration only and it is up to each user or LERC to ensure the system is configured to their requirements.
+Change Log
+==========
 
-::
+This change log covers the MapInfo tool. Dates and version numbers follow the
+comments in ``DataExtractor.mb`` where available; commit dates are used for
+changes without dated version comments. The v1.7.05 release date is
+19 October 2026. The early version numbering is retained as recorded.
+
+The history was reconstructed from the `source comments
+<https://github.com/LERCAutomation/DataExtractor-MapInfo/blob/master/MapBasic/DataExtractor.mb>`_,
+`GitHub commits <https://github.com/LERCAutomation/DataExtractor-MapInfo/commits/master/>`_
+and `tags <https://github.com/LERCAutomation/DataExtractor-MapInfo/tags>`_.
+Not every version has a separate commit or tag. The only tag found when this
+history was checked was ``v1.5.1``, dated 26 January 2015.
+
+**1.7.05**
+(19Oct2026)
+
+    * :guilabel:`Improved` - Add optional WorkingDir staging, with a fresh folder for each run and transfer after each partner
+    * :guilabel:`Improved` - Buffer run messages, keep a temporary journal and publish the main log and supporting diagnostics at completion
+    * :guilabel:`Changed` - Create ZIP files using Windows native tools and verify their contents before replacing an existing archive
+    * :guilabel:`Changed` - Consolidate output folder creation and retain unfinished outputs for recovery after cancellation or transfer failure
+    * :guilabel:`Fixed` - Package the correct partner folder, including the final partner and skipped final outputs
+    * :guilabel:`Fixed` - Close output tables, including non-spatial SQL TAB outputs, before packaging and transfer
+
+**1.7.04 - subsequent source update**
+(31Jul2025; commit date)
+
+    * :guilabel:`Improved` - Increase SQL output, source-table and map-table array capacities from 99 to 199 entries
+
+**1.7.04b**
+(11Feb2022; commit date)
+
+    * :guilabel:`Changed` - Mark SQL extracts skipped for exceeding RecMax as errors in the log
+
+**1.7.04**
+(01Oct2021)
+
+    * :guilabel:`Fixed` - Fix bug saving all outputs to first partner folder
+    * :guilabel:`Fixed` - Fix bug when exporting SQL file with no where clause
+
+**1.7.03**
+(01Oct2021)
+
+    * :guilabel:`Changed` - Enable separate output folders for shp, tab, csv and txt files
+
+**1.7.02**
+(19Feb2021)
+
+    * :guilabel:`Fixed` - Fix bug calculating record length
+
+**1.7.01**
+(28Dec2020)
+
+    * :guilabel:`Changed` - Add debug option for log file
+    * :guilabel:`Changed` - Standardise the log file format
+    * :guilabel:`Changed` - Add option to set where clause for which partners to display
+    * :guilabel:`Changed` - Output macro errors to log file
+    * :guilabel:`Changed` - Wait for macros to complete before continuing
+    * :guilabel:`Changed` - Only upload partner table to SQL Server if SQL outputs have been selected
+
+**1.6.09**
+(04Dec2020)
+
+    * :guilabel:`Changed` - Wrap Where clause in brackets when exclusion clause is applied
+    * :guilabel:`Changed` - Specify input SQL table in log
+
+**1.6.08**
+(13Aug2020)
+
+    * :guilabel:`Fixed` - Fix bug not cleaning up SQL temporary tables
+    * :guilabel:`Changed` - Use partner name not short name when selecting map files
+
+**1.6.07**
+(13Aug2020)
+
+    * :guilabel:`Changed` - Enable EasyLoader to work in both 32bit and 64bit versions of MapInfo
+
+**1.6.06**
+(21May2020)
+
+    * :guilabel:`Fixed` - Fix bug not cleaning up SQL temporary tables
+
+**1.6.05**
+(30Apr2020)
+
+    * :guilabel:`Changed` - Skip file access errors and report in log at end
+
+**1.6.04**
+(23Apr2020)
+
+    * :guilabel:`Fixed` - Fix bug loading profile with more SQL files than last profile
+
+**1.6.03**
+(18Apr2020)
+
+    * :guilabel:`Changed` - Enable default output path to contain date variables
+
+**1.6.02**
+(06Apr2020)
+
+    * :guilabel:`Fixed` - Fix bug to enable use centroids option
+
+**1.6.01**
+(16Mar2020)
+
+    * :guilabel:`Changed` - Enable SQL Table to be defined in partner table
+    * :guilabel:`Changed` - Update user interface to allow individual SQL files to be selected
+    * :guilabel:`Changed` - Archive existing log file instead of deleting it
+    * :guilabel:`Changed` - Enable partner output folders to be named in XML file
+    * :guilabel:`Changed` - Enable SQL Files list to be 'ALL'
+
+**1.5.42**
+(23Jan2020)
+
+    * :guilabel:`Fixed` - Avoid SQL Server timeouts by re-connecting for each output
+    * :guilabel:`Fixed` - Reverse out change to EasyLoader to not use quotes in file paths
+
+**1.5.41**
+(31Oct2019)
+
+    * :guilabel:`Fixed` - Fix bug executing EasyLoader with spaces in file paths
+
+**1.5.40**
+(08Aug2019)
+
+    * :guilabel:`Changed` - Change confidential survey option to exclusion clause option
+
+**1.5.39**
+(30Jul2019)
+
+    * :guilabel:`Changed` - Enable loading XML profiles when running in 64bit
+
+**1.5.38**
+(26Jul2019)
+
+    * :guilabel:`Fixed` - Fix bug when partner table is empty
+
+**1.5.37**
+(19Jul2019)
+
+    * :guilabel:`Changed` - Create output and log file paths if missing
+
+**1.5.36**
+(19Jul2019)
+
+    * :guilabel:`Changed` - Add "DefaultEasyLoader" option to XML
+    * :guilabel:`Changed` - Add details of funding organisations to About box
+
+**1.5.35**
+(11Jul2019)
+
+    * :guilabel:`Changed` - Display Where and Order By clauses in log for map tables
+    * :guilabel:`Fixed` - Fix bugs setting symbology for TAB files
+
+**1.5.34**
+(03Jul2019)
+
+    * :guilabel:`Changed` - Add option to upload partner table to SQL Server
+
+**1.5.33**
+(05Jun2019)
+
+    * :guilabel:`Changed` - Add "DefaultClearLogFile" option to XML
+
+**1.5.32**
+(23May2019)
+
+    * :guilabel:`Changed` - Allow user to select XML profile to use
+
+**1.5.31**
+(28May2019)
+
+    * :guilabel:`Changed` - Extract all records if spatial geometry is null
+
+**1.5.30**
+(28Apr2019)
+
+    * :guilabel:`Changed` - Add separate clause for ORDER BY and GROUP BY
+
+**1.5.29**
+(16Apr2019)
+
+    * :guilabel:`Fixed` - Fix bug with map table being deleted before use
+
+**1.5.28**
+(10Apr2019)
+
+    * :guilabel:`Changed` - Add optional parameter to macro/script
+    * :guilabel:`Changed` - Switch from cscript to wscript
+
+**1.5.27**
+(19Mar2019)
+
+    * :guilabel:`Changed` - Add option to trigger macro/script to post-process each output file
+    * :guilabel:`Changed` - Add option to override partner specified output type
+    * :guilabel:`Changed` - Enable clauses to contain 'Group By' or 'Order By'
+
+**1.5.26**
+(19Mar2019)
+
+    * :guilabel:`Changed` - Enable SQL output file names to contain spaces
+
+**1.5.25**
+(16Jan2019)
+
+    * :guilabel:`Changed` - Add partner abbreviation as XML variable
+    * :guilabel:`Changed` - Add date components as XML variables
+    * :guilabel:`Changed` - Add new OutputName XML node to SQL and Map nodes
+
+**1.5.24**
+(17Dec2018)
+
+    * :guilabel:`Fixed` - Always disconnect SQL connection
+
+**1.5.23**
+(13Dec2018)
+
+    * :guilabel:`Fixed` - Fix parameter bug calling AFSelectSppRecords
+    * :guilabel:`Changed` - Use schema when calling stored procedures
+
+**1.5.22**
+(29Oct2018)
+
+    * :guilabel:`Changed` - Get partner layer spatial column name and pass to SQL stored procedure
+    * :guilabel:`Changed` - Add option to use centroids for polygons
+
+**1.5.21**
+(22Oct2018)
+
+    * :guilabel:`Changed` - Include new tool buttons for MI Pro 64bit
+
+**1.5.20**
+(03May2018)
+
+    * :guilabel:`Fixed` - Try to avoid file locking issues in Windows 10
+    * :guilabel:`Fixed` - Avoid loop after error processing a partner
+
+**1.5.19**
+(27Apr2018)
+
+    * :guilabel:`Fixed` - Reset list value positions before processing to avoid entries being missed
+
+**1.5.18**
+(28Mar2018)
+
+    * :guilabel:`Improved` - Reduce maximum process array size to avoid crash
+
+**1.5.17**
+(01Dec2017)
+
+    * :guilabel:`Improved` - Increase max partners to 999 and max processes to 32,767 (the array limit)
+    * :guilabel:`Changed` - Truncate temporary table names to 31 chars
+
+**1.5.16**
+(30Nov2017)
+
+    * :guilabel:`Changed` - Truncate user ID if it means the temporary SQL will be too long for the MapCatalog (> 32 chars)
+
+**1.5.15**
+(16Nov2017)
+
+    * :guilabel:`Improved` - Improve debug logging
+    * :guilabel:`Changed` - Remove carriage returns, line feeds and tabs from where clauses
+
+**1.5.14**
+(09Aug2017)
+
+    * :guilabel:`Changed` - Force universal translator to generate 2D instead of 3D shapefiles
+
+**1.5.13**
+(01May2017)
+
+    * :guilabel:`Changed` - Split files into separate columns
+    * :guilabel:`Fixed` - Fix bug with map tables not being closed when empty
+    * :guilabel:`Changed` - Display file node and table name in map tables list
+
+**1.5.12**
+(25Jan2017)
+
+    * :guilabel:`Changed` - Remove hard-coded check for 'GRPrecision' column, enable symbology clauses to be blank
+
+**1.5.11**
+(13Jul2016)
+
+    * :guilabel:`Changed` - Get path and command for universal translator from config file and pass to sub-routine
+
+**1.5.10**
+(11Jul2016)
+
+    * :guilabel:`Changed` - Enable separate instances for tool to run under different names in Tool menu
+
+**1.5.9**
+(30May2016)
+
+    * :guilabel:`Changed` - Change version number to 3 parts
+
+**1.58**
+(05Apr2016)
+
+    * :guilabel:`Fixed` - Fix premature disconnection error when dialog remains open
+    * :guilabel:`Changed` - Revert to original SQL stored procedure
+    * :guilabel:`Changed` - Save TXT files as comma-separated files
+    * :guilabel:`Changed` - Add where clause option to Map tables
+
+**1.57**
+(09Mar2016)
+
+    * :guilabel:`Changed` - Ask user if they want to keep the dialog open
+    * :guilabel:`Changed` - Open log file using Notepad.exe
+
+**1.56**
+(22Feb2016)
+
+    * :guilabel:`Changed` - Enable export of tables in either CSV or TXT format
+    * :guilabel:`Changed` - Hide dialog checkbox options if default values are blank
+
+**1.55**
+(17Jan2016)
+
+    * :guilabel:`Changed` - Load active partner details from MapInfo .tab file instead of SQL Server table
+    * :guilabel:`Changed` - Count list of tables not already open in MapInfo
+    * :guilabel:`Changed` - Perform user input checks before closing dialog
+    * :guilabel:`Fixed` - Fix incorrect call to TranslateToShapefile function for Map tables
+
+**1.54**
+(08Dec2015)
+
+    * :guilabel:`Changed` - Pass tags column to SQL stored procedure to also select records based on their survey tags
+
+**1.53**
+(11Sep2015)
+
+    * :guilabel:`Changed` - Call new SQL stored procedures to create and clear selected subset tables
+    * :guilabel:`Changed` - Check if result contains spatial data
+    * :guilabel:`Improved` - Improved performance for setting symbology
+    * :guilabel:`Changed` - Display numbers with thousand separators in log
+    * :guilabel:`Changed` - Make log file user-specific to avoid concurrent use problems/over-writes
+
+**1.52**
+(08Jun2015)
+
+    * :guilabel:`Changed` - Added userid to temporary SQL table name to enable concurrent use of tool
+
+**v1.5.1 - first GitHub tag**
+(26Jan2015; tag date)
+
+    * :guilabel:`Changed` - Publish the first tagged MapInfo source version on GitHub
+
+**1.51**
+(01Jan2012)
+
+    * Initial development of the MapInfo DataExtractor tool
+
+.. raw:: latex
+
+   \newpage
+
+.. index::
+    single: Example XML files
+
+.. _example_xml:
+
+Example XML files
+=================
+
+These MapInfo v1.7.05 examples illustrate the current node names. Adapt paths,
+table and column names, filters, styles and EasyLoader options to your own
+installation and data. The example source tables and columns must exist;
+the examples are not a ready-to-run database configuration.
+
+Main configuration file
+-----------------------
+
+Save this as ``DataExtractor.xml`` beside the MBX. ToolTitle and DefaultProfile
+belong here, rather than in the profile. A blank DefaultProfile selects
+``DefaultProfile`` when there is a choice of profiles.
+
+.. code-block:: xml
 
     <?xml version="1.0" encoding="utf-8"?>
 
@@ -30,133 +406,241 @@ Below is an example of XML that might be used to set up the DataExtractor tool f
     The 'DataExtractor' node contains all of the entries relating to the
     MapBasic tool variables.
 
-    Each entry relates to a file, folder, table name, column name or SQL
-    statement used by the MapBasic tool to select and export data for the
-    GiGL partners.
+    Each entry relates to a file, folder, table name, column name or SQL statement
+    used by the MapBasic tool to select and export data for partners.
     -->
 
     <configuration>
     <DataExtractor>
 
-      <!-- The existing file location where log files will be saved with output
-           messages -->
+        <!-- The title to use for the program in the Tool menu -->
+        <ToolTitle>
+            <value>Data Extractor - Partners</value>
+        </ToolTitle>
+
+        <!-- The default XML file. If blank, the system looks for DefaultProfile.xml -->
+        <DefaultProfile>
+            <value></value>
+        </DefaultProfile>
+
+    </DataExtractor>
+    </configuration>
+
+Profile configuration file
+--------------------------
+
+Save the following as ``DefaultProfile.xml`` beside the MBX. WorkingDir is
+blank for direct output; enter a local path such as ``C:\DataExtractor\Working``
+to stage outputs. Partner rows should name ``AllSpecies`` in SQLFiles and
+``AncientWoodland`` in MapFiles, or use ``ALL``. Set each partner's SQLTable
+to a source table returned by TableListSQL, GISformat to ``Tab``, ``Shp`` or
+``Both``, and Exportformat to ``CSV``, ``TXT`` or blank.
+
+.. code-block:: xml
+
+    <?xml version="1.0" encoding="utf-8"?>
+
+    <!--
+    WARNING: This file should be changed carefully and a backup should be
+    taken before any changes so that they can be backed out.  Changed lines
+    can also be commented out as below.
+    -->
+
+    <!--
+    This config file contains all the variables used by the DataExtractor
+    MapBasic tool.
+
+    The 'configuration' node is the 'root' node and signifies the start of the
+    contents of the configuration file.
+
+    The 'DataExtractor' node contains all of the entries relating to the
+    MapBasic tool variables.
+
+    Each entry relates to a file, folder, table name, column name or SQL statement
+    used by the MapBasic tool to select and export data for partners.
+    -->
+
+    <configuration>
+    <DataExtractor>
+
+      <!-- Whether to include debug messages in the logfile -->
+      <Debug>
+        <value>No</value>
+      </Debug>
+
+      <!-- Final log folder; created if permissions allow -->
       <LogFilePath>
-          <value>H:\ExtractorSetup\Extracts\logs</value>
+        <value>C:\DataExtractor\Logs</value>
       </LogFilePath>
 
-      <!-- The location of the File DSN that specifies which SQL Server database
-           to connect to -->
+      <!-- The location of the File DSN that specifies which SQL Server database to connect to -->
       <FileDSN>
-          <value>H:\Data\Thames\ThamesNBNData.dsn</value>
+        <value>C:\DataExtractor\Database.dsn</value>
       </FileDSN>
 
-      <!-- The existing file location under which all partner sub-folders will
-           be created -->
+      <!-- Final output folder below which partner folders are created -->
       <DefaultPath>
-          <value>H:\ExtractorSetup\Extracts</value>
+        <value>C:\DataExtractor\Extracts</value>
       </DefaultPath>
+
+      <!-- Optional local staging folder, for example C:\DataExtractor\Working.
+           Missing or blank preserves direct output to DefaultPath.
+           Each run uses a fresh sub-folder; each partner is moved after processing. -->
+      <WorkingDir>
+        <value></value>
+      </WorkingDir>
+
+      <!-- The output sub-folder in which each partner's file will be created -->
+      <PartnerFolder>
+        <value>%partner%_DataExchange_%qq%_%ffff%</value>
+      </PartnerFolder>
+
+      <!-- The output sub-folder into which MapInfo files will be saved -->
+      <MapInfoFolder>
+        <value>MapInfo</value>
+      </MapInfoFolder>
+
+      <!-- The output sub-folder for shapefiles created by MapInfo -->
+      <ArcGISFolder>
+        <value>Shapefiles</value>
+      </ArcGISFolder>
+
+      <!-- The output sub-folder into which CSV files will be saved -->
+      <CSVFolder>
+        <value>CSV</value>
+      </CSVFolder>
+
+      <!-- The output sub-folder into which TXT files will be saved -->
+      <TXTFolder>
+        <value></value>
+      </TXTFolder>
 
       <!-- The schema used in the SQL Server database -->
       <DatabaseSchema>
-          <value>dbo</value>
+        <value>dbo</value>
       </DatabaseSchema>
 
-      <!-- The SQL statement used to list all the tables in SQL Server that can
-           be selected
+      <!-- The SQL statement used to list all the tables in SQL Server that can be selected
            by the user to extract for each partner -->
       <TableListSQL>
-          <value>Select table_name From information_schema.tables Where table_name
-                 Like 'AllData%' And table_name Not Like 'TVERC[_]Spp[_]%[_]%'
-                 And table_name Not Like '%Non%' Order By table_name</value>
+        <value>Select table_name From information_schema.tables Where table_name Like 'LERC[_]Spp[_]%' And table_name Not Like 'LERC[_]Spp[_]%[_]%' Order By table_name</value>
       </TableListSQL>
 
-      <!-- The name of the partner GIS layer in SQL Server used to select the
-           records -->
+      <!-- The name of the partner GIS layer in SQL Server used to select the records -->
       <PartnerTable>
-        <value>Partner_Extract_Boundaries</value>
+        <value>ExtractPolygons</value>
       </PartnerTable>
 
-      <!-- The name of the column in the partner GIS layer containing the
-           partner name passed to SQL Server by the tool to use as the
-           partner's boundary for selecting the records -->
+      <!-- The name of the column in the partner GIS layer containing the partner name passed to SQL
+           Server by the tool to use as the partner's boundary for selecting the records -->
       <PartnerColumn>
         <value>PartnerName</value>
       </PartnerColumn>
 
-      <!-- The name of the column in the partner GIS layer containing the
-           abbreviated name passed to SQL Server by the tool to use as the
-           sub-folder name for the destination of extracted records -->
+      <!-- The name of the column in the partner GIS layer containing the abbreviated name passed to
+           SQL Server by the tool to use as the sub-folder name for the destination of extracted
+           records -->
       <ShortColumn>
         <value>ShortName</value>
       </ShortColumn>
 
-      <!-- The name of the column in the partner GIS layer containing any note
-           text relating to the partner. -->
+      <!-- The name of the column in the partner GIS layer containing any notes text relating
+           to the partner. -->
       <NotesColumn>
         <value>Notes</value>
       </NotesColumn>
 
-      <!-- The name of the column in the partner GIS layer containing the Y/N
-           flag to indicate if the partner is currently active.  Only active
-           partners will available for processing. -->
+      <!-- The name of the column in the partner GIS layer containing the Y/N flag to indicate
+           if the partner is currently active.  Only active partners will available for proccessing. -->
       <ActiveColumn>
         <value>Active</value>
       </ActiveColumn>
 
-      <!-- The name of the column in the partner GIS layer containing the GIS
-           format required for the output records -->
+      <!-- The name of the column in the partner GIS layer containing the GIS format required for
+           the output records -->
       <FormatColumn>
         <value>GISformat</value>
       </FormatColumn>
 
-      <!-- The name of the column in the partner GIS layer indicating whether
-           an export should also be created as a CSV file -->
+      <!-- The name of the column in the partner GIS layer indicating whether an export should also
+           be created as a CSV or TXT file -->
       <ExportColumn>
-        <value>CSVfile</value>
+        <value>Exportformat</value>
       </ExportColumn>
 
-      <!-- The name of the column in the partner GIS layer indicating which
-           files should be created for each partner -->
-      <FilesColumn>
-        <value>Files</value>
-      </FilesColumn>
+      <!-- The name of the column in the partner GIS layer indicating which SQL table should be
+           used for that partner -->
+      <SQLTableColumn>
+        <value>SQLTable</value>
+      </SQLTableColumn>
 
-      <!-- The name of the column in the partner GIS layer indicating which
-           survey tags, if any should be included in the export -->
+      <!-- The name of the column in the partner GIS layer indicating which SQL files should be
+           created for each partner -->
+      <SQLFilesColumn>
+        <value>SQLFiles</value>
+      </SQLFilesColumn>
+
+      <!-- The name of the column in the partner GIS layer indicating which Map files should be
+           created for each partner -->
+      <MapFilesColumn>
+        <value>MapFiles</value>
+      </MapFilesColumn>
+
+      <!-- The name of the column in the partner GIS layer indicating which survey tags, if any
+           should be included in the export -->
       <TagsColumn>
         <value>PartnerTags</value>
       </TagsColumn>
 
-        <!-- The options for the selection types -->
+      <!-- The name of the column in the partner GIS layer containing the spatial geometry -->
+      <SpatialColumn>
+        <value>SP_GEOMETRY</value>
+      </SpatialColumn>
+
+      <!-- The where clause to determine which partners to display -->
+      <PartnerClause>
+        <value>Active = "Y"</value>
+      </PartnerClause>
+
+      <!-- The options for the selection types -->
       <SelectTypeOptions>
         <value>Spatial Only;Survey Tags Only;Spatial and Survey Tags</value>
       </SelectTypeOptions>
 
       <!-- The default selection type (1 = spatial, 2 = tags, 3 = both) -->
       <DefaultSelectType>
-        <value>1</value>
+        <value>3</value>
       </DefaultSelectType>
 
-      <!-- The maximum number of records what will be extracted in any one
-           partner extract -->
+      <!-- Maximum records in each output; larger outputs are skipped, not truncated -->
       <RecMax>
         <value>10000000</value>
       </RecMax>
 
-      <!-- The default value for zipping the extract files -->
+      <!-- The default value for zipping the extract files. Leave blank to hide option in dialog. -->
       <DefaultZip>
-        <value>Yes</value>
+        <value>No</value>
       </DefaultZip>
 
-      <!-- The SQL criteria for excluding any confidential surveys -->
-      <ConfidentialClause>
-        <value></value>
-      </ConfidentialClause>
+      <!-- The SQL criteria for excluding any records (so that these don't appear in the outputs)-->
+      <ExclusionClause>
+        <value>(CONFIDENTIAL &lt;&gt; 'Y' OR CONFIDENTIAL IS NULL)</value>
+      </ExclusionClause>
 
-      <!-- The default value for extracting confidential surveys -->
-      <DefaultConfidential>
+      <!-- The default value for excluding any records. Leave blank to hide option in dialog. -->
+      <DefaultExclusion>
+        <value></value>
+      </DefaultExclusion>
+
+      <!-- Archive the existing main log before starting a new one? -->
+      <DefaultClearLogFile>
+            <value>Yes</value>
+      </DefaultClearLogFile>
+
+      <!-- By default, should centroids be used for selecting records? Leave blank to hide option in dialog. -->
+      <DefaultUseCentroids>
         <value>No</value>
-      </DefaultConfidential>
+      </DefaultUseCentroids>
 
       <!-- The path to the Universal Translator program -->
       <UTPath>
@@ -165,148 +649,66 @@ Below is an example of XML that might be used to set up the DataExtractor tool f
 
       <!-- The command to run the Universal Translator program -->
       <UTCommand>
-        <value>IMUT.exe</value>
+        <value>Fme.exe</value>
       </UTCommand>
 
-      <!-- The table columns and SQL where clauses used to select all the
-           required columns for the extract table subsets -->
-      <SQLTables> 
-        <Data_AllSpecies> <!-- The name of this subset as it is listed in the
-                               partner table -->
-            <TableName> <!-- The name of this subset as it will be exported -->
-                <Value>Data_Spp_Full</Value>
-            </TableName>
-            <Columns> <!-- The columns that will be included in this subset -->
-                <Value>TaxonName, CommonName, TaxonClass, TaxonGroup, Abundance,
-                       AbundanceCount, RecDate, RecYear, VagueDateStart,
-                       VagueDateEnd, Recorder, Determiner, Gridref, RefSystem,
-                       Grid10K, GRPrecision, GRQualifier, Easting, Northing,
-                       Location, MoreInfo, RecType, StatusEuro, StatusUK,
-                       StatusNerc, StatusOther, StatusINNS, SurveyName,
-                       SurveyOrigin, SurveyRunBy, SurveyTags, Comments,
-                       Confidential, Sensitive, NegativeRec, HistoricRec,
-                       Verification, LastUpdated, SP_GEOMETRY</Value>
-            </Columns>
-            <Clauses> <!-- The SQL clause that should be used to extract this
-                           subset from the SQL table -->
-                <Value>RecYear &gt;= 1985 AND (NegativeRec &lt;&gt; 'Y' OR
-                       NegativeRec IS NULL) AND GRPrecision &lt;= 100 AND
-                       Gridref IS NOT NULL AND VagueDateStart IS NOT NULL AND
-                       Recorder IS NOT NULL AND TaxonName &lt;&gt; 'Homo sapiens'
-                       AND Verification &lt;&gt; 'Considered incorrect'</Value>
-            </Clauses>
-            <Symbology> <!-- The symbology definition for this subset -->
-                <Symbol> <!-- First symbol definition -->
-                    <Clause> <!-- The SQL clause that defines the records for
-                                  which this symbol will be used -->
-                        <Value>GRPrecision = 100</Value>
-                    </Clause>
-                    <Object>    <!-- The type of object the symbol applies to -->
-                        <Value>Point</Value>
-                    </Object>
-                    <Type> <!-- The type of symbol -->
-                        <Value>Symbol</Value>
-                    </Type>
-                    <Style> <!-- The MapInfo style of the symbol -->
-                        <Value>2,64,255,14,MapInfo Dispersed Group,0,0</Value>
-                    </Style>
-                </Symbol>
-                <Symbol> <!-- Next symbol -->
-                    <Clause>
-                        <Value>GRPrecision &lt;= 10</Value>
-                    </Clause>
-                    <Object>
-                        <Value>Point</Value>
-                    </Object>
-                    <Type>
-                        <Value>Symbol</Value>
-                    </Type>
-                    <Style>
-                        <Value>2,65,255,12,MapInfo Dispersed Group,0,0</Value>
-                    </Style>
-                </Symbol>
-            </Symbology>
-        </Data_AllSpecies>
-        <Data_Birds>
-            <TableName>
-                <Value>Data_Spp_Birds</Value>
-            </TableName>
-            <Columns>
-                <Value>TaxonName, CommonName, TaxonClass, TaxonGroup, Abundance,
-                       AbundanceCount, RecDate, RecYear, VagueDateStart,
-                       VagueDateEnd, Recorder, Determiner, Gridref, RefSystem,
-                       Grid10K, GRPrecision, GRQualifier, Easting, Northing,
-                       Location, MoreInfo, RecType, StatusEuro, StatusUK,
-                       StatusNerc, StatusOther, StatusINNS, SurveyName,
-                       SurveyOrigin, SurveyRunBy, SurveyTags, Comments,
-                       Confidential, Sensitive, NegativeRec, HistoricRec,
-                       Verification, LastUpdated, SP_GEOMETRY</Value>
-            </Columns>
-            <Clauses>
-                <Value>RecYear &gt;= 1985 AND (NegativeRec &lt;&gt; 'Y' OR
-                       NegativeRec IS NULL) AND GRPrecision &lt;= 100 AND
-                       Gridref IS NOT NULL AND VagueDateStart IS NOT NULL AND
-                       Recorder IS NOT NULL AND TaxonName &lt;&gt; 'Homo sapiens'
-                       AND Verification &lt;&gt; 'Considered incorrect' AND
-                       TaxonGroup = 'Birds'</Value>
-            </Clauses>
-            <Symbology>
-                <Symbol>
-                    <Clause>
-                        <Value>GRPrecision = 100</Value>
-                    </Clause>
-                    <Object>
-                        <Value>Point</Value>
-                    </Object>
-                    <Type>
-                        <Value>Symbol</Value>
-                    </Type>
-                    <Style>
-                        <Value>2,64,255,14,MapInfo Dispersed Group,0,0</Value>
-                    </Style>
-                </Symbol>
-                <Symbol>
-                    <Clause>
-                        <Value>GRPrecision &lt;= 10</Value>
-                    </Clause>
-                    <Object>
-                        <Value>Point</Value>
-                    </Object>
-                    <Type>
-                        <Value>Symbol</Value>
-                    </Type>
-                    <Style>
-                        <Value>2,65,255,12,MapInfo Dispersed Group,0,0</Value>
-                    </Style>
-                </Symbol>
-            </Symbology>
-        </Data_Birds>
+      <!-- The command to run the EasyLoader program -->
+      <EasyLoaderCommand>
+        <value>C:\Program Files (x86)\MapInfo\Professional\Tools\EasyLoader.exe</value>
+      </EasyLoaderCommand>
+
+      <EasyLoaderQuotes>
+        <value>Y</value>
+      </EasyLoaderQuotes>
+
+      <!-- The switches to run the EasyLoader program -->
+      <EasyLoaderSwitches>
+        <value>/E /F /K /P R /Q /Y /NoUI</value>
+      </EasyLoaderSwitches>
+
+      <!-- By default, should the EasyLoader program be run? -->
+      <DefaultEasyLoader>
+            <value>Yes</value>
+      </DefaultEasyLoader>
+
+      <SQLTables>
+        <AllSpecies>
+          <OutputName><value>Species_%partner%_%yyyy%</value></OutputName>
+          <OutputType><value></value></OutputType>
+          <Columns><value>*</value></Columns>
+          <WhereClause><value>RECORDYEAR &gt;= 1985</value></WhereClause>
+          <OrderClause><value>ORDER BY SPP_NAME</value></OrderClause>
+          <Macro><value></value></Macro>
+          <MacroParm><value></value></MacroParm>
+          <Symbology>
+            <Symbol>
+              <Clause><value></value></Clause>
+              <Object><value>Point</value></Object>
+              <Symbol><value>2,65,16711680,12,"MapInfo Dispersed Groups",0,0</value></Symbol>
+            </Symbol>
+          </Symbology>
+        </AllSpecies>
       </SQLTables>
 
-      <!-- The names and local names of the MapInfo tables and the required
-           columns for the MapInfo tables -->
       <MapTables>
-        <AncientWoodland> <!-- The name of this MapInfo table as it is listed
-                               in the partner table -->
-            <TableName> <!-- The name of this MapInfo table as it is shown in
-                             the MapInfo interface and on the form -->
-                <Value>AncientWoodland</Value>
-            </TableName>
-            <Columns> <!-- Columns that will be included in the extract -->
-                <Value>NAME, THEMNAME,STATUS, x_COORD, y_COORD, AREA,
-                       PERIMETER</Value>
-            </Columns>
+        <AncientWoodland>
+          <TableName><value>Ancient_Woodland</value></TableName>
+          <OutputName><value>AncientWoodland_%partner%</value></OutputName>
+          <OutputType><value></value></OutputType>
+          <Columns><value>*</value></Columns>
+          <WhereClause><value></value></WhereClause>
+          <OrderClause><value></value></OrderClause>
+          <Macro><value></value></Macro>
+          <MacroParm><value></value></MacroParm>
         </AncientWoodland>
       </MapTables>
 
     </DataExtractor>
     </configuration>
 
-
-
 .. raw:: latex
 
-	\newpage
+   \newpage
 
 GNU Free Documentation License
 ==============================

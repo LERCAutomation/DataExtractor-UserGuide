@@ -44,14 +44,7 @@ There are four component parts to the DataExtractor tool that work together to a
 #. An XML configuration file that specifies how the extracts are set up and what data should be exported for each data layer.
 #. The DataExtractor tool itself.
 
-The DataExtractor tool is used within a GIS application and requires all the required GIS layers to be preloaded in the GIS (see :numref:`figMapInfoUI`). Where data is to be extracted from SQL Server the partner boundary layer must also be preloaded into the SQL Server database.
-
-.. _figMapInfoUI:
-
-.. figure:: figures/InterfaceMapInfoAnnotated.png
-	:align: center
-
-	A MapInfo workspace configured for using the DataExtractor tool
+The DataExtractor tool is used within a GIS application and requires all the required GIS layers to be preloaded in the GIS. Where data is to be extracted from SQL Server the partner boundary layer must also be preloaded into the SQL Server database.
 
 .. raw:: latex
 
@@ -60,21 +53,13 @@ The DataExtractor tool is used within a GIS application and requires all the req
 Tool workflow
 -------------
 
-The DataExtractor tool requires minimum user input in order to carry out its processes once it is configured. The simple workflow is as follows (see :numref:`figUIAnn`):
+The DataExtractor tool requires minimum user input in order to carry out its processes once it is configured. The simple workflow is as follows (see :numref:`figExtractorForm`):
 
 1. The user selects which partner(s) and/or stakeholders the extraction should be carried out.
-#. The user specifies which data layers to extract from. Only layers that are loaded in the GIS or tables found in the SQL Server database are made available at this point.
-#. The user selects whether the extracted files should be compressed in a zip file once complete, whether any records should be excluded from the SQL Server table, and whether the log file should be cleared before the process starts.
+#. The user specifies which data layers to extract from. The available outputs are defined in the selected profile. MapInfo source layers must be open, and each partner specifies its SQL source table.
+#. The user selects whether the extracted files should be compressed in a zip file once complete, whether any records should be excluded from the SQL Server table, and whether the previous log should be archived before the process starts. SQL centroid selection and partner-table upload options may also be available.
 #. Finally, the user selects whether the selection of SQL Server data should be based on spatial location only, survey tags only, or both. This allows for the inclusion of data relevant to a partner that is outside of that partner's boundary.
 #. Once the user clicks **OK** the process starts.
-
-
-.. _figUIAnn:
-
-.. figure:: figures/MenuExampleAnnotated.png
-	:align: center
-
-	The DataExtractor tool workflow
 
 
 In essence, the process that the tool follows is identical to the manual process a user would perform:
@@ -82,7 +67,7 @@ In essence, the process that the tool follows is identical to the manual process
 1. The boundary of each selected partner is processed in sequence. 
 #. The specified SQL Server and GIS data layers are selected using the boundary (and/or the survey tags) for this partner.
 #. The resulting selections are exported to the output folder as specified in the configuration file, using the attribute columns and symbology specified in this configuration file.
-#. During the process the tool outputs its progress to a log file and, when the process finishes, this log file is displayed allowing the user to assess the success of the data extraction.
+#. During processing the tool records progress in a temporary run journal. At the end, messages are appended to the main log and it is displayed so the user can assess the extraction.
 
 
 .. raw:: latex
@@ -95,65 +80,24 @@ In essence, the process that the tool follows is identical to the manual process
 Tool outputs
 ============
 
-Below is a selection of outputs generated from an example data extraction using the data selections shown in figure :numref:`figMapInfoUI`. The extraction was carried out for all partners shown in the user interface. 
+The tool creates the output formats requested for each partner and records the results in a log file. The output locations, file formats and processing options are described below.
 
 Output folder
 -------------
 
-The outputs are stored in a user-defined folder (:numref:`figOutputFolder`). These outputs may include a combination of GIS layers and text files in different formats, as well as the log file.
-
-.. _figOutputFolder:
-
-.. figure:: figures/OutputFolderAnnotated.png
-	:align: center
-
-	Example of the DataExtractor tool output folder
-
-.. raw:: latex
-
-   \newpage
+The outputs are stored in a user-defined folder. These outputs may include a combination of GIS layers and text files in different formats, with logs stored separately in LogFilePath. With WorkingDir configured, outputs are created locally and transferred after each partner.
 
 Output files
 ------------
 
-Text file outputs can be produced in CSV or TXT format (:numref:`figTabularOutput`). GIS layers can be output in MapInfo (.tab) format and/or ArcGIS (.shp) format (for MapInfo users) or ArcGIS (.shp) format (for ArcGIS users).
+Text file outputs can be produced in CSV or TXT format. GIS layers can be output in MapInfo TAB (.tab) format and/or shapefile (.shp) format.
 
-
-.. _figTabularOutput:
-
-.. figure:: figures/ExampleTabularOutput.png
-	:align: center
-
-	Example of a text file output from the DataExtractor tool
-
-.. raw:: latex
-
-   \newpage
 
 Output options
 --------------
 
-Options in the tool include compressing all outputs into a single zip file for each partner (:numref:`figOutputOptions`; MapInfo only), including confidential records (defined in the configuration document) in any SQL table extracts, and clearing the log file before use.
+Options in the tool include compressing all outputs into a single zip file for each partner, applying the configured exclusion condition to SQL outputs, and archiving the previous log before use.
 
-.. _figOutputOptions:
-
-.. figure:: figures/OutputOptionsAnnotated.png
-	:align: center
-
-	Example of a compressed output file containing a single GIS layer (MapInfo)
-
-.. raw:: latex
-
-   \newpage
-
-Finally, the log file details each step that was taken during the process, and gives some feedback about the outcomes of the steps. This includes reporting on the input for the search, the number of features that were selected in each data layer, and which data layers did not return any features (:numref:`figLogFileExample`).
-
-.. _figLogFileExample:
-
-.. figure:: figures/LogFileExample.png
-	:align: center
-
-	Example of a DataExtractor tool log file
-
+Finally, the log file details each step that was taken during the process, and gives some feedback about the outcomes of the steps. This includes reporting on the input for the search, the number of features that were selected in each data layer, and which data layers did not return any features.
 
 The following chapters, :doc:`setting up the tool <../setup/setup>` and :doc:`running the tool <../execute/execute>`, will guide you through setting up and operating the tool in such a way that these tool outputs meet the exact requirements of data extraction within your organisation.

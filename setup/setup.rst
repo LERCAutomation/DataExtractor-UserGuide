@@ -2,7 +2,7 @@
 Setting up the tool
 *******************
 
-Before the DataExtractor tool will function, it needs to be installed and configured. It is essential that the configuration is carried out first. There are some differences between the setup for MapInfo and ArcGIS, which are made clear below.
+Before the DataExtractor tool will function, it needs to be installed and configured. It is essential that the configuration is carried out first.
 
 .. index::
 	single: Configuring the tool
@@ -14,8 +14,7 @@ The DataExtractor tool requires a minimum of two XML configuration files:
 
 1. An XML file called 'DataExtractor.xml'. This simply defines:
 
-	* The title of the tool as it appears in the tool menu (MapInfo only)
-	* Whether users are able to choose their own configuration file (ArcMap only)
+	* The title of the tool as it appears in the tool menu
 	* The default XML profile to be pre-selected (where more than one XML profile is present)
 
 	.. caution::
@@ -28,23 +27,23 @@ The DataExtractor tool requires a minimum of two XML configuration files:
 		An example of an XML profile can be found in the :doc:`Appendix <../appendix/appendix>`.
 
 
-Attributes and settings in the XML profiles are presented as nodes (beginning with a start node, e.g. ``<example>``, and finishing with an end note, e.g. ``<\example>``), with the value for that node held between the ``<value>`` and ``<\value>`` tag. 
+Attributes and settings in the XML profiles are presented as nodes (beginning with a start node, e.g. ``<example>``, and finishing with an end node, e.g. ``</example>``), with the value for that node held between the ``<value>`` and ``</value>`` tags.
 
-The XML file can be edited in a text editor such as Notepad or Wordpad, or using a more feature rich XML editor such as as `Sublime Text <https://www.sublimetext.com/3>`_. The configuration file is split into three sections:
+The XML file can be edited in a text editor such as Notepad or Wordpad, or using an XML editor. The configuration file is split into three sections:
 
 General attributes
 	General and default attributes for the tool.
 
-SQL Tables`
+SQL Tables
 	Deals with how extracts from each SQL Server table should be handled.
 
-Map Tables (MapInfo) or Map Layers (ArcGIS)
+Map Tables
 	Deals with how extracts from each GIS layer should be handled.
 
 .. caution::
 	It is important that the structure of the file is maintained as it is presented in the :doc:`Appendix <../appendix/appendix>`. Any changes to the structure may result in the DataExtractor tool not loading, or not working as expected.
 
-Once editing has been completed and the edits have been saved, it is recommended that the configuration file is opened using an internet browser such as Internet Explorer which will help highlight any editing errors – only if the structure of the file is valid will the whole file be displayed in the Internet browser.
+Once editing has been completed and the edits have been saved, it is recommended that the configuration file is opened using an XML editor or web browser which will help highlight any editing errors – only if the structure of the file is valid will the whole file be displayed in the Internet browser.
 
 .. note::
 	It is recommended that the configuration file is kept in a central (network) location, so that all users use the same configuration. Additionally, it is essential that the configuration file is kept in the same folder as the compiled version of the tool.
@@ -84,336 +83,326 @@ Setup for MapInfo
 General attributes
 ******************
 
-The first section of the configuration file deals with a series of general attributes for the DataExtractor tool. Each node specifies where files are kept, how output files should be named, where the log file will be saved as well as other overall settings. Details on these attributes (and their typical values where known) are outlined below. The list follows the order within which the attributes are found in the configuration file. This version of the configuration details is valid for the MapInfo version 1.5.11 of the DataExtractor tool.
+The MapInfo settings below describe DataExtractor v1.7.05. The main file
+``DataExtractor.xml`` and all profile XML files must be beside the compiled
+``.MBX`` application. Select the appropriate executable for your MapInfo version
+and 32-bit or 64-bit installation. The screenshots show an earlier interface;
+the current options are described in :doc:`../execute/execute`.
+
+Main configuration file
+***********************
+
+``DataExtractor.xml`` contains the following settings under ``DataExtractor``:
 
 _`ToolTitle`
-	The title to use for the program in the MapInfo Tools menu.
+    The title used in the MapInfo Tools menu.
 
-_`LogFilePath` 	
-	The folder to be used for storing log files. This folder must already exist.
+_`DefaultProfile`
+    The profile name without the ``.xml`` extension to preselect when several
+    profiles are present. Leave blank to use ``DefaultProfile``. If only one
+    profile exists, it is loaded automatically. Otherwise the user chooses a
+    profile before the extraction form opens.
+
+Profile settings
+****************
+
+The following nodes belong under ``DataExtractor`` in each profile. The
+:ref:`example_xml` shows their structure. Old MapInfo nodes ``FilesColumn``,
+``ConfidentialClause`` and ``DefaultConfidential`` have been replaced by the
+separate file-list and exclusion settings below.
+
+_`Debug`
+    Set to ``Yes`` to include additional diagnostic messages in the log;
+    otherwise use ``No``.
+
+_`LogFilePath`
+    The folder for the main user-specific log, ``DataExtractor_<userid>.log``,
+    and supporting diagnostic files. Missing folders are created if permissions
+    allow. The run journal is written locally when WorkingDir is used and the
+    accumulated messages are appended to the main log when the run finishes.
 
 _`FileDSN`
-	The location of the file DSN which specifies the details of the connection to the SQL database.
+    The full path to the file DSN defining the SQL Server connection. Configure
+    the ODBC driver and access permissions for the MapInfo installation in use.
 
 _`DefaultPath`
-	The folder below which all partner folders will be created, and where extracts will be stored.
+    The final output folder below which partner folders are created. It may
+    contain the date variables described under :ref:`naming_variables`.
+
+_`WorkingDir`
+    An optional local folder used to create outputs before moving them to
+    DefaultPath. A fresh subfolder is created for each run. Exports, export
+    macros and ZIP creation finish locally before each partner is transferred.
+    Leave this node missing or blank to write directly to DefaultPath. See
+    :ref:`working_outputs` for completion, cancellation and recovery behaviour.
+
+_`PartnerFolder`
+    The partner subfolder name, for example
+    ``%partner%_DataExchange_%qq%_%ffff%``. If blank, the partner abbreviation
+    from ShortColumn is used. Choose a distinct folder for each partner and
+    keep it within the output folder.
+
+_`MapInfoFolder`, _`ArcGISFolder`, _`CSVFolder`, _`TXTFolder`
+    Subfolders within each partner folder for TAB, SHP, CSV and TXT files,
+    respectively. Leave a value blank to put that format directly in the
+    partner folder. The XML setting named ArcGISFolder controls the shapefile
+    output folder; it is part of the MapInfo profile.
 
 _`DatabaseSchema`
-	The schema used in the SQL database (typically ``dbo``).
+    The schema used in SQL Server, typically ``dbo``.
 
 _`TableListSQL`
-	The SQL statement that is used to return the list of SQL tables which should be included in the user interface for selection by the user.
+    A SQL Server query returning the available source table names in its first
+    column. Each partner's SQLTableColumn identifies which source to use.
+    The form's SQL list shows the configured output definitions, rather than
+    asking the user to choose one source table for all partners.
 
 _`PartnerTable`
-	The name of the partner GIS layer (and SQL Server table) used to select records. The tool expects this layer to be present in the active MapInfo workspace and already present in the SQL Server database. A snapshot of a partner table is shown in :numref:`FigPartnerTable`.
+    The partner boundary table, which must be open in MapInfo. SQL extractions
+    also require the corresponding table in SQL Server. It can be uploaded
+    at the start of a run using the EasyLoader option below, or maintained
+    separately. Keep the MapInfo and SQL Server copies consistent.
 
-.. _FigPartnerTable:
-
-.. figure:: figures/PartnerTable.png
-	:align: center
-
-	Example of a partner table loaded into MapInfo
-
-	.. note::
-		The partner GIS layer can be uploaded to SQL Server from MapInfo using the 'EasyLoader' tool.
- 
 _`PartnerColumn`
-	The column in the `PartnerTable`_ containing the partner name, which is passed to SQL Server by the tool to use the partner's boundary for selecting the records.
+    The column containing the partner name used to select its boundary.
 
 _`ShortColumn`
-	The name of the column in the partner GIS layer containing the abbreviated name to use as the sub-folder name for the destination of extracted records. The sub-folder is created in the `DefaultPath`_ during extraction if it does not already exist.
+    The column containing the partner abbreviation used for output naming.
 
 _`NotesColumn`
-	The name of the column in the partner GIS layer containing any notes text relating to the partner.
-
-	.. tip::
-		Any notes for a partner can be displayed by 'double-clicking' the partner name in the list of partners in the tool interface.
+    The column containing partner notes. Double-click a partner in the form
+    to display its notes.
 
 _`ActiveColumn`
-	The name of the column in the partner GIS layer containing the Y/N flag to indicate if the partner is currently active.  Only active partners will appear in the tool interface and be available for processing. The values in this column should be ``Y`` or ``N``.
+    The name of the column holding the partner's active flag, normally ``Y``
+    or ``N``. The current form filters partners using PartnerClause; setting
+    this column alone does not define that filter.
+
+_`PartnerClause`
+    A MapInfo SQL condition defining which partners appear, for example
+    ``Active = "Y"``. Supply the condition without ``WHERE``.
 
 _`FormatColumn`
-	The name of the column in the partner GIS layer containing the GIS format required for the output records. The values in the column should be ``Shp``, ``Tab`` or ``Both``.
+    The column specifying each partner's GIS output format: ``Tab``, ``Shp``
+    or ``Both``. Leave the partner's value blank for no GIS output, unless
+    an output definition supplies its own OutputType.
 
 _`ExportColumn`
-	The name of the column in the partner GIS layer indicating whether an export should also be created as a CSV file. The values in this column should be ``Y`` or ``N``.
+    The column specifying an additional text export: ``CSV`` or ``TXT``.
+    Leave the partner's value blank for no text export. These are format
+    names, rather than the old ``Y``/``N`` values. CSV includes column headings;
+    TXT has no headings. Both use comma delimiters and Windows Latin-1 text.
 
-_`FilesColumn`
-	The name of the column in the partner GIS layer indicating which SQL tables and map layers should be extracted for each partner. The entry in this column should be a comma-delimited list of the names of the layers (as defined in the XML file under :ref:`SQLTables <SQLTables>` and :ref:`MapTables <MapTables>`) that should be included for each partner.
+_`SQLTableColumn`
+    The column containing the SQL Server source table name for each partner.
+
+.. _filescolumn:
+
+_`SQLFilesColumn`
+    The column listing the SQL output definition names required for each
+    partner. Use the child node names under SQLTables, separated by commas,
+    or ``ALL`` for all definitions. A blank value requests none. Only outputs
+    also selected in the form are processed. Use distinct names that are not
+    substrings of one another, as the current matching uses text searches.
+
+_`MapFilesColumn`
+    The equivalent column listing the child node names under MapTables.
+    It also accepts ``ALL`` or a blank value, and is combined with the user's
+    selection in the form.
 
 _`TagsColumn`
-	The name of the column in the partner GIS layer indicating which survey tags, if any, should be included in the export. The survey tags should be a comma-delimited list.
+    The column containing the comma-separated survey tags used for SQL Server
+    selection. Survey-tag selection requires the appropriate database tables
+    and stored procedures.
+
+_`SpatialColumn`
+    The name of the partner geometry column in SQL Server, for example
+    ``SP_GEOMETRY``. This may differ from the MapInfo ``obj`` column.
 
 _`SelectTypeOptions`
-	The option list for the selection types to be included in the 'Selection Type' drop-down box on the tool interface. This attribute should not be changed. The options are ``Spatial Only`` (records are purely selected on whether they are inside or outside the partner boundary), ``Survey tags only`` (records are purely selected on the survey tags included in the `TagsColumn`_), and ``Spatial and Survey Tags``, where both a spatial intersection and any records with the relevant survey tags are included in the extraction.
-
-	.. note::
-		The 'Selection Type' option in the tool interface **only** relates to extracts from SQL tables and **not** to extracts from GIS layers (which are always spatial).
+    Keep the options in this order: ``Spatial Only;Survey Tags Only;Spatial and
+    Survey Tags``. The third option combines spatial matches with records
+    matching the partner's survey tags. These options apply to SQL extractions.
 
 _`DefaultSelectType`
-	The selection type that should be shown by default in the 'Selection Type' drop-down list. This attribute is the index number of the selection type options in the drop-down list, with 1 being the first option.
+    The initial option number: ``1`` for spatial, ``2`` for survey tags or
+    ``3`` for both.
 
 _`RecMax`
-	The maximum number of records that will be extracted in any one partner extract.
+    The maximum selected record count for an individual output (before any
+    SQL grouping). An output exceeding the limit is skipped and reported in the log; it is not truncated and
+    this is not a combined limit for all of a partner's outputs.
 
 _`DefaultZip`
-	The default value for zipping the extract files. This attribute should be set to ``Yes`` or ``No``.
+    Set ``Yes`` or ``No`` for the initial :guilabel:`Zip extract files?`
+    selection. Leave blank to hide the option. ZIP output requires Windows
+    ``tar.exe`` and ``fc.exe``; see :ref:`zip_outputs`.
 
-_`ConfidentialClause`
-	The SQL criteria for excluding any confidential surveys. The clause is appended to any SQL criteria already defined against each file under :ref:`SQLTables <SQLTables>`.
+_`ExclusionClause`
+    A SQL Server condition applied when :guilabel:`Apply exclusion clause?`
+    is selected. Supply the condition without ``WHERE``. It is combined with
+    each SQL output's WhereClause and does not filter MapInfo layers.
 
-_`DefaultConfidential`
-	Yes/No attribute, defining whether the check box for 'Extract confidential surveys?' will be set to checked (``Yes``) or unchecked (``No``) when the form is opened. 
+_`DefaultExclusion`
+    Set ``Yes`` or ``No`` for the initial exclusion option. The option is
+    hidden if this value or ExclusionClause is blank.
 
-	.. note::
-		The 'ConfidentialClause' and 'Extract confidential surveys?' option in the tool interface **only** relates to extracts from SQL tables and **not** to extracts from GIS layers.
+_`DefaultClearLogFile`
+    Set ``Yes`` or ``No`` for :guilabel:`Clear log file?`. When selected,
+    the existing main log is archived using its modification date and time
+    before a new main log is started. Otherwise new run messages are appended.
+    The checkbox remains visible when the setting is blank.
+
+_`DefaultUseCentroids`
+    Set ``Yes`` or ``No`` for :guilabel:`Select polygons by centroids?`.
+    Leave blank to hide it. This option is passed to SQL Server selection;
+    it does not change MapInfo layer intersection queries.
 
 _`UTPath`
-	The path to the Universal Translator program. The path will usually be ``C:\Program Files (x86)\MapInfo\Professional\UT`` (64 bit operating system) or ``C:\Program Files\MapInfo\Professional\UT`` (32 bit operating system) but it is dependent on the location of the MapInfo installation directory.
+    The folder containing the Universal Translator supplied with the installed
+    MapInfo version. Use the actual installation path.
 
 _`UTCommand`
-	The command to run the Universal Translator program. Unless the program has been renamed, this will usually be ``Imut.exe`` (MapInfo 11.5 or earlier) or ``Fme.exe`` (MapInfo 12 or later).
+    The translator executable, commonly ``Imut.exe`` in older installations
+    or ``Fme.exe`` in later ones. The translator is used for SHP output.
 
+_`EasyLoaderCommand`
+    The full path to ``EasyLoader.exe`` for the installed MapInfo version.
+    If blank, the upload checkbox is hidden. Uploading is only attempted when
+    SQL outputs have been selected.
 
-.. index::
-	single: SQL table attributes; MapInfo
+_`EasyLoaderQuotes`
+    Use ``Y`` to quote the file arguments passed to EasyLoader, including
+    paths containing spaces. Use ``N`` for unquoted arguments. This setting specifically expects
+    ``Y``, rather than ``Yes``. Check it against your installed EasyLoader version.
+
+_`EasyLoaderSwitches`
+    The command-line switches for EasyLoader. Configure these for the intended
+    database upload and the installed EasyLoader version.
+
+_`DefaultEasyLoader`
+    Set ``Yes`` or ``No`` for the initial
+    :guilabel:`Upload partner table to server?` option.
+
+.. _naming_variables:
+
+Output naming variables
+***********************
+
+DefaultPath supports the date variables below. PartnerFolder and OutputName
+also support ``%partner%``, which is replaced with the partner abbreviation
+from ShortColumn. Values are based on the date the run starts.
+
+.. list-table:: Naming variables
+    :header-rows: 1
+    :widths: 25 75
+
+    * - Variable
+      - Meaning
+    * - ``%partner%``
+      - Partner abbreviation; for example ``ABC``
+    * - ``%dd%``
+      - Two-digit day; for example ``19``
+    * - ``%mm%``
+      - Two-digit month; for example ``10``
+    * - ``%mmm%``
+      - Short month name; for example ``Oct``
+    * - ``%yy%`` / ``%yyyy%``
+      - Two-digit / four-digit year; for example ``26`` / ``2026``
+    * - ``%qq%``
+      - Financial quarter: April-June is Q1, July-September Q2,
+        October-December Q3 and January-March Q4
+    * - ``%ffff%``
+      - April-March financial year; for example ``26-27``
 
 SQL table attributes
 ********************
 
 .. _SQLTables:
 
-While the spatial selection that the tool carries out is over the entirety of the SQL table selected by the user, subsets of this data can be written out using the SQL table attributes. The details of these subsets are defined in the ``<SQLTables>`` node.
+Each child node under ``SQLTables`` defines an output subset. Its node name
+identifies it in SQLFilesColumn and in the form. All selected SQL definitions
+use the source table named in that partner's SQLTableColumn. See the
+:ref:`example_xml` for a current XML example.
 
-For each subset that may be included in the extracts a new child node must be created. The node name (e.g. ``<AllSpecies>``) is a user-defined name used to identify an individual subset - the same name should be used in the `FilesColumn`_ in the partner layer to indicate that this subset should be extracted for a partner. A simple example of an SQL layer definition with limited attributes is shown in :numref:`figXMLExample`.
+OutputName
+    The output filename without an extension. This replaces the old SQL
+    TableName setting. Naming variables are supported.
 
-.. _figXMLExample:
-
-.. figure:: figures/DataLayerXMLExample.png
-	:align: center
-
-	Simplified example of an SQL table subset configuration
-
-The attributes that are required for each SQL table are as follows:
-
-TableName
-	The name of the output GIS layer or text file that will be created for this subset.
+OutputType
+    Leave blank to use the partner's GIS format, or specify ``TAB``, ``SHP``
+    or ``Both`` to override it. A non-empty unrecognised GIS type, such as
+    ``None``, suppresses GIS output. For SQL outputs, request CSV or TXT using
+    ExportColumn; do not rely on OutputType to request a text export.
 
 Columns
-	A comma-separated list of columns that should be included in the data exported for this subset during the extraction. The column names (not case sensitive) should match the column names in the source table.
+    The comma-separated SQL Server column list, or ``*``. Include the geometry
+    column when spatial output is required.
 
-Clauses
-	The SQL clause that should be used to select the data for this subset from the SQL table. This clause could, for example, ensure records are only included that have been entered after a certain date, are verified, are presence (not absence) records, or are a subset for particular taxon groups or protected species. Leave this entry blank to export the entire SQL table.
+WhereClause
+    The SQL Server condition selecting this subset, without ``WHERE``.
+    A blank condition includes the whole partner-selected subset, rather
+    than the entire source table. The exclusion condition is added if enabled.
 
-	.. note::
-		Clauses specified here must adhere to SQL Server syntax as the clause will be run within SQL Server.
+OrderClause
+    An optional complete SQL clause, including its keywords, for example
+    ``ORDER BY TAXONOMIC_GROUP, SPP_NAME``. Grouping must also be valid for
+    the selected columns. Leave blank if no ordering or grouping is needed.
+
+Macro / MacroParm
+    Optional script path and additional parameter for post-processing CSV
+    or TXT exports. The tool runs the script using ``wscript.exe`` and waits
+    for it to finish before continuing. Arguments are passed in this order:
+    MacroParm, export folder, export filename (including extension), and macro
+    log path. The script must accept these arguments and write any diagnostic
+    messages to that log. Macros run before ZIP creation and transfer, so the
+    folder argument points to the working folder when staging is enabled.
 
 _`Symbology`
-	The symbology definition for this subset. Multiple symbols can be specified for use in the symbology using clauses. Each symbol is specified between ``<Symbol>`` and ``</Symbol>`` tags and is defined by the following child nodes:
-
-	Clause
-		The clause that defines the records which will be assigned this symbol.
-	Object
-		The object type that is symbolised using this symbol (e.g. ``Point``)
-	Type
-		The type of symbol to be used, usually 'Symbol'
-	Style
-		The style of the symbol to be used.
-
-	.. tip::
-		In order to find the syntax for the Style attribute, set the desired symbol through Options => Symbol style, then write the following statement in the MapBasic window and hit enter: ``Print CurrentSymbol()``. Then the full symbol definition (e.g. ``137,255,12, "MapInfo Miscellaneous",256,0``) can be used in this attribute.
-
-
-.. index::
-	single: Map table attributes; MapInfo
+    Optional styling for SQL-derived TAB outputs. Each child ``Symbol`` rule
+    contains ``Clause`` (a MapInfo condition, or blank for all matching objects)
+    and ``Object`` (``Point`` or ``Region``). Point rules contain a nested
+    ``Symbol`` value; region rules contain ``Pen`` and ``Brush`` values.
+    These replace the obsolete Type and Style nodes. Obtain style definitions
+    from MapInfo, for example using ``Print CurrentSymbol()`` in the MapBasic
+    window after choosing a symbol. See the appendix for the XML structure.
 
 Map table attributes
 ********************
 
 .. _MapTables:
 
-All map layer attributes are found within the ``<MapTables>`` node. For each data layer that can be included in the extractions a new child node must be created. The node name (e.g. ``<SSSIs>``) is a user-defined name used to identify the layer - the same name should be used in the `FilesColumn`_ in the partner layer to indicate that this layer should be extracted for a partner. The attributes that are required for each map layer are as follows:
+Each child node under ``MapTables`` identifies an output in MapFilesColumn
+and in the form. The source table must be open in MapInfo.
 
 TableName
-	The name of the source GIS layer as it is known in the active MapInfo workspace. This is also the name that will be used for the extracted file.
+    The source table name as it appears in the active MapInfo workspace.
+
+OutputName
+    The output filename without an extension. If blank, TableName is used.
+    Naming variables are supported.
+
+OutputType
+    Leave blank to use the partner's formats. ``TAB``, ``SHP`` or ``Both``
+    overrides the GIS output. ``CSV`` or ``TXT`` requests that text format
+    and suppresses GIS output for this map definition. ``None`` suppresses
+    GIS output while retaining any text format requested by the partner.
 
 Columns
-	A comma-separated list of columns that should be included in the data exported from this GIS layer during the extraction. The column names (not case sensitive) should match the column names in the source GIS layer.
-
-Clause
-	The SQL clause that should be used to select the data for this layer from the source GIS layer. Leave this entry blank to export the entire source GIS layer.
-
-	.. note::
-		Any clause specified here must adhere to MapInfo SQL syntax as the clause will be run within MapInfo.
-
-Any exports from map layers will use the same symbology as the source layer.
-
-.. raw:: latex
-
-	\newpage
-
-.. index::
-	single: Setup for ArcGIS
-
-Setting up the tool for ArcGIS
-------------------------------
-
-.. index::
-	single: General attributes; ArcGIS
-
-General attributes
-******************
-
-The first section of the configuration file deals with a series of general attributes for the DataExtractor tool. Each node specifies where files are kept, how output files should be named, where the log file will be saved as well as other overall settings. Details on these attributes (and their typical values where known) are outlined below. The list follows the order within which the attributes are found in the configuration file. This version of the configuration details is valid for the ArcGIS version 1.0 of the DataExtractor tool.
-
-
-LogFilePath 	
-	The folder to be used for storing log files. This folder must already exist.
-
-FileDSN
-	The location of the file DSN which specifies the details of the connection to the SQL database.
-
-ConnectionString
-	In addition to a file DSN, the ArcGIS tool requires a connection string for the SQL database. 
-
-TimeoutSeconds
-	The number of seconds before the connection to the database times out. If left blank this will default to 4,000 seconds.
-
-DefaultPath
-	The folder below which all partner folders will be created, and where extracts will be stored.
-
-DatabaseSchema
-	The schema used in the SQL database (typically ``dbo``).
-
-IncludeWildcard
-	The wildcard for table names to list all the species tables in SQL Server that can be selected by the user to extract from. This might look like ``*LERC_Spp_*``
-
-ExcludeWildcard
-	The wildcard for table names that will be excluded from the list of species tables. Intended to exclude temporary tables, this might take the form ``LERC_Spp_*_*``.
-
-PartnerTable
-	The name of the partner GIS layer (and SQL Server table) used to select records. The tool expects this layer to be present in the ArcMap Table of Contents and also present in the SQL Server database. A snapshot of a partner table is shown in :numref:`FigPartnerTableArc`.
-
-.. _FigPartnerTableArc:
-
-.. figure:: figures/PartnerTable.png
-	:align: center
-
-	Example of a partner table
-
-	.. note::
-		The partner GIS layer can be uploaded to SQL Server by right-clicking on the layer, then selecting :kbd:`Data => Export Data`. In the resulting menu choose :kbd:`Database Feature Classes` as the file type, and use the FileDSN as the location to save the data to.
- 
-PartnerColumn
-	The column in the PartnerTable containing the partner name, which is passed to SQL Server by the tool to use the partner's boundary for selecting the records.
-
-ShortColumn
-	The name of the column in the partner GIS layer containing the abbreviated name to use as the sub-folder name for the destination of extracted records. The sub-folder is created in the DefaultPath during extraction if it does not already exist.
-
-NotesColumn
-	The name of the column in the partner GIS layer containing any notes text relating to the partner.
-
-	.. tip::
-		Any notes for a partner can be displayed by 'double-clicking' the partner name in the list of partners in the tool interface.
-
-ActiveColumn
-	The name of the column in the partner GIS layer containing the Y/N flag to indicate if the partner is currently active.  Only active partners will appear in the tool interface and be available for processing. The values in this column should be ``Y`` or ``N``.
-
-FormatColumn
-	The name of the column in the partner GIS layer containing the GIS format required for the output records. The values in the column should be ``SHP`` or ``GDB``.
-
-ExportColumn
-	The name of the column in the partner GIS layer indicating whether an export should also be created as a CSV file. The values in this column should be ``CSV`` or ``TXT``. If it is left blank no text export will be generated.
-
-SQLFilesColumn
-	The name of the column in the partner GIS layer indicating which SQL tables should be extracted for each partner. The entry in this column should be a comma-delimited list of the names of the layers (as defined in the XML file under :ref:`SQLTables <SQLTablesArc>`) that should be included for each partner.
-
-MapFilesColumn
-	The name of the column in the partner GIS layer indicating which ArcGIS layers should be extracted for each partner. The entry in this column should be a comma-delimited list of the names of the layers (as defined in the XML file under :ref:`MapLayers <MapLayers>`) that should be included for each partner.
-
-TagsColumn
-	The name of the column in the partner GIS layer indicating which survey tags, if any, should be included in the export. The survey tags should be a comma-delimited list.
-
-SelectTypeOptions
-	The option list for the selection types to be included in the 'Selection Type' drop-down box on the tool interface. This attribute should not be changed. The options are ``Spatial Only`` (records are purely selected on whether they are inside or outside the partner boundary), ``Survey tags only`` (records are purely selected on the survey tags included in the TagsColumn), and ``Spatial and Survey Tags``, where both a spatial intersection and any records with the relevant survey tags are included in the extraction.
-
-	.. note::
-		The 'Selection Type' option in the tool interface **only** relates to extracts from SQL tables and **not** to extracts from GIS layers (which are always spatial).
-
-DefaultSelectType
-	The selection type that should be shown by default in the 'Selection Type' drop-down list. This attribute is the index number of the selection type options in the drop-down list, with 1 being the first option.
-
-
-DefaultZip
-	The default value for zipping the extract files. This attribute is not currently used in ArcGIS.
-
-ConfidentialClause
-	The SQL criteria for excluding any confidential surveys. The clause is appended to any SQL criteria already defined against each file under :ref:`SQLTables <SQLTablesArc>`.
-
-DefaultConfidential
-	Yes/No attribute, defining whether the check box for 'Extract confidential surveys?' will be set to checked (``Yes``) or unchecked (``No``) when the form is opened. 
-
-	.. note::
-		The 'ConfidentialClause' and 'Extract confidential surveys?' option in the tool interface **only** relates to extracts from SQL tables and **not** to extracts from GIS layers.
-
-
-.. index::
-	single: SQL table attributes; ArcGIS
-
-SQL table attributes
-********************
-
-.. _SQLTablesArc:
-
-While the spatial selection that the tool carries out is over the entirety of the SQL table selected by the user, subsets of this data can be written out using the SQL table attributes. The details of these subsets are defined in the ``<SQLTables>`` node.
-
-For each subset that may be included in the extracts a new child node must be created. The node name (e.g. ``<AllSpecies>``) is a user-defined name used to identify an individual subset - the same name should be used in the `FilesColumn`_ in the partner layer to indicate that this subset should be extracted for a partner. A simple example of an SQL layer definition with limited attributes is shown in :numref:`figXMLExampleArc`.
-
-.. _figXMLExampleArc:
-
-.. figure:: figures/DataLayerXMLExample.png
-	:align: center
-
-	Simplified example of an SQL table subset configuration
-
-The attributes that are required for each SQL table are as follows:
-
-TableName
-	The name of the output GIS layer or text file that will be created for this subset.
-
-Columns
-	A comma-separated list of columns that should be included in the data exported for this subset during the extraction. The column names (not case sensitive) should match the column names in the source table.
-
-Clauses
-	The SQL clause that should be used to select the data for this subset from the SQL table. This clause could, for example, ensure records are only included that have been entered after a certain date, are verified, are presence (not absence) records, or are a subset for particular taxon groups or protected species. Leave this entry blank to export the entire SQL table.
-
-	.. note::
-		Clauses specified here must adhere to SQL Server syntax as the clause will be run within SQL Server.
-
-
-.. index::
-	single: Map table attributes; ArcGIS
-
-Map layer attributes
-********************
-
-.. _MapLayers:
-
-All map layer attributes are found within the ``<MapLayers>`` node. For each data layer that can be included in the extractions a new child node must be created. The node name (e.g. ``<SSSIs>``) is a user-defined name used to identify the layer - the same name should be used in the `FilesColumn`_ in the partner layer to indicate that this layer should be extracted for a partner. The attributes that are required for each map layer are as follows:
-
-LayerName
-	The name of the source GIS layer as it is known in the ArcGIS Table of Contents. This is also the name that will be used for the extracted file.
-
-Columns
-	A comma-separated list of columns that should be included in the data exported from this GIS layer during the extraction. The column names (not case sensitive) should match the column names in the source GIS layer.
-
-Clause
-	The SQL clause that should be used to select the data for this layer from the source GIS layer. Leave this entry blank to export the entire source GIS layer.
-
-	.. note::
-		Any clause specified here must adhere to ArcGIS SQL syntax as the clause will be run within ArcGIS.
-
-
+    The comma-separated MapInfo column list, or ``*``. Include ``obj`` when
+    spatial output is required.
+
+WhereClause
+    An optional MapInfo SQL condition without ``WHERE``. Spatial source
+    layers are intersected with the partner boundary and filtered by this
+    condition. Non-spatial tables are filtered by the condition alone.
+
+OrderClause
+    An optional complete MapInfo clause, for example ``ORDER BY SiteName``.
+
+Macro / MacroParm
+    The same CSV/TXT post-processing settings and argument order as for SQL
+    outputs. Source MapInfo symbology is retained in map-layer outputs.
 
 .. raw:: latex
 
@@ -424,6 +413,14 @@ Clause
 
 Setting up the SQL Server database
 ==================================
+
+For MapInfo v1.7.05, the tool calls ``AFSelectSppRecords`` and
+``AFClearSppSubset`` in the configured DatabaseSchema. Install compatible
+versions of these stored procedures and their database dependencies. Their
+names are fixed in the MapBasic application, rather than configured in XML.
+The connected account needs permission to run them and to create and clear
+the user-specific intermediate tables. If automatic partner upload is used,
+it also needs the appropriate EasyLoader database permissions.
 
 In addition to any SQL tables containing records to be extracted using the DataExtractor tool, two auxiliary tables must also be present in the SQL Server database in order for the tool to be able to extract data from tables held in SQL Server. These are as follows:
 
@@ -462,7 +459,7 @@ _`Spatial_Tables` table
 		+-----------------+-----------------------------------------------------------------------------------------------+
 
 	.. note::
-		The British National Grid `SRID` value is
+		The British National Grid MapInfo `CoordSystem` definition is
 		``Earth Projection 8, 79, "m", -2, 49, 0.9996012717, 400000, -100000 Bounds
 		(-7845061.1011, -15524202.1641) (8645061.1011, 4470074.53373)``
 
@@ -483,254 +480,53 @@ _`Spatial_Tables` table
 Installing the tool
 ===================
 
-Installation in MapInfo and ArcGIS is different. Please refer to the relevant section.
+For v1.7.05, use a compiled application containing the v1.7.05 source changes;
+editing the source does not update an existing MBX. Select the application
+appropriate for your MapInfo version and 32-bit or 64-bit installation.
 
-.. index::
-	single: Installing the tool; MapInfo
+1. Keep the MBX, its supporting icon files, ``DataExtractor.xml`` and profile
+   XML files together in the tool folder. Configure the profiles as described
+   above before running the tool.
+#. Open MapInfo's tool-management window. In the classic interface this is
+   :kbd:`Tools --> Tool Manager...`; the equivalent controls in the ribbon
+   interface depend on the MapInfo version installed.
+#. Add the DataExtractor MBX using the add/browse controls, give it a title
+   and description if requested, and load it (:numref:`figExtractorLoad`).
+#. Enable automatic loading at startup if required. In the classic Tool
+   Manager these settings are labelled **Loaded** and **AutoLoad**.
 
-Installing the tool in MapInfo
-------------------------------
-
-To install the tool in MapInfo, make sure that the configuration of the XML file as described above is complete, that the XML file is in the same directory as the tool MapBasic application (.MBX) and that all required GIS layers are loaded in the current workspace. Then, open `Tool Manager` in MapInfo by selecting :kbd:`Tools --> Tool Manager...` in the menu bar (:numref:`figToolManager`). 
-
-.. _figToolManager:
-
-.. figure:: figures/ToolManager.png
-	:align: center
-
-	The Tool Manager in MapInfo 12 or earlier
-
-.. raw:: latex
-
-   \newpage
-
-In the `Tool Manager` dialog, click **Add Tool...**, then locate the tool using the browse button **...** on the `Add Tool` dialog (:numref:`figAddTool`). Enter a name in the **Title** box (e.g. 'DataExtractor'), and a description if desired. Then click **Ok** to close the `Add Tool` dialog.
-
-.. _figAddTool:
+.. _figExtractorLoad:
 
 .. figure:: figures/AddToolDialog.png
-	:align: center
+    :align: center
 
-	Adding a tool in Tool Manager
+    Adding and loading the DataExtractor application in MapInfo
 
-.. raw:: latex
+ZIP processing is built into v1.7.05 and does not require a separate ZIP
+script. Export macros still require Windows Script Host if they are configured.
+Local staging uses Windows Robocopy.
 
-   \newpage
+Launching the tool
+------------------
 
-The tool will now show in the `Tool Manager` dialog (:numref:`figToolAdded`) and the **Loaded** box will be checked. To load the tool automatically whenever MapInfo is started check the **AutoLoad** box.  Then click **Ok** to close the `Tool Manager` dialog.
+In the 64-bit ribbon interface, the loaded tool adds a button to the
+**Home** tab's **Tools** group (:numref:`figExtractorLaunch`). Click that
+button to open DataExtractor. Its caption comes from ToolTitle in
+``DataExtractor.xml`` and may differ between installations.
 
-.. _figToolAdded:
+In the classic interface, open the tool's submenu under **Tools** and choose
+**Run**. The submenu title also comes from ToolTitle, rather than the title
+entered when registering the MBX in Tool Manager.
 
-.. figure:: figures/DataExtractorLoaded.png
-	:align: center
-
-	The DataExtractor tool is loaded
-
-The tool will now appear as a new entry in the `Tools` menu (:numref:`figToolMenu`).
-
-.. _figToolMenu:
+.. _figExtractorLaunch:
 
 .. figure:: figures/DataExtractorToolMenu.png
-	:align: center
+    :align: center
 
-	The DataExtractor tool menu
-
-.. note::
-	The name that will appear in the `Tools` menu is dependent on the `ToolTitle`_ value in the configuration file, **not** the name given when adding the tool using the Tool Manager.
+    Launching DataExtractor from the Home tab's Tools group
 
 .. tip::
-	It is recommended that a MapInfo Workspace is created that contains all the required GIS layers to run the tool. Once this workspace has been set up and the tool has been configured and installed, running the DataExtractor tool becomes a simple process.
 
-
-.. raw:: latex
-	
-	\newpage
-
-.. index:: 
-	single: Installing the tool; ArcGIS
-
-
-Installing the tool in ArcGIS
------------------------------
-
-Installing the tool in ArcGIS is straightforward. There are a few different ways it can be installed:
-
-Installation through Windows Explorer
-*************************************
-
-Open Windows Explorer and double-click on the ESRI Add-in file for the DataExtractor tool (:numref:`figInstallTool`).
-
-.. _figInstallTool:
-
-.. figure:: figures/AddInInstall.png
-	:align: center
-
-	Installing the DataExtractor tool from Windows Explorer
-
-.. raw:: latex
-
-   \newpage
-
-Installation will begin after confirming you wish to install the tool on the dialog that appears (:numref:`figConfirmInstall`).
-
-.. _figConfirmInstall:
-
-.. figure:: figures/AddInConfirmInstall.png
-	:align: center
-
-	Installation begins after clicking 'Install Add-in'
-
-
-Once it is installed, it will become available to add to the ArcGIS interface as a button (see :ref:`CustomisingToolbarsArcGIS`).
-
-.. note::
-	In order for this process to work all running ArcMap sessions must be closed. The tool will not install or install incorrectly if there are copies of ArcMap running.
-
-.. raw:: latex
-
-   \newpage
-
-Installation from within ArcMap
-*******************************
-
-Firstly, open the Add-In Manager through the Customize menu (:numref:`figOpenAddInManager`).
-
-.. _figOpenAddInManager:
-
-.. figure:: figures/StartAddInManager.png
-	:align: center
-
-	Starting the ArcGIS Add-In Manager
-
-.. raw:: latex
-
-   \newpage
-
-If the Data Buffer tool is not shown, use the **Options** tab to add the folder where the tool is kept (:numref:`figAddInOptions`). The security options should be set to the lowest setting as the tool is not digitally signed.
-
-.. _figAddInOptions:
-
-.. figure:: figures/AddInOptions.png
-	:align: center
-
-	The 'Options' tab in the ArcGIS Add-In Manager
-
-Once the tool shows in the Add-In Manager (:numref:`figAddInManager`), it is available to add to the ArcGIS interface as a button (see :ref:`CustomisingToolbarsArcGIS`).
-
-.. _figAddInManager:
-
-.. figure:: figures/AddInManager.png
-	:align: center
-
-	The ArcGIS Add-In Manager showing the DataExtractor tool
-
-
-.. raw:: latex
-
-   \newpage
-
-.. _CustomisingToolbarsArcGIS:
-
-Customising toolbars
-********************
-
-In order to add the Data Buffer tool to the user interface, it needs to be added to a toolbar. It is recommended that this is done inside a document that has already been loaded with all the data layers that are required for the tool to run. The tool should then be saved with this document (see `Fundamentals of Saving your Customizations <http://desktop.arcgis.com/en/arcmap/10.3/guide-books/customizing-the-ui/fundamentals-of-saving-your-customizations.htm>`_ for an explanation of how customisations are stored within ArcGIS).
-
-.. _figCustomizeMode:
-
-.. figure:: figures/CustomizeMode.png
-	:align: center
-
-	Starting Customize Mode in ArcGIS
-
-
-Customising toolbars is done through the Customize dialog, which can be started either through the Add-In Manager (by clicking **Customize**, see :numref:`figAddInManager`), or through choosing the 'Customize Mode...' option in the Customize Menu (:numref:`figCustomizeMode`).
-
-.. raw:: latex
-
-   \newpage
-
-Once this dialog is open, ensure that the check box 'Create new toolbars and menus in the document' is checked in the **Options** tab (:numref:`figCustomizeOptions`).
-
-.. _figCustomizeOptions:
-
-.. figure:: figures/CustomizeAnnotated.png
-	:align: center
-
-	Customising the document in ArcGIS
-
-
-.. raw:: latex
-
-   \newpage
-
-It is recommended that the button for the DataExtractor tool is added to a new toolbar. Toolbars are created through the **Toolbars** tab in the Customize dialog, as shown in figures :numref:`figCustomizeToolbars` and :numref:`figNameToolbar`.
-
-.. _figCustomizeToolbars:
-
-.. figure:: figures/CustomizeToolbarsAnnotated.png
-	:align: center
-
-	Adding a new toolbar in ArcGIS
-
-.. _figNameToolbar:
-
-.. figure:: figures/NameNewToolbar.png
-	:align: center
-
-	Naming the new toolbar in ArcGIS
-
-
-.. raw:: latex
-
-   \newpage
-
-Once a new toolbar is created and named, it is automatically added to the ArcMap interface as well as to the Customize dialog (:numref:`figNewToolbar`. In this case the toolbar was named 'TestToolbar'). 
-
-.. _figNewToolbar:
-
-.. figure:: figures/NewToolbarAddedAnnotated.png
-	:align: center
-
-	New toolbar added to the ArcGIS Interface
-
-
-.. raw:: latex
-
-   \newpage
-
-As a final step the DataExtractor tool is added to the toolbar. This is done from the **Command** tab in the Customize dialog (:numref:`figAddInCommands`). Click on **Add-In Controls** and the DataExtractor tool will be shown in the right-hand panel.
-
-.. _figAddInCommands:
-
-.. figure:: figures/AddInCommandsAnnotated.png
-	:align: center
-
-	Finding the DataExtractor tool in the add-in commands
-
-
-.. raw:: latex
-
-   \newpage
-
-To add the tool to the toolbar, simply drag and drop it onto it (:numref:`figDragDropTool`). Close the Customize dialog and **save the document**. The DataExtractor tool is now ready for its final configuration and first use.
-
-.. _figDragDropTool:
-
-.. figure:: figures/DragAndDropTool.png
-	:align: center
-
-	Adding the DataExtractor tool to the new toolbar
-
-.. raw:: latex
-
-   \newpage
-
-In order to function, the tool needs to know the location of the XML configuration file. The first time the tool is run, or whenever the configuration file is moved, a dialog will appear asking for the folder containing the XML file (:numref:`figFirstStart`). Navigate to the folder where the XML file is kept and click **OK**. If the XML file is present and its structure is correct, the Data Searches form will be shown. Even if the tool is not run at this time, the location of the configuration file will be stored for future use.
-
-.. _figFirstStart:
-
-.. figure:: figures/FirstStart.png
-	:align: center
-
-	Locating the configuration file folder
+    Save a MapInfo workspace containing the partner boundary table and the
+    source MapInfo layers required by the profile. Opening that workspace
+    prepares the layers for subsequent extractions.
