@@ -194,8 +194,8 @@ latex_elements = {
 # The font size ('10pt', '11pt' or '12pt').
 'pointsize': '11pt',
 
-# Additional stuff for the LaTeX preamble.
-#'preamble': '',
+# Allow enough height for the running header at the configured 11pt size.
+'preamble': r'\setlength{\headheight}{14pt}',
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
@@ -203,7 +203,7 @@ latex_elements = {
 #  author, documentclass [howto/manual]).
 latex_documents = [
   ('index', 'DataExtractor-UserGuide.tex', u'DataExtractor - User Guide',
-   u'Hester Lyons & Andy Foy', 'manual'),
+   u'Hester Lyons and Andy Foy', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
