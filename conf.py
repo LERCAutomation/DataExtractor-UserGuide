@@ -202,7 +202,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'DataExtractor-UserGuide.tex', u'DataExtractor - User Guide',
+  ('index', 'DataExtractor-UserGuide.tex', u'DataExtractor for MapInfo - User Guide',
    r'Hester Lyons \& Andy Foy', 'manual'),
 ]
 
@@ -247,7 +247,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
   ('index', 'DataExtractor-UserGuide', u'DataExtractor for MapInfo - User Guide',
-   u'Hester Lyons & Andy Foy', 'DataExtractor-UserGuide', 'DataExtractor - User Guide.',
+   u'Hester Lyons & Andy Foy', 'DataExtractor-UserGuide', 'DataExtractor for MapInfo - User Guide.',
    'Miscellaneous'),
 ]
 
